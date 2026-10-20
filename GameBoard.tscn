@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://beos3g45lwtxf"]
+
+[ext_resource type="Script" uid="uid://cqnwsotbyb8sk" path="res://CardMovement.gd" id="1_u5pr3"]
+[ext_resource type="PackedScene" uid="uid://dofk7jiely72h" path="res://Card.tscn" id="2_u5pr3"]
+
+[node name="GameBoard" type="Node2D" unique_id=2090381949]
+
+[node name="CardMovement" type="Node2D" parent="." unique_id=1077628800]
+script = ExtResource("1_u5pr3")
+
+[node name="Card" parent="CardMovement" unique_id=194236430 instance=ExtResource("2_u5pr3")]
+position = Vector2(138, 167)
+
+[node name="Card2" parent="CardMovement" unique_id=809808594 instance=ExtResource("2_u5pr3")]
+position = Vector2(357, 169)
