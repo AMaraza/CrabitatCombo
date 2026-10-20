@@ -3,6 +3,8 @@ extends Node2D
 signal hovered_over_card
 signal hovered_off_card
 
+var hand_position
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# All cards must be a child of CardMovement or this will error
@@ -10,7 +12,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 

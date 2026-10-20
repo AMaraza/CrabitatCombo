@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b5fduioxdpqod"]
+
+[ext_resource type="Script" uid="uid://bjf0s76yg4bcj" path="res://Gameplay/Feature/Scripts/CardSlot.gd" id="1_s3ure"]
+[ext_resource type="Texture2D" uid="uid://bwqn0ov741bio" path="res://Gameplay/Feature/Assets/CardSlot.png" id="2_s3ure"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_74n7r"]
+size = Vector2(180, 265)
+
+[node name="CardSlot" type="Node2D" unique_id=920113431]
+script = ExtResource("1_s3ure")
+
+[node name="CardSlotImage" type="Sprite2D" parent="." unique_id=457796356]
+texture = ExtResource("2_s3ure")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2073239448]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=17904951]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_74n7r")

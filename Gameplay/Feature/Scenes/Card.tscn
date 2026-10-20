@@ -1,17 +1,18 @@
 [gd_scene format=3 uid="uid://dofk7jiely72h"]
 
-[ext_resource type="Texture2D" uid="uid://blxayq8jijx2o" path="res://ChirpingCrab.png" id="1_dd2wi"]
-[ext_resource type="Script" uid="uid://ly0evi8y51x3" path="res://CardSignals.gd" id="1_hael8"]
+[ext_resource type="Script" uid="uid://ly0evi8y51x3" path="res://Gameplay/Feature/Scripts/CardSignals.gd" id="1_hjqo6"]
+[ext_resource type="Texture2D" uid="uid://blxayq8jijx2o" path="res://Gameplay/Feature/Assets/ChirpingCrab.png" id="2_hjqo6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74n7r"]
-size = Vector2(207, 282)
+size = Vector2(199, 270)
 
 [node name="Card" type="Node2D" unique_id=194236430]
-script = ExtResource("1_hael8")
+position = Vector2(800, 380)
+script = ExtResource("1_hjqo6")
 
 [node name="CardImage" type="Sprite2D" parent="." unique_id=1875299250]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_dd2wi")
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("2_hjqo6")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1358377182]
 

@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://beos3g45lwtxf"]
+
+[ext_resource type="Script" uid="uid://cqnwsotbyb8sk" path="res://Gameplay/Feature/Scripts/CardMovement.gd" id="1_u5pr3"]
+[ext_resource type="Script" uid="uid://dcmkqkvx8noi4" path="res://Gameplay/Feature/Scripts/PlayerHand.gd" id="3_3fmbn"]
+[ext_resource type="PackedScene" uid="uid://b5fduioxdpqod" path="res://Gameplay/Feature/Scenes/CardSlot.tscn" id="3_ocn0r"]
+[ext_resource type="Script" uid="uid://7h3n2byr2ul7" path="res://Gameplay/Feature/Scenes/DrawDeck.gd" id="4_v826t"]
+[ext_resource type="Texture2D" uid="uid://dm74s65v1chdy" path="res://Gameplay/Feature/Assets/CardBack.png" id="5_fqjow"]
+[ext_resource type="Script" uid="uid://bev2gprxbijln" path="res://Gameplay/Feature/Scenes/InputManager.gd" id="6_jydus"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_74n7r"]
+size = Vector2(198, 270)
+
+[node name="GameBoard" type="Node2D" unique_id=2090381949]
+
+[node name="CardMovement" type="Node2D" parent="." unique_id=1077628800]
+script = ExtResource("1_u5pr3")
+
+[node name="CardSlot" parent="." unique_id=920113431 instance=ExtResource("3_ocn0r")]
+position = Vector2(1167, 774)
+
+[node name="PlayerHand" type="Node2D" parent="." unique_id=676921658]
+script = ExtResource("3_3fmbn")
+
+[node name="CardSlot2" parent="." unique_id=44003251 instance=ExtResource("3_ocn0r")]
+position = Vector2(975, 775)
+
+[node name="CardSlot3" parent="." unique_id=553429563 instance=ExtResource("3_ocn0r")]
+position = Vector2(786, 775)
+
+[node name="DrawDeck" type="Node2D" parent="." unique_id=1038781587]
+position = Vector2(800, 380)
+script = ExtResource("4_v826t")
+
+[node name="DrawDeckImage" type="Sprite2D" parent="DrawDeck" unique_id=147219930]
+z_index = -2
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("5_fqjow")
+
+[node name="Area2D" type="Area2D" parent="DrawDeck" unique_id=1090025205]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DrawDeck/Area2D" unique_id=32757665]
+shape = SubResource("RectangleShape2D_74n7r")
+
+[node name="InputManager" type="Node2D" parent="." unique_id=476647309]
+script = ExtResource("6_jydus")

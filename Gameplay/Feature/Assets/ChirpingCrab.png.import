@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://blxayq8jijx2o"
-path="res://.godot/imported/ChirpingCrab.png-e48ffe5ddebb34562f42418c43186d11.ctex"
+path="res://.godot/imported/ChirpingCrab.png-6c39ed1129e66d3264f3c921955b48da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ChirpingCrab.png"
-dest_files=["res://.godot/imported/ChirpingCrab.png-e48ffe5ddebb34562f42418c43186d11.ctex"]
+source_file="res://Gameplay/Feature/Assets/ChirpingCrab.png"
+dest_files=["res://.godot/imported/ChirpingCrab.png-6c39ed1129e66d3264f3c921955b48da.ctex"]
 
 [params]
 
