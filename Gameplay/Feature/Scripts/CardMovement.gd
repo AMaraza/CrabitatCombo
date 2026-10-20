@@ -55,6 +55,7 @@ func connect_card_signals(card):
 	card.connect("hovered_off_card", on_hovered_off_card)
 
 
+# Used with signal connection to Input Manager
 func on_left_click_released():
 	if card_being_dragged:
 		finish_drag()
