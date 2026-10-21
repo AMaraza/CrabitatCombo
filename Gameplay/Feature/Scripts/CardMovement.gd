@@ -3,8 +3,9 @@ extends Node2D
 const COLLISION_MASK_CARD = 1
 const COLLISION_MASK_CARD_SLOT = 2 # Area2D collision layer and mask set to 2 for CardSlot
 const CARD_ENLARGED_SCALE = 1.50
-const CARD_NORMAL_SCALE = 1
+const CARD_NORMAL_SCALE = 0.8
 const CARD_DEFAULT_SPEED = 0.1
+const PLAYING_FIELD_SCALE = 0.6
 
 
 var screen_size
@@ -39,8 +40,11 @@ func finish_drag():
 	card_being_dragged.scale = Vector2(CARD_ENLARGED_SCALE, CARD_ENLARGED_SCALE)
 	var card_slot_found = raycast_check_for_card_slot()
 	if card_slot_found and not card_slot_found.card_in_slot:
-		player_hand_reference.remove_card_from_hand(card_being_dragged)
 		# Card dropped in empty card slot & becomes no longer moveable
+		card_being_dragged.scale = Vector2(PLAYING_FIELD_SCALE, PLAYING_FIELD_SCALE)
+		card_being_dragged.z_index = -1 # stop slotted card rendering over dragged card
+		card_being_dragged.card_in_slot = card_slot_found
+		player_hand_reference.remove_card_from_hand(card_being_dragged)
 		card_being_dragged.position = card_slot_found.position
 		card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
 		card_slot_found.card_in_slot = true
@@ -68,7 +72,8 @@ func on_hovered_over_card(card):
 
 
 func on_hovered_off_card(card):
-	if !card_being_dragged:
+	# Check if card is NOT in a card slot AND NOT being dragged
+	if !card.card_in_slot && !card_being_dragged:
 		# If not dragging
 		highlight_card(card, false)
 		# Check if hovered off card and straight on to another card

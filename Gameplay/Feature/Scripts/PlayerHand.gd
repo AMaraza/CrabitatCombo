@@ -1,7 +1,7 @@
 extends Node2D
 
-const CARD_WIDTH = 200 # Gap size between cards
-const HAND_Y_POSITION = 890 # How far down on screen for playing hand of cards
+const CARD_WIDTH = 160 # Gap size between cards
+const HAND_Y_POSITION = 1400 # How far down on screen for playing hand of cards
 const CARD_SNAPBACK_SPEED = 0.1
 
 var player_hand = []
