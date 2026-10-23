@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bev2gprxbijln" path="res://Gameplay/Feature/Scripts/InputManager.gd" id="6_jydus"]
 [ext_resource type="FontFile" uid="uid://b34oxqbdc3d4e" path="res://Gameplay/Feature/Assets/Spicy Pizza.otf" id="8_d7rro"]
 [ext_resource type="Texture2D" uid="uid://brdyyncnnh4um" path="res://Gameplay/Feature/Assets/AquariumCardBack.png" id="8_jydus"]
+[ext_resource type="Texture2D" uid="uid://k1w0ajha02q0" path="res://Gameplay/Feature/Assets/Action Point.png" id="10_t5ocr"]
 [ext_resource type="PackedScene" uid="uid://b146r5j1iuq52" path="res://Gameplay/Feature/Scenes/MainDeckDiscard.tscn" id="11_hprgh"]
 [ext_resource type="PackedScene" uid="uid://21ok7pffcy8k" path="res://Gameplay/Feature/Scenes/ActionPoint.tscn" id="11_mqx7x"]
 [ext_resource type="PackedScene" uid="uid://bit8ken6jlpwh" path="res://Gameplay/Feature/Scenes/AquariumDeckDiscard.tscn" id="12_nc7nw"]
@@ -147,22 +148,37 @@ theme_override_font_sizes/font_size = 20
 text = "END TURN"
 
 [node name="DiscardButton" type="Button" parent="." unique_id=1703366993]
-offset_left = 1725.0
-offset_top = 1104.0
-offset_right = 1812.0
-offset_bottom = 1135.0
+offset_left = 1729.0
+offset_top = 1089.0
+offset_right = 1816.0
+offset_bottom = 1120.0
 theme_override_fonts/font = ExtResource("8_d7rro")
 theme_override_font_sizes/font_size = 20
 text = "Discard"
 
+[node name="Sprite2D" type="Sprite2D" parent="DiscardButton" unique_id=261640056]
+position = Vector2(134, 25)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_t5ocr")
+
 [node name="RedrawHandButton" type="Button" parent="." unique_id=1913582704]
-offset_left = 1168.0
-offset_top = 1199.0
-offset_right = 1315.0
-offset_bottom = 1230.0
+offset_left = 1162.0
+offset_top = 1222.0
+offset_right = 1309.0
+offset_bottom = 1253.0
 theme_override_fonts/font = ExtResource("8_d7rro")
 theme_override_font_sizes/font_size = 20
 text = "Redraw Hand"
+
+[node name="Sprite2D" type="Sprite2D" parent="RedrawHandButton" unique_id=206134275]
+position = Vector2(250, 26)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_t5ocr")
+
+[node name="Sprite2D2" type="Sprite2D" parent="RedrawHandButton" unique_id=277793118]
+position = Vector2(195, 26)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_t5ocr")
 
 [node name="AdoptCrabButton" type="Button" parent="." unique_id=251613398]
 offset_left = 1710.0
@@ -173,6 +189,11 @@ theme_override_fonts/font = ExtResource("8_d7rro")
 theme_override_font_sizes/font_size = 20
 text = "Adopt Crab"
 icon_alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="AdoptCrabButton" unique_id=1842948421]
+position = Vector2(172, 25)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_t5ocr")
 
 [node name="HabitatArea" type="Node2D" parent="." unique_id=1853414756]
 

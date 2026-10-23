@@ -70,6 +70,8 @@ func on_left_click_released():
 func on_hovered_over_card(card):
 	if !is_hovering_on_card:
 		is_hovering_on_card = true
+		# Original y position updated populated here to avoid card creeping bug
+		original_y_position = card.position.y
 		highlight_card(card, true)
 
 
@@ -90,8 +92,7 @@ func on_hovered_off_card(card):
 func highlight_card(card, hovered):
 	if hovered:
 		card.scale = Vector2(CARD_ENLARGED_SCALE, CARD_ENLARGED_SCALE)
-		original_y_position = card.position.y
-		card.position.y = card.position.y - CARD_Y_MOVEMENT
+		card.position.y = original_y_position - CARD_Y_MOVEMENT
 		card.z_index = 2
 	else:
 		card.scale = Vector2(CARD_NORMAL_SCALE, CARD_NORMAL_SCALE)
