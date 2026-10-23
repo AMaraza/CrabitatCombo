@@ -44,7 +44,6 @@ func finish_drag():
 	if card_slot_found and not card_slot_found.card_in_slot:
 		# Card dropped in empty card slot & becomes no longer moveable
 		card_being_dragged.scale = Vector2(PLAYING_FIELD_SCALE, PLAYING_FIELD_SCALE)
-		card_being_dragged.z_index = -1 # stop slotted card rendering over dragged card
 		card_being_dragged.card_in_slot = card_slot_found
 		player_hand_reference.remove_card_from_hand(card_being_dragged)
 		card_being_dragged.position = card_slot_found.position
@@ -92,11 +91,14 @@ func on_hovered_off_card(card):
 func highlight_card(card, hovered):
 	if hovered:
 		card.scale = Vector2(CARD_ENLARGED_SCALE, CARD_ENLARGED_SCALE)
+		# Get new card position based on index
 		card.position.y = original_y_position - CARD_Y_MOVEMENT
+		var new_card_position = Vector2(card.position.x, card.position.y)
+		card.position = new_card_position
 		card.z_index = 2
 	else:
 		card.scale = Vector2(CARD_NORMAL_SCALE, CARD_NORMAL_SCALE)
-		card.position.y = original_y_position
+		card.position = Vector2(card.position.x, original_y_position)
 		card.z_index = 1
 
 
