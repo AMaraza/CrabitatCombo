@@ -11,13 +11,17 @@ config_version=5
 [application]
 
 config/name="CrabitatComboCapstone"
+run/main_scene="uid://beos3g45lwtxf"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 
+window/size/viewport_width=2560
+window/size/viewport_height=1440
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/vsync/vsync_mode=0
 
 [physics]
 

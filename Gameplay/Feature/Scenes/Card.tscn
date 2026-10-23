@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dofk7jiely72h"]
+
+[ext_resource type="Script" uid="uid://ly0evi8y51x3" path="res://Gameplay/Feature/Scripts/CardSignals.gd" id="1_hjqo6"]
+[ext_resource type="Texture2D" uid="uid://blxayq8jijx2o" path="res://Gameplay/Feature/Assets/ChirpingCrab.png" id="2_hjqo6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_74n7r"]
+size = Vector2(199, 270)
+
+[node name="Card" type="Node2D" unique_id=194236430]
+position = Vector2(800, 380)
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_hjqo6")
+
+[node name="CardImage" type="Sprite2D" parent="." unique_id=1875299250]
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("2_hjqo6")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1358377182]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=585023009]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_74n7r")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

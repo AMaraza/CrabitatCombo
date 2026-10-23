@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://beos3g45lwtxf"]
+
+[ext_resource type="Script" uid="uid://bjf0s76yg4bcj" path="res://Gameplay/Feature/Scripts/CardSlot.gd" id="1_fqjow"]
+[ext_resource type="Script" uid="uid://cqnwsotbyb8sk" path="res://Gameplay/Feature/Scripts/CardMovement.gd" id="1_u5pr3"]
+[ext_resource type="Script" uid="uid://dcmkqkvx8noi4" path="res://Gameplay/Feature/Scripts/PlayerHand.gd" id="3_3fmbn"]
+[ext_resource type="PackedScene" uid="uid://b5fduioxdpqod" path="res://Gameplay/Feature/Scenes/CardSlot.tscn" id="3_ocn0r"]
+[ext_resource type="Script" uid="uid://7h3n2byr2ul7" path="res://Gameplay/Feature/Scripts/DrawDeck.gd" id="4_v826t"]
+[ext_resource type="Texture2D" uid="uid://dm74s65v1chdy" path="res://Gameplay/Feature/Assets/CardBack.png" id="5_fqjow"]
+[ext_resource type="Script" uid="uid://bev2gprxbijln" path="res://Gameplay/Feature/Scripts/InputManager.gd" id="6_jydus"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_74n7r"]
+size = Vector2(198, 270)
+
+[node name="GameBoard" type="Node2D" unique_id=2090381949]
+script = ExtResource("1_fqjow")
+
+[node name="CardMovement" type="Node2D" parent="." unique_id=1077628800]
+script = ExtResource("1_u5pr3")
+
+[node name="PlayerHand" type="Node2D" parent="." unique_id=676921658]
+script = ExtResource("3_3fmbn")
+
+[node name="PlayingArea" type="Node2D" parent="." unique_id=300313869]
+
+[node name="CardSlot" parent="PlayingArea" unique_id=920113431 instance=ExtResource("3_ocn0r")]
+z_index = -1
+position = Vector2(1299, 1087)
+scale = Vector2(0.6, 0.6)
+
+[node name="CardSlot2" parent="PlayingArea" unique_id=44003251 instance=ExtResource("3_ocn0r")]
+z_index = -1
+position = Vector2(1419, 1087)
+scale = Vector2(0.6, 0.6)
+
+[node name="CardSlot3" parent="PlayingArea" unique_id=553429563 instance=ExtResource("3_ocn0r")]
+z_index = -1
+position = Vector2(1179, 1087)
+scale = Vector2(0.6, 0.6)
+
+[node name="CardSlot4" parent="PlayingArea" unique_id=1139892890 instance=ExtResource("3_ocn0r")]
+z_index = -1
+position = Vector2(1059, 1087)
+scale = Vector2(0.6, 0.6)
+
+[node name="CardSlot5" parent="PlayingArea" unique_id=1910626195 instance=ExtResource("3_ocn0r")]
+z_index = -1
+position = Vector2(939, 1087)
+scale = Vector2(0.6, 0.6)
+
+[node name="CardSlot6" parent="PlayingArea" unique_id=2012491160 instance=ExtResource("3_ocn0r")]
+z_index = -1
+position = Vector2(1539, 1087)
+scale = Vector2(0.6, 0.6)
+
+[node name="CardSlot7" parent="PlayingArea" unique_id=344984945 instance=ExtResource("3_ocn0r")]
+z_index = -1
+position = Vector2(1297, 300)
+scale = Vector2(0.6, 0.6)
+
+[node name="CardSlot8" parent="PlayingArea" unique_id=33795858 instance=ExtResource("3_ocn0r")]
+z_index = -1
+position = Vector2(1417, 300)
+scale = Vector2(0.6, 0.6)
+
+[node name="CardSlot9" parent="PlayingArea" unique_id=1140352394 instance=ExtResource("3_ocn0r")]
+z_index = -1
+position = Vector2(1177, 300)
+scale = Vector2(0.6, 0.6)
+
+[node name="CardSlot10" parent="PlayingArea" unique_id=1161399862 instance=ExtResource("3_ocn0r")]
+z_index = -1
+position = Vector2(1057, 300)
+scale = Vector2(0.6, 0.6)
+
+[node name="CardSlot11" parent="PlayingArea" unique_id=1829779922 instance=ExtResource("3_ocn0r")]
+z_index = -1
+position = Vector2(937, 300)
+scale = Vector2(0.6, 0.6)
+
+[node name="CardSlot12" parent="PlayingArea" unique_id=138383732 instance=ExtResource("3_ocn0r")]
+z_index = -1
+position = Vector2(1537, 300)
+scale = Vector2(0.6, 0.6)
+
+[node name="DrawDeck" type="Node2D" parent="." unique_id=1038781587]
+position = Vector2(1100, 700)
+scale = Vector2(0.8, 0.8)
+script = ExtResource("4_v826t")
+
+[node name="DrawDeckImage" type="Sprite2D" parent="DrawDeck" unique_id=147219930]
+z_index = -2
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("5_fqjow")
+
+[node name="Area2D" type="Area2D" parent="DrawDeck" unique_id=1090025205]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DrawDeck/Area2D" unique_id=32757665]
+shape = SubResource("RectangleShape2D_74n7r")
+
+[node name="InputManager" type="Node2D" parent="." unique_id=476647309]
+script = ExtResource("6_jydus")
+
+[node name="EndTurnButton" type="Button" parent="." unique_id=631468136]
+offset_left = 1723.0
+offset_top = 1151.0
+offset_right = 1813.0
+offset_bottom = 1182.0
+text = "END TURN"
