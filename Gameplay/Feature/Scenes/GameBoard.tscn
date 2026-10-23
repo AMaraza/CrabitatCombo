@@ -7,12 +7,47 @@
 [ext_resource type="Script" uid="uid://7h3n2byr2ul7" path="res://Gameplay/Feature/Scripts/DrawDeck.gd" id="4_v826t"]
 [ext_resource type="Texture2D" uid="uid://dm74s65v1chdy" path="res://Gameplay/Feature/Assets/CardBack.png" id="5_fqjow"]
 [ext_resource type="Script" uid="uid://bev2gprxbijln" path="res://Gameplay/Feature/Scripts/InputManager.gd" id="6_jydus"]
+[ext_resource type="FontFile" uid="uid://b34oxqbdc3d4e" path="res://Gameplay/Feature/Assets/Spicy Pizza.otf" id="8_d7rro"]
+[ext_resource type="Texture2D" uid="uid://brdyyncnnh4um" path="res://Gameplay/Feature/Assets/AquariumCardBack.png" id="8_jydus"]
+[ext_resource type="PackedScene" uid="uid://b146r5j1iuq52" path="res://Gameplay/Feature/Scenes/MainDeckDiscard.tscn" id="11_hprgh"]
+[ext_resource type="PackedScene" uid="uid://21ok7pffcy8k" path="res://Gameplay/Feature/Scenes/ActionPoint.tscn" id="11_mqx7x"]
+[ext_resource type="PackedScene" uid="uid://bit8ken6jlpwh" path="res://Gameplay/Feature/Scenes/AquariumDeckDiscard.tscn" id="12_nc7nw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74n7r"]
 size = Vector2(198, 270)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nrxls"]
+size = Vector2(270.00003, 197.50003)
+
 [node name="GameBoard" type="Node2D" unique_id=2090381949]
 script = ExtResource("1_fqjow")
+
+[node name="HabitatAreaLabel" type="RichTextLabel" parent="." unique_id=53736899]
+offset_left = 1161.0
+offset_top = 851.0
+offset_right = 1310.0
+offset_bottom = 882.0
+theme_override_fonts/normal_font = ExtResource("8_d7rro")
+theme_override_font_sizes/normal_font_size = 25
+text = "Habitat Area"
+
+[node name="PlayingAreaaLabel" type="RichTextLabel" parent="." unique_id=1769701340]
+offset_left = 1164.0
+offset_top = 997.0
+offset_right = 1314.0
+offset_bottom = 1029.0
+theme_override_fonts/normal_font = ExtResource("8_d7rro")
+theme_override_font_sizes/normal_font_size = 25
+text = "Playing Area"
+
+[node name="ActionPointsLabel" type="RichTextLabel" parent="." unique_id=886443381]
+offset_left = 425.0
+offset_top = 1147.0
+offset_right = 582.0
+offset_bottom = 1176.0
+theme_override_fonts/normal_font = ExtResource("8_d7rro")
+theme_override_font_sizes/normal_font_size = 25
+text = "Action Points"
 
 [node name="CardMovement" type="Node2D" parent="." unique_id=1077628800]
 script = ExtResource("1_u5pr3")
@@ -24,32 +59,32 @@ script = ExtResource("3_3fmbn")
 
 [node name="CardSlot" parent="PlayingArea" unique_id=920113431 instance=ExtResource("3_ocn0r")]
 z_index = -1
-position = Vector2(1299, 1087)
+position = Vector2(1299, 1107)
 scale = Vector2(0.6, 0.6)
 
 [node name="CardSlot2" parent="PlayingArea" unique_id=44003251 instance=ExtResource("3_ocn0r")]
 z_index = -1
-position = Vector2(1419, 1087)
+position = Vector2(1419, 1107)
 scale = Vector2(0.6, 0.6)
 
 [node name="CardSlot3" parent="PlayingArea" unique_id=553429563 instance=ExtResource("3_ocn0r")]
 z_index = -1
-position = Vector2(1179, 1087)
+position = Vector2(1179, 1107)
 scale = Vector2(0.6, 0.6)
 
 [node name="CardSlot4" parent="PlayingArea" unique_id=1139892890 instance=ExtResource("3_ocn0r")]
 z_index = -1
-position = Vector2(1059, 1087)
+position = Vector2(1059, 1107)
 scale = Vector2(0.6, 0.6)
 
 [node name="CardSlot5" parent="PlayingArea" unique_id=1910626195 instance=ExtResource("3_ocn0r")]
 z_index = -1
-position = Vector2(939, 1087)
+position = Vector2(939, 1107)
 scale = Vector2(0.6, 0.6)
 
 [node name="CardSlot6" parent="PlayingArea" unique_id=2012491160 instance=ExtResource("3_ocn0r")]
 z_index = -1
-position = Vector2(1539, 1087)
+position = Vector2(1539, 1107)
 scale = Vector2(0.6, 0.6)
 
 [node name="CardSlot7" parent="PlayingArea" unique_id=344984945 instance=ExtResource("3_ocn0r")]
@@ -107,4 +142,110 @@ offset_left = 1723.0
 offset_top = 1151.0
 offset_right = 1813.0
 offset_bottom = 1182.0
+theme_override_fonts/font = ExtResource("8_d7rro")
+theme_override_font_sizes/font_size = 20
 text = "END TURN"
+
+[node name="DiscardButton" type="Button" parent="." unique_id=1703366993]
+offset_left = 1725.0
+offset_top = 1104.0
+offset_right = 1812.0
+offset_bottom = 1135.0
+theme_override_fonts/font = ExtResource("8_d7rro")
+theme_override_font_sizes/font_size = 20
+text = "Discard"
+
+[node name="RedrawHandButton" type="Button" parent="." unique_id=1913582704]
+offset_left = 1168.0
+offset_top = 1199.0
+offset_right = 1315.0
+offset_bottom = 1230.0
+theme_override_fonts/font = ExtResource("8_d7rro")
+theme_override_font_sizes/font_size = 20
+text = "Redraw Hand"
+
+[node name="AdoptCrabButton" type="Button" parent="." unique_id=251613398]
+offset_left = 1710.0
+offset_top = 926.0
+offset_right = 1834.0
+offset_bottom = 956.0
+theme_override_fonts/font = ExtResource("8_d7rro")
+theme_override_font_sizes/font_size = 20
+text = "Adopt Crab"
+icon_alignment = 2
+
+[node name="HabitatArea" type="Node2D" parent="." unique_id=1853414756]
+
+[node name="CardSlot" parent="HabitatArea" unique_id=1015803868 instance=ExtResource("3_ocn0r")]
+position = Vector2(966, 935)
+rotation = 1.5707964
+scale = Vector2(0.6, 0.6)
+
+[node name="CardSlot2" parent="HabitatArea" unique_id=1274878173 instance=ExtResource("3_ocn0r")]
+position = Vector2(1506, 935)
+rotation = 1.5707964
+scale = Vector2(0.6, 0.6)
+
+[node name="CardSlot3" parent="HabitatArea" unique_id=216539483 instance=ExtResource("3_ocn0r")]
+position = Vector2(1146, 935)
+rotation = 1.5707964
+scale = Vector2(0.6, 0.6)
+
+[node name="CardSlot4" parent="HabitatArea" unique_id=1782309237 instance=ExtResource("3_ocn0r")]
+position = Vector2(1326, 935)
+rotation = 1.5707964
+scale = Vector2(0.6, 0.6)
+
+[node name="CardSlot5" parent="HabitatArea" unique_id=323670011 instance=ExtResource("3_ocn0r")]
+position = Vector2(966, 450)
+rotation = 1.5707964
+scale = Vector2(0.6, 0.6)
+
+[node name="CardSlot6" parent="HabitatArea" unique_id=387467899 instance=ExtResource("3_ocn0r")]
+position = Vector2(1506, 450)
+rotation = 1.5707964
+scale = Vector2(0.6, 0.6)
+
+[node name="CardSlot7" parent="HabitatArea" unique_id=1377789585 instance=ExtResource("3_ocn0r")]
+position = Vector2(1146, 450)
+rotation = 1.5707964
+scale = Vector2(0.6, 0.6)
+
+[node name="CardSlot8" parent="HabitatArea" unique_id=332413433 instance=ExtResource("3_ocn0r")]
+position = Vector2(1326, 450)
+rotation = 1.5707964
+scale = Vector2(0.6, 0.6)
+
+[node name="AquariumDeck" type="Node2D" parent="." unique_id=861988459]
+position = Vector2(1325, 700)
+scale = Vector2(0.8, 0.8)
+
+[node name="AquariumDeckImage" type="Sprite2D" parent="AquariumDeck" unique_id=809175629]
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("8_jydus")
+
+[node name="Area2D" type="Area2D" parent="AquariumDeck" unique_id=1957062389]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AquariumDeck/Area2D" unique_id=1374341171]
+scale = Vector2(0.99999964, 0.99999964)
+shape = SubResource("RectangleShape2D_nrxls")
+
+[node name="DiscardPiles" type="Node2D" parent="." unique_id=128485854]
+
+[node name="MainDeckDiscard" parent="DiscardPiles" unique_id=1217017950 instance=ExtResource("11_hprgh")]
+position = Vector2(925, 700)
+scale = Vector2(0.8, 0.8)
+
+[node name="AquariumDeckDiscard" parent="DiscardPiles" unique_id=2103371649 instance=ExtResource("12_nc7nw")]
+position = Vector2(1572, 699)
+scale = Vector2(0.9, 0.9)
+
+[node name="ActionPoints" type="Node2D" parent="." unique_id=274879302]
+
+[node name="ActionPoint" parent="ActionPoints" unique_id=305676044 instance=ExtResource("11_mqx7x")]
+position = Vector2(-38, -2)
+
+[node name="ActionPoint2" parent="ActionPoints" unique_id=1148088151 instance=ExtResource("11_mqx7x")]
+position = Vector2(50, -2)

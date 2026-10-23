@@ -6,12 +6,14 @@ const CARD_ENLARGED_SCALE = 1.50
 const CARD_NORMAL_SCALE = 0.8
 const CARD_DEFAULT_SPEED = 0.1
 const PLAYING_FIELD_SCALE = 0.6
+const CARD_Y_MOVEMENT = 80
 
 
 var screen_size
 var card_being_dragged
 var is_hovering_on_card
 var player_hand_reference
+var original_y_position: float
 
 
 # Called when the node enters the scene tree for the first time.
@@ -84,13 +86,16 @@ func on_hovered_off_card(card):
 			is_hovering_on_card = false
 
 
-# If hovered = true, enlarge card, normal size if false
+# If hovered = true, enlarge card, move up, and normal size if false and move to original position
 func highlight_card(card, hovered):
 	if hovered:
 		card.scale = Vector2(CARD_ENLARGED_SCALE, CARD_ENLARGED_SCALE)
+		original_y_position = card.position.y
+		card.position.y = card.position.y - CARD_Y_MOVEMENT
 		card.z_index = 2
 	else:
 		card.scale = Vector2(CARD_NORMAL_SCALE, CARD_NORMAL_SCALE)
+		card.position.y = original_y_position
 		card.z_index = 1
 
 

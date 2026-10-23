@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://21ok7pffcy8k"]
+
+[ext_resource type="Texture2D" uid="uid://k1w0ajha02q0" path="res://Gameplay/Feature/Assets/Action Point.png" id="1_qce7p"]
+
+[node name="ActionPoint" type="Node2D" unique_id=305676044]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1474324432]
+position = Vector2(673, 1162)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_qce7p")
+offset = Vector2(30, 20)
