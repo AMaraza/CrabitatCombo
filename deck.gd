@@ -2,6 +2,8 @@ extends Node2D
 
 var card_database
 var deck = []
+var discard_deck = []
+var current_card = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,7 +18,7 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		print("Clicked")
+		draw_card()
 
 
 func populate_deck():
@@ -34,4 +36,18 @@ func populate_deck():
 				deck.append(card)
 			
 	deck.shuffle()
-	print(deck)
+	
+	
+func draw_card():
+	var max_cards = deck.size()
+	
+	if current_card < max_cards - 1:
+		print(deck[current_card])
+		current_card += 1
+		discard_deck.append(deck[current_card])
+	else:
+		current_card = 0
+		discard_deck.clear()
+		populate_deck()
+	
+	
