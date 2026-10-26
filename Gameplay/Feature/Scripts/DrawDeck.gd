@@ -3,7 +3,7 @@ extends Node2D
 const CARD_SCENE_PATH = "res://Gameplay/Feature/Scenes/Card.tscn"
 const CARD_DRAW_SPEED = 0.3
 
-var playing_deck = ["Ability", "Ability", "Ability"]
+var playing_deck = ["Ability", "Ability", "Ability", "Ability", "Ability", "Ability"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

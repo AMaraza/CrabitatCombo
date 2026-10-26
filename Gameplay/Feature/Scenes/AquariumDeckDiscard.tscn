@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bit8ken6jlpwh"]
+
+[ext_resource type="FontFile" uid="uid://b34oxqbdc3d4e" path="res://Gameplay/Feature/Assets/Spicy Pizza.otf" id="1_u21x4"]
+[ext_resource type="Texture2D" uid="uid://bwqn0ov741bio" path="res://Gameplay/Feature/Assets/CardSlot.png" id="2_45pm6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lw3ka"]
+size = Vector2(266, 180)
+
+[node name="AquariumDeckDiscard" type="Node2D" unique_id=2103371649]
+
+[node name="DiscardLabel" type="RichTextLabel" parent="." unique_id=1575723528]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -28.5
+offset_right = 45.0
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_u21x4")
+theme_override_font_sizes/normal_font_size = 25
+text = "Discard Pile"
+horizontal_alignment = 1
+
+[node name="DiscardSlotImage" type="Sprite2D" parent="." unique_id=21962698]
+rotation = 1.5707964
+texture = ExtResource("2_45pm6")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=16575197]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1255083735]
+shape = SubResource("RectangleShape2D_lw3ka")

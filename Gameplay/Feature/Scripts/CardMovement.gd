@@ -6,12 +6,14 @@ const CARD_ENLARGED_SCALE = 1.50
 const CARD_NORMAL_SCALE = 0.8
 const CARD_DEFAULT_SPEED = 0.1
 const PLAYING_FIELD_SCALE = 0.6
+const CARD_Y_MOVEMENT = 80
 
 
 var screen_size
 var card_being_dragged
 var is_hovering_on_card
 var player_hand_reference
+var original_y_position: float
 
 
 # Called when the node enters the scene tree for the first time.
@@ -42,7 +44,6 @@ func finish_drag():
 	if card_slot_found and not card_slot_found.card_in_slot:
 		# Card dropped in empty card slot & becomes no longer moveable
 		card_being_dragged.scale = Vector2(PLAYING_FIELD_SCALE, PLAYING_FIELD_SCALE)
-		card_being_dragged.z_index = -1 # stop slotted card rendering over dragged card
 		card_being_dragged.card_in_slot = card_slot_found
 		player_hand_reference.remove_card_from_hand(card_being_dragged)
 		card_being_dragged.position = card_slot_found.position
@@ -68,6 +69,8 @@ func on_left_click_released():
 func on_hovered_over_card(card):
 	if !is_hovering_on_card:
 		is_hovering_on_card = true
+		# Original y position updated populated here to avoid card creeping bug
+		original_y_position = card.position.y
 		highlight_card(card, true)
 
 
@@ -84,13 +87,18 @@ func on_hovered_off_card(card):
 			is_hovering_on_card = false
 
 
-# If hovered = true, enlarge card, normal size if false
+# If hovered = true, enlarge card, move up, and normal size if false and move to original position
 func highlight_card(card, hovered):
 	if hovered:
 		card.scale = Vector2(CARD_ENLARGED_SCALE, CARD_ENLARGED_SCALE)
+		# Get new card position based on index
+		card.position.y = original_y_position - CARD_Y_MOVEMENT
+		var new_card_position = Vector2(card.position.x, card.position.y)
+		card.position = new_card_position
 		card.z_index = 2
 	else:
 		card.scale = Vector2(CARD_NORMAL_SCALE, CARD_NORMAL_SCALE)
+		card.position = Vector2(card.position.x, original_y_position)
 		card.z_index = 1
 
 
