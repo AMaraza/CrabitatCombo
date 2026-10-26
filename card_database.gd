@@ -22,9 +22,13 @@ const ABILITY_CARDS = {
 const AQUARIUM_CARDS = {
 	#[Number in Deck, Actions Taken]
 	"Aquarium Card": [4, 1, 4]
-}
+} 
 
 const HERMIT_CRABS = {
 	#[Number in Deck, Actions Taken]
 	"Purple Pincher": [4, 1, 5]
 }
+
+
+#RESOURCES EDITION
+const PLAY_SAND_RESOURCE = preload("uid://davsd5s2jhvs5")
