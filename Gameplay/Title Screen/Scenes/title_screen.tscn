@@ -2,9 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bxoscdmvrrim" path="res://Gameplay/Title Screen/menu_theme.tres" id="1_lxnwe"]
 [ext_resource type="PackedScene" uid="uid://cya30dunqkksn" path="res://Gameplay/Title Screen/Scenes/play_button.tscn" id="2_23a3k"]
-[ext_resource type="Script" uid="uid://loli06ckpi87" path="res://Gameplay/Title Screen/Scripts/play_button.gd" id="3_0cde7"]
-[ext_resource type="Script" uid="uid://eq5kr48feli2" path="res://Gameplay/Title Screen/Scripts/quit_button.gd" id="3_23a3k"]
-[ext_resource type="Script" uid="uid://b3b86ohupj3y7" path="res://Gameplay/Title Screen/Scripts/options_button.gd" id="3_ml1ov"]
+[ext_resource type="Script" uid="uid://bgpt1b22n5sgr" path="res://Gameplay/Title Screen/Scripts/title_screen.gd" id="2_ml1ov"]
 
 [node name="TitleScreen" type="Control" unique_id=1947075465]
 layout_mode = 3
@@ -14,6 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_lxnwe")
+script = ExtResource("2_ml1ov")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=840105178]
 layout_mode = 1
@@ -41,22 +40,21 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("3_0cde7")
 
 [node name="Options" parent="PanelContainer/VBoxContainer" unique_id=516543475 instance=ExtResource("2_23a3k")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Options"
-script = ExtResource("3_ml1ov")
 
 [node name="Quit" parent="PanelContainer/VBoxContainer" unique_id=1697666823 instance=ExtResource("2_23a3k")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Quit"
-script = ExtResource("3_23a3k")
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/PlayButton" to="PanelContainer/VBoxContainer/PlayButton" method="_on_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Options" to="PanelContainer/VBoxContainer/Options" method="_on_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="PanelContainer/VBoxContainer/Quit" method="_on_pressed"]
