@@ -43,7 +43,7 @@ func draw_card():
 		$DrawDeckImage.visible = false
 	
 	var card_scene = preload(CARD_SCENE_PATH)
-	var new_card =card_scene.instantiate()
+	var new_card = card_scene.instantiate()
 	$"../CardMovement".add_child(new_card)
 	new_card.name = "Card"
 	$"../PlayerHand".add_card_to_hand(new_card, CARD_DRAW_SPEED)
@@ -57,5 +57,3 @@ func draw_card():
 	else:
 		print("deck empty")
 		current_card = 0
-		discard_deck.clear()
-		populate_deck()
