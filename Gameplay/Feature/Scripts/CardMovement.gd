@@ -6,7 +6,7 @@ const CARD_ENLARGED_SCALE = 1.50
 const CARD_NORMAL_SCALE = 0.8
 const CARD_DEFAULT_SPEED = 0.1
 const PLAYING_FIELD_SCALE = 0.6
-const CARD_Y_MOVEMENT = 80
+const CARD_Y_MOVEMENT = 100
 
 
 var screen_size
