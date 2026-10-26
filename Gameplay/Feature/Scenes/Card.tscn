@@ -7,7 +7,7 @@
 size = Vector2(199, 270)
 
 [node name="Card" type="Node2D" unique_id=194236430]
-position = Vector2(800, 380)
+position = Vector2(1100, 700)
 scale = Vector2(0.8, 0.8)
 script = ExtResource("1_hjqo6")
 
