@@ -1,12 +1,28 @@
-extends Node
+const CRABITAT_CARDS = {
+	#[Number in Deck, Actions Taken, Card Description, Associated Combo]
+	"Play Sand": [2, 0, "Part of Substrate Combo", "Substrate"],
+	"Coconut Fiber": [2, 0, "Part of Substrate Combo", "Substrate"],
+	"Crab Food": [2, 0, "Part of Balanced Diet Combo", "Balanced Diet"],
+	"Food Bowl": [2, 0, "Part of Balanced Diet Combo", "Balanced Diet"],
+}
 
-var deck = ["card 1", "card 2"]
+const COMBO_CARDS = {
+	#[Number in Deck, Actions Taken]
+	"Substrate": [2, 0],
+	"Balanced Diet": [2, 0]
+}
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+const ABILITY_CARDS = {
+	#[Number in Deck, Actions Taken, Description]
+	"Molting": [2, 0, "Skip an Opponent's Turn"]
+}
 
+const AQUARIUM_CARDS = {
+	#[Number in Deck, Actions Taken]
+	"Aquarium Card": [4, 1]
+}
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+const HERMIT_CRABS = {
+	#[Number in Deck, Actions Taken]
+	"Purple Pincher": [4, 1]
+}

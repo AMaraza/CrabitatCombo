@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cs5v5xrkjt4jr"]
+
+[ext_resource type="Script" uid="uid://cw0e8cych4wn7" path="res://Gameplay/Deck/Scripts/deck.gd" id="1_gev5j"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4dscs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4dscs"]
+size = Vector2(1.019867, 0.9959184)
+
+[node name="Deck" type="Node2D" unique_id=1002989399]
+script = ExtResource("1_gev5j")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1901765453]
+position = Vector2(580, 293)
+scale = Vector2(75.50001, 122.49999)
+texture = SubResource("PlaceholderTexture2D_4dscs")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D" unique_id=1651355924]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D" unique_id=1915611957]
+position = Vector2(-0.0066227913, 0)
+shape = SubResource("RectangleShape2D_4dscs")
+
+[connection signal="input_event" from="Sprite2D/Area2D" to="." method="_on_area_2d_input_event"]
