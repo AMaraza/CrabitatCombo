@@ -14,7 +14,7 @@ enum CARD_TYPE {
 
 @export var current_type: CARD_TYPE = CARD_TYPE.CRABITAT
 
-@onready var card_image: Sprite2D = $CardImage
+@export var card_image: Sprite2D
 
 var ability_background = preload("res://Gameplay/Deck/Assets/ability_background.png")
 var combo_background = preload("res://Gameplay/Deck/Assets/combo_backround.png")
@@ -25,16 +25,6 @@ var crabitat_background = preload("res://Gameplay/Deck/Assets/crabitat_backgroun
 func _ready() -> void:
 	# All cards must be a child of CardMovement or this will error
 	get_parent().connect_card_signals(self)
-	var new_texture
-	match current_type:
-		CARD_TYPE.CRABITAT:
-			new_texture = crabitat_background
-		CARD_TYPE.COMBO:
-			new_texture = combo_background
-		CARD_TYPE.ABILITY:
-			new_texture = ability_background
-			
-	card_image.texture = new_texture
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

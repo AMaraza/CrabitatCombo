@@ -6,13 +6,15 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74n7r"]
 size = Vector2(199, 270)
 
-[node name="Card" type="Node2D" unique_id=194236430]
+[node name="Card" type="Node2D" unique_id=194236430 node_paths=PackedStringArray("card_image")]
+scale = Vector2(0.8, 0.8)
 script = ExtResource("1_hjqo6")
 current_type = 2
+card_image = NodePath("CardImage")
 
 [node name="CardImage" type="Sprite2D" parent="." unique_id=1875299250]
 position = Vector2(-1, 3.8146973e-06)
-scale = Vector2(3.125, 2.7916667)
+scale = Vector2(0.269, 0.24)
 texture = ExtResource("2_hjqo6")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1358377182]
