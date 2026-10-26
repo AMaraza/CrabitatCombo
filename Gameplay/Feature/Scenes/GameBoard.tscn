@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b5fduioxdpqod" path="res://Gameplay/Feature/Scenes/CardSlot.tscn" id="3_ocn0r"]
 [ext_resource type="Script" uid="uid://7h3n2byr2ul7" path="res://Gameplay/Feature/Scripts/DrawDeck.gd" id="4_v826t"]
 [ext_resource type="Texture2D" uid="uid://dm74s65v1chdy" path="res://Gameplay/Feature/Assets/CardBack.png" id="5_fqjow"]
+[ext_resource type="PackedScene" uid="uid://jolxvppgbwfg" path="res://Gameplay/Feature/Scenes/BotCardSlot.tscn" id="6_28g5r"]
 [ext_resource type="Script" uid="uid://bev2gprxbijln" path="res://Gameplay/Feature/Scripts/InputManager.gd" id="6_jydus"]
 [ext_resource type="FontFile" uid="uid://b34oxqbdc3d4e" path="res://Gameplay/Feature/Assets/Spicy Pizza.otf" id="8_d7rro"]
 [ext_resource type="Texture2D" uid="uid://brdyyncnnh4um" path="res://Gameplay/Feature/Assets/AquariumCardBack.png" id="8_jydus"]
@@ -13,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://b146r5j1iuq52" path="res://Gameplay/Feature/Scenes/MainDeckDiscard.tscn" id="11_hprgh"]
 [ext_resource type="PackedScene" uid="uid://21ok7pffcy8k" path="res://Gameplay/Feature/Scenes/ActionPoint.tscn" id="11_mqx7x"]
 [ext_resource type="PackedScene" uid="uid://bit8ken6jlpwh" path="res://Gameplay/Feature/Scenes/AquariumDeckDiscard.tscn" id="12_nc7nw"]
+[ext_resource type="PackedScene" uid="uid://psagtrdfpds5" path="res://Gameplay/Feature/Scenes/PlayerHabitatSlot.tscn" id="14_u38pm"]
+[ext_resource type="PackedScene" uid="uid://db3veumyn66sl" path="res://Gameplay/Feature/Scenes/BotHabitatSlot.tscn" id="16_2b4pl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74n7r"]
 size = Vector2(198, 270)
@@ -59,63 +62,57 @@ script = ExtResource("3_3fmbn")
 [node name="PlayingArea" type="Node2D" parent="." unique_id=300313869]
 
 [node name="CardSlot" parent="PlayingArea" unique_id=920113431 instance=ExtResource("3_ocn0r")]
-z_index = -1
+z_index = -3
 position = Vector2(1299, 1107)
 scale = Vector2(0.6, 0.6)
 
 [node name="CardSlot2" parent="PlayingArea" unique_id=44003251 instance=ExtResource("3_ocn0r")]
-z_index = -1
+z_index = -3
 position = Vector2(1419, 1107)
 scale = Vector2(0.6, 0.6)
 
 [node name="CardSlot3" parent="PlayingArea" unique_id=553429563 instance=ExtResource("3_ocn0r")]
-z_index = -1
+z_index = -3
 position = Vector2(1179, 1107)
 scale = Vector2(0.6, 0.6)
 
 [node name="CardSlot4" parent="PlayingArea" unique_id=1139892890 instance=ExtResource("3_ocn0r")]
-z_index = -1
+z_index = -3
 position = Vector2(1059, 1107)
 scale = Vector2(0.6, 0.6)
 
 [node name="CardSlot5" parent="PlayingArea" unique_id=1910626195 instance=ExtResource("3_ocn0r")]
-z_index = -1
+z_index = -3
 position = Vector2(939, 1107)
 scale = Vector2(0.6, 0.6)
 
 [node name="CardSlot6" parent="PlayingArea" unique_id=2012491160 instance=ExtResource("3_ocn0r")]
-z_index = -1
+z_index = -3
 position = Vector2(1539, 1107)
 scale = Vector2(0.6, 0.6)
 
-[node name="CardSlot7" parent="PlayingArea" unique_id=344984945 instance=ExtResource("3_ocn0r")]
-z_index = -1
-position = Vector2(1297, 300)
+[node name="BotCardSlot" parent="PlayingArea" unique_id=1805795760 instance=ExtResource("6_28g5r")]
+position = Vector2(939, 300)
 scale = Vector2(0.6, 0.6)
 
-[node name="CardSlot8" parent="PlayingArea" unique_id=33795858 instance=ExtResource("3_ocn0r")]
-z_index = -1
-position = Vector2(1417, 300)
+[node name="BotCardSlot2" parent="PlayingArea" unique_id=2003654513 instance=ExtResource("6_28g5r")]
+position = Vector2(1059, 300)
 scale = Vector2(0.6, 0.6)
 
-[node name="CardSlot9" parent="PlayingArea" unique_id=1140352394 instance=ExtResource("3_ocn0r")]
-z_index = -1
-position = Vector2(1177, 300)
+[node name="BotCardSlot3" parent="PlayingArea" unique_id=1614824006 instance=ExtResource("6_28g5r")]
+position = Vector2(1179, 300)
 scale = Vector2(0.6, 0.6)
 
-[node name="CardSlot10" parent="PlayingArea" unique_id=1161399862 instance=ExtResource("3_ocn0r")]
-z_index = -1
-position = Vector2(1057, 300)
+[node name="BotCardSlot4" parent="PlayingArea" unique_id=1548157072 instance=ExtResource("6_28g5r")]
+position = Vector2(1299, 300)
 scale = Vector2(0.6, 0.6)
 
-[node name="CardSlot11" parent="PlayingArea" unique_id=1829779922 instance=ExtResource("3_ocn0r")]
-z_index = -1
-position = Vector2(937, 300)
+[node name="BotCardSlot5" parent="PlayingArea" unique_id=42539921 instance=ExtResource("6_28g5r")]
+position = Vector2(1419, 300)
 scale = Vector2(0.6, 0.6)
 
-[node name="CardSlot12" parent="PlayingArea" unique_id=138383732 instance=ExtResource("3_ocn0r")]
-z_index = -1
-position = Vector2(1537, 300)
+[node name="BotCardSlot6" parent="PlayingArea" unique_id=182635134 instance=ExtResource("6_28g5r")]
+position = Vector2(1539, 300)
 scale = Vector2(0.6, 0.6)
 
 [node name="DrawDeck" type="Node2D" parent="." unique_id=1038781587]
@@ -195,48 +192,6 @@ position = Vector2(172, 25)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_t5ocr")
 
-[node name="HabitatArea" type="Node2D" parent="." unique_id=1853414756]
-
-[node name="CardSlot" parent="HabitatArea" unique_id=1015803868 instance=ExtResource("3_ocn0r")]
-position = Vector2(966, 935)
-rotation = 1.5707964
-scale = Vector2(0.6, 0.6)
-
-[node name="CardSlot2" parent="HabitatArea" unique_id=1274878173 instance=ExtResource("3_ocn0r")]
-position = Vector2(1506, 935)
-rotation = 1.5707964
-scale = Vector2(0.6, 0.6)
-
-[node name="CardSlot3" parent="HabitatArea" unique_id=216539483 instance=ExtResource("3_ocn0r")]
-position = Vector2(1146, 935)
-rotation = 1.5707964
-scale = Vector2(0.6, 0.6)
-
-[node name="CardSlot4" parent="HabitatArea" unique_id=1782309237 instance=ExtResource("3_ocn0r")]
-position = Vector2(1326, 935)
-rotation = 1.5707964
-scale = Vector2(0.6, 0.6)
-
-[node name="CardSlot5" parent="HabitatArea" unique_id=323670011 instance=ExtResource("3_ocn0r")]
-position = Vector2(966, 450)
-rotation = 1.5707964
-scale = Vector2(0.6, 0.6)
-
-[node name="CardSlot6" parent="HabitatArea" unique_id=387467899 instance=ExtResource("3_ocn0r")]
-position = Vector2(1506, 450)
-rotation = 1.5707964
-scale = Vector2(0.6, 0.6)
-
-[node name="CardSlot7" parent="HabitatArea" unique_id=1377789585 instance=ExtResource("3_ocn0r")]
-position = Vector2(1146, 450)
-rotation = 1.5707964
-scale = Vector2(0.6, 0.6)
-
-[node name="CardSlot8" parent="HabitatArea" unique_id=332413433 instance=ExtResource("3_ocn0r")]
-position = Vector2(1326, 450)
-rotation = 1.5707964
-scale = Vector2(0.6, 0.6)
-
 [node name="AquariumDeck" type="Node2D" parent="." unique_id=861988459]
 position = Vector2(1325, 700)
 scale = Vector2(0.8, 0.8)
@@ -256,10 +211,12 @@ shape = SubResource("RectangleShape2D_nrxls")
 [node name="DiscardPiles" type="Node2D" parent="." unique_id=128485854]
 
 [node name="MainDeckDiscard" parent="DiscardPiles" unique_id=1217017950 instance=ExtResource("11_hprgh")]
+z_index = -3
 position = Vector2(925, 700)
 scale = Vector2(0.8, 0.8)
 
 [node name="AquariumDeckDiscard" parent="DiscardPiles" unique_id=2103371649 instance=ExtResource("12_nc7nw")]
+z_index = -3
 position = Vector2(1572, 699)
 scale = Vector2(0.9, 0.9)
 
@@ -270,3 +227,29 @@ position = Vector2(-38, -2)
 
 [node name="ActionPoint2" parent="ActionPoints" unique_id=1148088151 instance=ExtResource("11_mqx7x")]
 position = Vector2(50, -2)
+
+[node name="HabitatArea" type="Node2D" parent="." unique_id=63352808]
+
+[node name="PlayerHabitatSlot" parent="HabitatArea" unique_id=118432589 instance=ExtResource("14_u38pm")]
+position = Vector2(965, 935)
+
+[node name="PlayerHabitatSlot2" parent="HabitatArea" unique_id=2074462489 instance=ExtResource("14_u38pm")]
+position = Vector2(1508, 935)
+
+[node name="PlayerHabitatSlot3" parent="HabitatArea" unique_id=87292589 instance=ExtResource("14_u38pm")]
+position = Vector2(1328, 935)
+
+[node name="PlayerHabitatSlot4" parent="HabitatArea" unique_id=541840483 instance=ExtResource("14_u38pm")]
+position = Vector2(1148, 935)
+
+[node name="BotHabitatSlot" parent="HabitatArea" unique_id=7289864 instance=ExtResource("16_2b4pl")]
+position = Vector2(965, 460)
+
+[node name="BotHabitatSlot2" parent="HabitatArea" unique_id=2023460715 instance=ExtResource("16_2b4pl")]
+position = Vector2(1148, 460)
+
+[node name="BotHabitatSlot3" parent="HabitatArea" unique_id=152589856 instance=ExtResource("16_2b4pl")]
+position = Vector2(1328, 460)
+
+[node name="BotHabitatSlot4" parent="HabitatArea" unique_id=539727489 instance=ExtResource("16_2b4pl")]
+position = Vector2(1508, 460)

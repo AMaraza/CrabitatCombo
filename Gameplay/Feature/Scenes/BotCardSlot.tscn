@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://jolxvppgbwfg"]
+
+[ext_resource type="Texture2D" uid="uid://bwqn0ov741bio" path="res://Gameplay/Feature/Assets/CardSlot.png" id="2_i8n65"]
+
+[node name="BotCardSlot" type="Node2D" unique_id=920113431]
+
+[node name="CardSlotImage" type="Sprite2D" parent="." unique_id=457796356]
+texture = ExtResource("2_i8n65")

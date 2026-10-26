@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bit8ken6jlpwh"]
 
+[ext_resource type="Script" uid="uid://e8ek0e1du7cd" path="res://Gameplay/Feature/Scripts/AquariumDeckDiscard.gd" id="1_45pm6"]
 [ext_resource type="FontFile" uid="uid://b34oxqbdc3d4e" path="res://Gameplay/Feature/Assets/Spicy Pizza.otf" id="1_u21x4"]
 [ext_resource type="Texture2D" uid="uid://bwqn0ov741bio" path="res://Gameplay/Feature/Assets/CardSlot.png" id="2_45pm6"]
 
@@ -7,6 +8,7 @@
 size = Vector2(266, 180)
 
 [node name="AquariumDeckDiscard" type="Node2D" unique_id=2103371649]
+script = ExtResource("1_45pm6")
 
 [node name="DiscardLabel" type="RichTextLabel" parent="." unique_id=1575723528]
 anchors_preset = 8

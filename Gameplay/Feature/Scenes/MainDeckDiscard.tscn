@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://b146r5j1iuq52"]
 
+[ext_resource type="Script" uid="uid://bpm50qq64cuwm" path="res://Gameplay/Feature/Scripts/MainDeckDiscard.gd" id="1_awymq"]
 [ext_resource type="FontFile" uid="uid://b34oxqbdc3d4e" path="res://Gameplay/Feature/Assets/Spicy Pizza.otf" id="1_goyj6"]
 [ext_resource type="Texture2D" uid="uid://bwqn0ov741bio" path="res://Gameplay/Feature/Assets/CardSlot.png" id="2_k4wb6"]
 
@@ -7,6 +8,7 @@
 size = Vector2(180, 266)
 
 [node name="MainDeckDiscard" type="Node2D" unique_id=1217017950]
+script = ExtResource("1_awymq")
 
 [node name="DiscardLabel" type="RichTextLabel" parent="." unique_id=1843112065]
 anchors_preset = 8

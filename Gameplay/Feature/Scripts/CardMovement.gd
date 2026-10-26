@@ -37,7 +37,7 @@ func start_drag(card):
 	card_being_dragged = card
 	card.scale = Vector2(CARD_NORMAL_SCALE, CARD_NORMAL_SCALE)
 
-
+# Need to add difference between discard slot, habitat slot, playing area slot
 func finish_drag():
 	card_being_dragged.scale = Vector2(CARD_ENLARGED_SCALE, CARD_ENLARGED_SCALE)
 	var card_slot_found = raycast_check_for_card_slot()

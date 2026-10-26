@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://db3veumyn66sl"]
+
+[ext_resource type="Texture2D" uid="uid://bwqn0ov741bio" path="res://Gameplay/Feature/Assets/CardSlot.png" id="2_eymg5"]
+
+[node name="BotHabitatSlot" type="Node2D" unique_id=118432589]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=364013051]
+rotation = 1.5707964
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_eymg5")

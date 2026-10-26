@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://psagtrdfpds5"]
+
+[ext_resource type="Script" uid="uid://cy43ci0snjllp" path="res://Gameplay/Feature/Scripts/PlayerHabitatSlot.gd" id="1_88hf3"]
+[ext_resource type="Texture2D" uid="uid://bwqn0ov741bio" path="res://Gameplay/Feature/Assets/CardSlot.png" id="1_uf1x7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lw3ka"]
+size = Vector2(160, 108)
+
+[node name="PlayerHabitatSlot" type="Node2D" unique_id=118432589]
+script = ExtResource("1_88hf3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=364013051]
+rotation = 1.5707964
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_uf1x7")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=710243298]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1644259401]
+shape = SubResource("RectangleShape2D_lw3ka")
