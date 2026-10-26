@@ -36,6 +36,7 @@ func populate_deck():
 				deck.append(card)
 			
 	deck.shuffle()
+	print(deck)
 	
 	
 func draw_card():
@@ -46,6 +47,7 @@ func draw_card():
 		current_card += 1
 		discard_deck.append(deck[current_card])
 	else:
+		print("deck empty")
 		current_card = 0
 		discard_deck.clear()
 		populate_deck()

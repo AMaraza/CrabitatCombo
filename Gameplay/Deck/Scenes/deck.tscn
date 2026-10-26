@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cs5v5xrkjt4jr"]
 
-[ext_resource type="Script" uid="uid://cw0e8cych4wn7" path="res://deck.gd" id="1_nxs2u"]
+[ext_resource type="Script" uid="uid://cw0e8cych4wn7" path="res://Gameplay/Deck/Scripts/deck.gd" id="1_gev5j"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4dscs"]
 
@@ -8,7 +8,7 @@
 size = Vector2(1.019867, 0.9959184)
 
 [node name="Deck" type="Node2D" unique_id=1002989399]
-script = ExtResource("1_nxs2u")
+script = ExtResource("1_gev5j")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1901765453]
 position = Vector2(580, 293)
