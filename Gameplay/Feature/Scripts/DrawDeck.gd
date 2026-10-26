@@ -27,7 +27,7 @@ func populate_deck():
 	for card_pool in card_pools:
 		for card in card_pool:
 			for i in range(card_pool[card][0]):
-				playing_deck.append(card)
+				playing_deck.append(card_pool[card][2])
 			
 	playing_deck.shuffle()
 	print(playing_deck)
@@ -43,7 +43,9 @@ func draw_card():
 		$DrawDeckImage.visible = false
 	
 	var card_scene = preload(CARD_SCENE_PATH)
-	var new_card =card_scene.instantiate()
+	var new_card = card_scene.instantiate()
+	new_card.card_image.texture = playing_deck[0]
+
 	$"../CardMovement".add_child(new_card)
 	new_card.name = "Card"
 	$"../PlayerHand".add_card_to_hand(new_card, CARD_DRAW_SPEED)
@@ -57,5 +59,3 @@ func draw_card():
 	else:
 		print("deck empty")
 		current_card = 0
-		discard_deck.clear()
-		populate_deck()

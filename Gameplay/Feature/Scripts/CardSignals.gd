@@ -6,6 +6,21 @@ signal hovered_off_card
 var hand_position
 var card_in_slot
 
+enum CARD_TYPE {
+	CRABITAT,
+	COMBO,
+	ABILITY
+}
+
+@export var current_type: CARD_TYPE = CARD_TYPE.CRABITAT
+
+@export var card_image: Sprite2D
+
+var ability_background = preload("res://Gameplay/Deck/Assets/ability_background.png")
+var combo_background = preload("res://Gameplay/Deck/Assets/combo_backround.png")
+var crabitat_background = preload("res://Gameplay/Deck/Assets/crabitat_background.png")
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# All cards must be a child of CardMovement or this will error
