@@ -1,0 +1,43 @@
+[gd_resource type="Theme" format=3 uid="uid://bxoscdmvrrim"]
+
+[ext_resource type="StyleBox" uid="uid://bp8pv5n88ivuu" path="res://Gameplay/Title Screen/panel_container_flat_box.tres" id="1_652tj"]
+[ext_resource type="FontFile" uid="uid://bb2ec6bku47c8" path="res://Gameplay/Feature/Assets/beachday.otf" id="2_q0b24"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_652tj"]
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q0b24"]
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tlsnh"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 1, 1, 1)
+
+[resource]
+default_font = ExtResource("2_q0b24")
+default_font_size = 0
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 32
+Button/styles/focus = SubResource("StyleBoxFlat_652tj")
+Button/styles/hover = SubResource("StyleBoxFlat_q0b24")
+Button/styles/normal = ExtResource("1_652tj")
+Button/styles/pressed = SubResource("StyleBoxFlat_tlsnh")
+PanelContainer/styles/panel = ExtResource("1_652tj")
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+RichTextLabelTitle/base_type = &"RichTextLabel"
+RichTextLabelTitle/font_sizes/normal_font_size = 128
+VBoxContainer/constants/separation = 16
