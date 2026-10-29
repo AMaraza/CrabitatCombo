@@ -27,6 +27,63 @@ size = Vector2(270.00003, 197.50003)
 [node name="GameBoard" type="Node2D" unique_id=2090381949]
 script = ExtResource("1_fqjow")
 
+[node name="EndTurnButton" type="Button" parent="." unique_id=631468136]
+offset_left = 1723.0
+offset_top = 1151.0
+offset_right = 1824.0
+offset_bottom = 1182.0
+theme_override_fonts/font = ExtResource("8_d7rro")
+theme_override_font_sizes/font_size = 20
+text = "END TURN"
+
+[node name="DiscardButton" type="Button" parent="." unique_id=1703366993]
+offset_left = 1729.0
+offset_top = 1089.0
+offset_right = 1816.0
+offset_bottom = 1120.0
+theme_override_fonts/font = ExtResource("8_d7rro")
+theme_override_font_sizes/font_size = 20
+text = "Discard"
+
+[node name="Sprite2D" type="Sprite2D" parent="DiscardButton" unique_id=261640056]
+position = Vector2(134, 25)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_t5ocr")
+
+[node name="RedrawHandButton" type="Button" parent="." unique_id=1913582704]
+offset_left = 1162.0
+offset_top = 1222.0
+offset_right = 1309.0
+offset_bottom = 1253.0
+theme_override_fonts/font = ExtResource("8_d7rro")
+theme_override_font_sizes/font_size = 20
+text = "Redraw Hand"
+
+[node name="Sprite2D" type="Sprite2D" parent="RedrawHandButton" unique_id=206134275]
+position = Vector2(250, 26)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_t5ocr")
+
+[node name="Sprite2D2" type="Sprite2D" parent="RedrawHandButton" unique_id=277793118]
+position = Vector2(195, 26)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_t5ocr")
+
+[node name="AdoptCrabButton" type="Button" parent="." unique_id=251613398]
+offset_left = 1710.0
+offset_top = 926.0
+offset_right = 1834.0
+offset_bottom = 956.0
+theme_override_fonts/font = ExtResource("8_d7rro")
+theme_override_font_sizes/font_size = 20
+text = "Adopt Crab"
+icon_alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="AdoptCrabButton" unique_id=1842948421]
+position = Vector2(172, 25)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_t5ocr")
+
 [node name="HabitatAreaLabel" type="RichTextLabel" parent="." unique_id=53736899]
 offset_left = 1161.0
 offset_top = 851.0
@@ -141,63 +198,6 @@ shape = SubResource("RectangleShape2D_74n7r")
 
 [node name="InputManager" type="Node2D" parent="." unique_id=476647309]
 script = ExtResource("6_jydus")
-
-[node name="EndTurnButton" type="Button" parent="." unique_id=631468136]
-offset_left = 1723.0
-offset_top = 1151.0
-offset_right = 1813.0
-offset_bottom = 1182.0
-theme_override_fonts/font = ExtResource("8_d7rro")
-theme_override_font_sizes/font_size = 20
-text = "END TURN"
-
-[node name="DiscardButton" type="Button" parent="." unique_id=1703366993]
-offset_left = 1729.0
-offset_top = 1089.0
-offset_right = 1816.0
-offset_bottom = 1120.0
-theme_override_fonts/font = ExtResource("8_d7rro")
-theme_override_font_sizes/font_size = 20
-text = "Discard"
-
-[node name="Sprite2D" type="Sprite2D" parent="DiscardButton" unique_id=261640056]
-position = Vector2(134, 25)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("10_t5ocr")
-
-[node name="RedrawHandButton" type="Button" parent="." unique_id=1913582704]
-offset_left = 1162.0
-offset_top = 1222.0
-offset_right = 1309.0
-offset_bottom = 1253.0
-theme_override_fonts/font = ExtResource("8_d7rro")
-theme_override_font_sizes/font_size = 20
-text = "Redraw Hand"
-
-[node name="Sprite2D" type="Sprite2D" parent="RedrawHandButton" unique_id=206134275]
-position = Vector2(250, 26)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("10_t5ocr")
-
-[node name="Sprite2D2" type="Sprite2D" parent="RedrawHandButton" unique_id=277793118]
-position = Vector2(195, 26)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("10_t5ocr")
-
-[node name="AdoptCrabButton" type="Button" parent="." unique_id=251613398]
-offset_left = 1710.0
-offset_top = 926.0
-offset_right = 1834.0
-offset_bottom = 956.0
-theme_override_fonts/font = ExtResource("8_d7rro")
-theme_override_font_sizes/font_size = 20
-text = "Adopt Crab"
-icon_alignment = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="AdoptCrabButton" unique_id=1842948421]
-position = Vector2(172, 25)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("10_t5ocr")
 
 [node name="AquariumDeck" type="Node2D" parent="." unique_id=861988459]
 position = Vector2(1325, 700)
