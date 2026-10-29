@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://desbittwlip7t"]
+
+[ext_resource type="Texture2D" uid="uid://bcp8d6gfb1iiu" path="res://Gameplay/Deck/Assets/AbilityCards/Molting.png" id="1_ec668"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="1_fltvv"]
+
+[resource]
+script = ExtResource("1_fltvv")
+card_name = "Molting"
+number_in_deck = 2
+card_image = ExtResource("1_ec668")
+card_type = 2
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

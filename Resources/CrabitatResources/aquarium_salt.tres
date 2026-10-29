@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://bx3xm33rqjeix"]
+
+[ext_resource type="Texture2D" uid="uid://ikes1m0g034c" path="res://Gameplay/Deck/Assets/CrabitatCards/AquariumSalt.png" id="1_dp7pt"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="1_fif4j"]
+
+[resource]
+script = ExtResource("1_fif4j")
+card_name = "Aquarium Salt"
+number_in_deck = 2
+card_image = ExtResource("1_dp7pt")
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

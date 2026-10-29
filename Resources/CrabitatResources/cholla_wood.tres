@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://d0yj56mmo0j7w"]
+
+[ext_resource type="Texture2D" uid="uid://ih5tygr87epq" path="res://Gameplay/Deck/Assets/CrabitatCards/ChollaWood.png" id="1_e2loj"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_kjead"]
+
+[resource]
+script = ExtResource("2_kjead")
+card_name = "Cholla Wood"
+number_in_deck = 2
+card_image = ExtResource("1_e2loj")
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

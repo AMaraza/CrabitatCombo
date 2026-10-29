@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://cln6rgonyls5e"]
+
+[ext_resource type="Texture2D" uid="uid://bkw6bbe1gsiiv" path="res://Gameplay/Deck/Assets/ComboCards/ActiveCrabs.png" id="1_rjgn2"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="1_stw54"]
+
+[resource]
+script = ExtResource("1_stw54")
+card_name = "Active Crabs"
+number_in_deck = 2
+card_image = ExtResource("1_rjgn2")
+card_type = 1
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

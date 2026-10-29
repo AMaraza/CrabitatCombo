@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://5hjs6148gm8f"]
+
+[ext_resource type="Texture2D" uid="uid://b6qk008civ06" path="res://Gameplay/Deck/Assets/AbilityCards/SupplySwap.png" id="1_yuqk6"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_eqnke"]
+
+[resource]
+script = ExtResource("2_eqnke")
+card_name = "Supply Swap"
+number_in_deck = 2
+card_image = ExtResource("1_yuqk6")
+card_type = 2
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

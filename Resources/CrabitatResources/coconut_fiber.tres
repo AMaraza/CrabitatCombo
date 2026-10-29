@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://bjmis1bhcqm5"]
+
+[ext_resource type="Texture2D" uid="uid://c0unyn7lr1xfb" path="res://Gameplay/Deck/Assets/CrabitatCards/CoconutFiber.png" id="1_soghs"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_t0ccs"]
+
+[resource]
+script = ExtResource("2_t0ccs")
+card_name = "Coconut Fiber"
+number_in_deck = 2
+card_image = ExtResource("1_soghs")
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

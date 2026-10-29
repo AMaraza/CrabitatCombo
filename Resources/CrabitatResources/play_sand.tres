@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardData" format=3 uid="uid://davsd5s2jhvs5"]
 
-[ext_resource type="Texture2D" uid="uid://b0tdhten3u0bm" path="res://Gameplay/Deck/Assets/PlaySand.png" id="1_fwdp8"]
+[ext_resource type="Texture2D" uid="uid://bimcbqi8thl73" path="res://Gameplay/Deck/Assets/CrabitatCards/PlaySand.png" id="1_fwdp8"]
 [ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="1_ohh8h"]
 
 [resource]

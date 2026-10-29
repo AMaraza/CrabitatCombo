@@ -18,9 +18,17 @@ func _ready() -> void:
 func populate_deck():
 	playing_deck.clear()
 	
-	for i in range(card_database.PLAY_SAND_RESOURCE.number_in_deck):
-		playing_deck.append(card_database.PLAY_SAND_RESOURCE)
-		print(playing_deck)
+	var card_pools = [
+		card_database.CRABITAT_CARDS,
+		card_database.COMBO_CARDS,
+		card_database.ABILITY_CARDS,
+		card_database.TRAP_CARDS
+	]
+	
+	for card_pool in card_pools:
+		for card in card_pool:
+			for i in range(card.number_in_deck):
+				playing_deck.append(card)
 			
 	playing_deck.shuffle()
 

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://b5b7iqhd6vuhj"]
+
+[ext_resource type="Texture2D" uid="uid://bqmqem3miq1es" path="res://Gameplay/Deck/Assets/ComboCards/PerfectTemps.png" id="1_boi6d"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_la6n1"]
+
+[resource]
+script = ExtResource("2_la6n1")
+card_name = "Perfect Temps"
+number_in_deck = 2
+card_image = ExtResource("1_boi6d")
+card_type = 1
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

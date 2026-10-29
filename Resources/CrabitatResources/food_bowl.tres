@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://b65y8fyhbesw2"]
+
+[ext_resource type="Texture2D" uid="uid://dgoj30b8exklv" path="res://Gameplay/Deck/Assets/CrabitatCards/FoodBowl.png" id="1_12djs"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_vg8ld"]
+
+[resource]
+script = ExtResource("2_vg8ld")
+card_name = "Food Bowl"
+number_in_deck = 2
+card_image = ExtResource("1_12djs")
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

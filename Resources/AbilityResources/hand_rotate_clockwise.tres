@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://ckqw28qy255vr"]
+
+[ext_resource type="Texture2D" uid="uid://1svq7ppq134y" path="res://Gameplay/Deck/Assets/AbilityCards/HandRotateCounter.png" id="1_k0gu0"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_1q0px"]
+
+[resource]
+script = ExtResource("2_1q0px")
+card_name = "Hand Rotate CounterClockwise"
+number_in_deck = 1
+card_image = ExtResource("1_k0gu0")
+card_type = 2
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

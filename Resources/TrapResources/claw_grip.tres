@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://c3pla6nvsn3sn"]
+
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="1_8gw6b"]
+[ext_resource type="Texture2D" uid="uid://cqcjx8ciaqo7y" path="res://Gameplay/Deck/Assets/AbilityCards/ClawGrip.png" id="1_a560j"]
+
+[resource]
+script = ExtResource("1_8gw6b")
+card_name = "Claw Grip"
+number_in_deck = 1
+card_image = ExtResource("1_a560j")
+card_type = 3
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"
