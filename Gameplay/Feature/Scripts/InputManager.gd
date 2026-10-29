@@ -5,14 +5,17 @@ signal left_mouse_button_released
 
 const COLLISION_MASK_CARD = 1
 # Area2D collision layer and mask set to 3 but comes across as 4
-const COLLISION_MASK_DRAW_DECK = 4 
+const COLLISION_MASK_DRAW_DECK = 4
+const COLLISION_MASK_AQUA_DECK = 8
 
 var card_manager_reference
 var draw_deck_reference
+var aquarium_deck_reference
 
 func _ready() -> void:
 	card_manager_reference = $"../CardMovement"
 	draw_deck_reference = $"../DrawDeck"
+	aquarium_deck_reference = $"../AquariumDeck"
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -31,11 +34,14 @@ func raycast_at_cursor():
 	var result = space_state.intersect_point(parameters)
 	if result.size() > 0:
 		var result_collision_mask = result[0].collider.collision_mask
-		# Card clicked
-		if result_collision_mask == COLLISION_MASK_CARD:
+		# Card clicked use bitwise AND (&) to see if the specific layer flag is set
+		if result_collision_mask & COLLISION_MASK_CARD:
 			var card_found = result[0].collider.get_parent()
 			if card_found:
 					card_manager_reference.start_drag(card_found)
 		# Deck clicked
-		elif result_collision_mask == COLLISION_MASK_DRAW_DECK:
+		elif result_collision_mask & COLLISION_MASK_DRAW_DECK:
 			draw_deck_reference.draw_card()
+		# Aquarium Deck clicked
+		elif result_collision_mask & COLLISION_MASK_AQUA_DECK:
+			aquarium_deck_reference.draw_card()

@@ -5,7 +5,7 @@ signal hovered_off_card
 
 var hand_position
 var card_in_slot = null
-var card_data: CardData
+var card_data: Resource
 
 @export var card_image: Sprite2D
 

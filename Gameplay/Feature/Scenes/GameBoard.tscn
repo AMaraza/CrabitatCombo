@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://k1w0ajha02q0" path="res://Gameplay/Feature/Assets/Action Point.png" id="10_t5ocr"]
 [ext_resource type="PackedScene" uid="uid://b146r5j1iuq52" path="res://Gameplay/Feature/Scenes/MainDeckDiscard.tscn" id="11_hprgh"]
 [ext_resource type="PackedScene" uid="uid://21ok7pffcy8k" path="res://Gameplay/Feature/Scenes/ActionPoint.tscn" id="11_mqx7x"]
+[ext_resource type="Script" uid="uid://bfy3acw34v4dm" path="res://Gameplay/Feature/Scripts/AquariumDeck.gd" id="11_uhlwh"]
 [ext_resource type="PackedScene" uid="uid://bit8ken6jlpwh" path="res://Gameplay/Feature/Scenes/AquariumDeckDiscard.tscn" id="12_nc7nw"]
 [ext_resource type="PackedScene" uid="uid://psagtrdfpds5" path="res://Gameplay/Feature/Scenes/PlayerHabitatSlot.tscn" id="14_u38pm"]
 [ext_resource type="PackedScene" uid="uid://db3veumyn66sl" path="res://Gameplay/Feature/Scenes/BotHabitatSlot.tscn" id="16_2b4pl"]
@@ -92,26 +93,32 @@ position = Vector2(1539, 1107)
 scale = Vector2(0.6, 0.6)
 
 [node name="BotCardSlot" parent="PlayingArea" unique_id=1805795760 instance=ExtResource("6_28g5r")]
+z_index = -3
 position = Vector2(939, 300)
 scale = Vector2(0.6, 0.6)
 
 [node name="BotCardSlot2" parent="PlayingArea" unique_id=2003654513 instance=ExtResource("6_28g5r")]
+z_index = -3
 position = Vector2(1059, 300)
 scale = Vector2(0.6, 0.6)
 
 [node name="BotCardSlot3" parent="PlayingArea" unique_id=1614824006 instance=ExtResource("6_28g5r")]
+z_index = -3
 position = Vector2(1179, 300)
 scale = Vector2(0.6, 0.6)
 
 [node name="BotCardSlot4" parent="PlayingArea" unique_id=1548157072 instance=ExtResource("6_28g5r")]
+z_index = -3
 position = Vector2(1299, 300)
 scale = Vector2(0.6, 0.6)
 
 [node name="BotCardSlot5" parent="PlayingArea" unique_id=42539921 instance=ExtResource("6_28g5r")]
+z_index = -3
 position = Vector2(1419, 300)
 scale = Vector2(0.6, 0.6)
 
 [node name="BotCardSlot6" parent="PlayingArea" unique_id=182635134 instance=ExtResource("6_28g5r")]
+z_index = -3
 position = Vector2(1539, 300)
 scale = Vector2(0.6, 0.6)
 
@@ -195,6 +202,7 @@ texture = ExtResource("10_t5ocr")
 [node name="AquariumDeck" type="Node2D" parent="." unique_id=861988459]
 position = Vector2(1325, 700)
 scale = Vector2(0.8, 0.8)
+script = ExtResource("11_uhlwh")
 
 [node name="AquariumDeckImage" type="Sprite2D" parent="AquariumDeck" unique_id=809175629]
 scale = Vector2(0.24, 0.24)
@@ -231,25 +239,33 @@ position = Vector2(50, -2)
 [node name="HabitatArea" type="Node2D" parent="." unique_id=63352808]
 
 [node name="PlayerHabitatSlot" parent="HabitatArea" unique_id=118432589 instance=ExtResource("14_u38pm")]
-position = Vector2(965, 935)
+z_index = -3
+position = Vector2(968, 935)
 
 [node name="PlayerHabitatSlot2" parent="HabitatArea" unique_id=2074462489 instance=ExtResource("14_u38pm")]
+z_index = -3
 position = Vector2(1508, 935)
 
 [node name="PlayerHabitatSlot3" parent="HabitatArea" unique_id=87292589 instance=ExtResource("14_u38pm")]
+z_index = -3
 position = Vector2(1328, 935)
 
 [node name="PlayerHabitatSlot4" parent="HabitatArea" unique_id=541840483 instance=ExtResource("14_u38pm")]
+z_index = -3
 position = Vector2(1148, 935)
 
 [node name="BotHabitatSlot" parent="HabitatArea" unique_id=7289864 instance=ExtResource("16_2b4pl")]
-position = Vector2(965, 460)
+z_index = -3
+position = Vector2(968, 460)
 
 [node name="BotHabitatSlot2" parent="HabitatArea" unique_id=2023460715 instance=ExtResource("16_2b4pl")]
+z_index = -3
 position = Vector2(1148, 460)
 
 [node name="BotHabitatSlot3" parent="HabitatArea" unique_id=152589856 instance=ExtResource("16_2b4pl")]
+z_index = -3
 position = Vector2(1328, 460)
 
 [node name="BotHabitatSlot4" parent="HabitatArea" unique_id=539727489 instance=ExtResource("16_2b4pl")]
+z_index = -3
 position = Vector2(1508, 460)
