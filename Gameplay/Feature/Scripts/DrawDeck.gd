@@ -3,6 +3,7 @@ extends Node2D
 const CARD_SCENE_PATH = "res://Gameplay/Feature/Scenes/Card.tscn"
 const CARD_DATABASE_PATH = "res://card_database.gd"
 const CARD_DRAW_SPEED = 0.3
+const DECK_POSITION = [1100, 700]
 
 var card_database
 var discard_deck = []
@@ -44,6 +45,8 @@ func draw_card():
 	
 	var card_scene = preload(CARD_SCENE_PATH)
 	var new_card = card_scene.instantiate()
+	# Draw from the deck location set at the const DECK_POSITION
+	new_card.global_position = Vector2(DECK_POSITION[0], DECK_POSITION[1])
 	new_card.card_image.texture = playing_deck[0].card_image
 
 	$"../CardMovement".add_child(new_card)
