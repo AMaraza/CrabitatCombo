@@ -14,6 +14,8 @@ var card_being_dragged
 var is_hovering_on_card
 var player_hand_reference
 var original_y_position: float
+var discard_z_index_tracker: int = 0
+var card_type
 
 
 # Called when the node enters the scene tree for the first time.
@@ -35,24 +37,57 @@ func _process(_delta: float) -> void:
 
 func start_drag(card):
 	card_being_dragged = card
+	card_type = card.card_data.card_type
 	card.scale = Vector2(CARD_NORMAL_SCALE, CARD_NORMAL_SCALE)
+	card.z_index = 1000 # Keep card on top while dragging
 
 # Need to add difference between discard slot, habitat slot, playing area slot
 func finish_drag():
 	card_being_dragged.scale = Vector2(CARD_ENLARGED_SCALE, CARD_ENLARGED_SCALE)
 	var card_slot_found = raycast_check_for_card_slot()
-	if card_slot_found and not card_slot_found.card_in_slot:
+	
+	# If no slot was found under the mouse, return card to hand
+	if not card_slot_found:
+		player_hand_reference.add_card_to_hand(card_being_dragged, CARD_DEFAULT_SPEED)
+		card_being_dragged.z_index = 10 # Reset to hand layer
+		card_being_dragged = null
+		return
+	
+	if not card_slot_found.habitat_slot and not card_slot_found.aquarium_slot:
 		# Card dropped in empty card slot & becomes no longer moveable
-		card_being_dragged.scale = Vector2(PLAYING_FIELD_SCALE, PLAYING_FIELD_SCALE)
-		card_being_dragged.card_in_slot = card_slot_found
-		player_hand_reference.remove_card_from_hand(card_being_dragged)
-		card_being_dragged.position = card_slot_found.position
-		card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
-		card_slot_found.card_in_slot = true
+		if not card_slot_found.main_discard and card_type != CardData.CardType.ABILITY_CARD and not card_slot_found.card_in_slot:
+			card_being_dragged.scale = Vector2(PLAYING_FIELD_SCALE, PLAYING_FIELD_SCALE)
+			card_slot_found.card_in_slot = true
+			
+			# Normal field slots can just rest on a static layer
+			card_being_dragged.z_index = 5
+			
+			slot_card(card_slot_found)
+		else:
+			# --- DISCARD PILE LOGIC ---
+			card_being_dragged.scale = Vector2(CARD_NORMAL_SCALE, CARD_NORMAL_SCALE)
+			
+			# INcrement the counter to render cards above the previous one
+			discard_z_index_tracker += 1
+			card_being_dragged.z_index = discard_z_index_tracker
+			
+			card_slot_found.card_in_slot = false
+			slot_card(card_slot_found)
 	else:
 		player_hand_reference.add_card_to_hand(card_being_dragged, CARD_DEFAULT_SPEED)
+		card_being_dragged.z_index = 10 # Reset to hand layer
+		
 	card_being_dragged = null
+
+
+# Removes card from hand and slots into position
+func slot_card(card_slot_found):
+	card_being_dragged.card_in_slot = card_slot_found
+	player_hand_reference.remove_card_from_hand(card_being_dragged)
+	card_being_dragged.position = card_slot_found.position
 	
+	# Completely disable collision shape so raycasts ignore this card now
+	card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
 
 
 func connect_card_signals(card):
@@ -95,11 +130,11 @@ func highlight_card(card, hovered):
 		card.position.y = original_y_position - CARD_Y_MOVEMENT
 		var new_card_position = Vector2(card.position.x, card.position.y)
 		card.position = new_card_position
-		card.z_index = 2
+		card.z_index = 1000
 	else:
 		card.scale = Vector2(CARD_NORMAL_SCALE, CARD_NORMAL_SCALE)
 		card.position = Vector2(card.position.x, original_y_position)
-		card.z_index = 1
+		card.z_index = 10
 
 
 func raycast_check_for_card_slot():

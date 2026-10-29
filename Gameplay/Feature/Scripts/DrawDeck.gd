@@ -35,19 +35,30 @@ func populate_deck():
 
 
 func draw_card():
-	var card_drawn = playing_deck[0]
+	var card_drawn: CardData = playing_deck[0]
 	playing_deck.erase(card_drawn)
+	
+	# --- ACCESS CARD TYPE TEST ---
+	var type_index = card_drawn.card_type
+	var type_name = CardData.CardType.keys()[type_index]
+	print("Successfully drew card: ", card_drawn.card_name, " | Type: ", type_name)
+	# -----------------------------
 	
 	# If last card drawn from the deck, disable deck
 	if playing_deck.size() == 0:
 		$Area2D/CollisionShape2D.disabled = true
 		$DrawDeckImage.visible = false
 	
+	# Instantiate visual card representation
 	var card_scene = preload(CARD_SCENE_PATH)
 	var new_card = card_scene.instantiate()
+	new_card.card_data = card_drawn
+	
 	# Draw from the deck location set at the const DECK_POSITION
 	new_card.global_position = Vector2(DECK_POSITION[0], DECK_POSITION[1])
-	new_card.card_image.texture = playing_deck[0].card_image
+	
+	# Use the image from the card JUST drawn
+	new_card.card_image.texture = card_drawn.card_image
 
 	$"../CardMovement".add_child(new_card)
 	new_card.name = "Card"

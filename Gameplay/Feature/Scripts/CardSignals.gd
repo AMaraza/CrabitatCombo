@@ -4,15 +4,8 @@ signal hovered_over_card
 signal hovered_off_card
 
 var hand_position
-var card_in_slot
-
-enum CARD_TYPE {
-	CRABITAT,
-	COMBO,
-	ABILITY
-}
-
-@export var current_type: CARD_TYPE = CARD_TYPE.CRABITAT
+var card_in_slot = null
+var card_data: CardData
 
 @export var card_image: Sprite2D
 
