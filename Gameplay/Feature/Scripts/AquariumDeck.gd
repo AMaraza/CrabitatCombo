@@ -107,6 +107,8 @@ func draw_card():
 func find_empty_habitat_slot():
 	# Loop through its children to find a matching empty habitat slot
 	for slot in $"../HabitatArea".get_children():
+		# Checks if slot has a variable called "habitat_slot" in it, 
+		# that it is habitat slot, and no card is already assigned
 		if "habitat_slot" in slot and slot.habitat_slot and not slot.card_in_slot:
 			return slot
 	return null
