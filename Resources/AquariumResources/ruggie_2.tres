@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HermitCardData" format=3 uid="uid://dqvglrf00s0mv"]
+
+[ext_resource type="Texture2D" uid="uid://6o46n0u3skk5" path="res://Gameplay/Deck/Assets/AquariumCards/Ruggie17.png" id="1_buenj"]
+[ext_resource type="Script" uid="uid://b7nggwfs8ofp" path="res://Resources/hermit_card_data.gd" id="2_m02fq"]
+
+[resource]
+script = ExtResource("2_m02fq")
+card_name = "Ruggie"
+number_in_deck = 1
+actions_to_play = 1
+order_numer = 17
+card_image = ExtResource("1_buenj")
+metadata/_custom_type_script = "uid://b7nggwfs8ofp"

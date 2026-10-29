@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://tjcroh45j7jf"]
+
+[ext_resource type="Texture2D" uid="uid://cmh0xvtrso140" path="res://Gameplay/Deck/Assets/AquariumCards/AquariumCardBack.png" id="1_lqeyx"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="1_qsc2l"]
+
+[resource]
+script = ExtResource("1_qsc2l")
+card_name = "Aquarium Card"
+number_in_deck = 21
+card_image = ExtResource("1_lqeyx")
+card_type = 4
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

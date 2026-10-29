@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://xbq665bigtsw"]
+
+[ext_resource type="Texture2D" uid="uid://byn47m83ag1es" path="res://Gameplay/Deck/Assets/AbilityCards/PolishedShell.png" id="1_qjkhv"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_s3ma0"]
+
+[resource]
+script = ExtResource("2_s3ma0")
+card_name = "Polished Shell"
+number_in_deck = 1
+card_image = ExtResource("1_qjkhv")
+card_type = 3
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

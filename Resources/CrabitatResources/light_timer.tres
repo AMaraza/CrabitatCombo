@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://ce6gfbyk21iyi"]
+
+[ext_resource type="Texture2D" uid="uid://cwlsvtv45ig3c" path="res://Gameplay/Deck/Assets/CrabitatCards/LightTimer.png" id="1_ju8b1"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_11rxx"]
+
+[resource]
+script = ExtResource("2_11rxx")
+card_name = "Light Timer"
+number_in_deck = 2
+card_image = ExtResource("1_ju8b1")
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

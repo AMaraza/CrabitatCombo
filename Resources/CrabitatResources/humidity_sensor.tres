@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://bwqfbtlol4nyj"]
+
+[ext_resource type="Texture2D" uid="uid://c64chlnvc0g64" path="res://Gameplay/Deck/Assets/CrabitatCards/HumiditySensor.png" id="1_gghqc"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_8okmc"]
+
+[resource]
+script = ExtResource("2_8okmc")
+card_name = "Humidity Sensor"
+number_in_deck = 2
+card_image = ExtResource("1_gghqc")
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

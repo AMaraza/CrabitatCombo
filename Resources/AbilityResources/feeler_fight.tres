@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://cll62mklog01a"]
+
+[ext_resource type="Texture2D" uid="uid://di2joylsoddy7" path="res://Gameplay/Deck/Assets/AbilityCards/FeelerFight.png" id="1_7l03p"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_dqf6e"]
+
+[resource]
+script = ExtResource("2_dqf6e")
+card_name = "Feeler Fight"
+number_in_deck = 3
+card_image = ExtResource("1_7l03p")
+card_type = 2
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

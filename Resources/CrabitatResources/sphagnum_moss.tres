@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://u8trorwrpnvd"]
+
+[ext_resource type="Texture2D" uid="uid://db4xkvcqfjciv" path="res://Gameplay/Deck/Assets/CrabitatCards/SphagnumMoss.png" id="1_raj7b"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_mpf6s"]
+
+[resource]
+script = ExtResource("2_mpf6s")
+card_name = "Sphagnum Moss"
+number_in_deck = 2
+card_image = ExtResource("1_raj7b")
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

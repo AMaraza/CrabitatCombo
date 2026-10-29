@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dnm2v6luqfijo"]
+
+[ext_resource type="Texture2D" uid="uid://c15fitm1gufqu" path="res://Gameplay/Deck/Assets/AbilityCards/ChirpingCrab.png" id="1_6bc6j"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_qe483"]
+
+[resource]
+script = ExtResource("2_qe483")
+card_name = "Chirping Crab"
+number_in_deck = 3
+card_image = ExtResource("1_6bc6j")
+card_type = 2
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

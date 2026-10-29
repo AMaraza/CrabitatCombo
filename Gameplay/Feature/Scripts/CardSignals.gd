@@ -16,10 +16,6 @@ enum CARD_TYPE {
 
 @export var card_image: Sprite2D
 
-var ability_background = preload("res://Gameplay/Deck/Assets/ability_background.png")
-var combo_background = preload("res://Gameplay/Deck/Assets/combo_backround.png")
-var crabitat_background = preload("res://Gameplay/Deck/Assets/crabitat_background.png")
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

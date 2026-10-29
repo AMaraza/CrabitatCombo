@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://davsd5s2jhvs5"]
+
+[ext_resource type="Texture2D" uid="uid://bimcbqi8thl73" path="res://Gameplay/Deck/Assets/CrabitatCards/PlaySand.png" id="1_fwdp8"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="1_ohh8h"]
+
+[resource]
+script = ExtResource("1_ohh8h")
+card_name = "Play Sand"
+number_in_deck = 2
+card_image = ExtResource("1_fwdp8")
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://da0wjou7ant8y"]
+
+[ext_resource type="Texture2D" uid="uid://duqo4g7e4gdxw" path="res://Gameplay/Deck/Assets/AbilityCards/TankLeak.png" id="1_igyg1"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_325q3"]
+
+[resource]
+script = ExtResource("2_325q3")
+card_name = "Tank Leak"
+number_in_deck = 1
+card_image = ExtResource("1_igyg1")
+card_type = 3
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

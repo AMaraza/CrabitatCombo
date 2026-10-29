@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://d4acsi2xx4rvh"]
+
+[ext_resource type="Texture2D" uid="uid://b1o16uaabclnf" path="res://Gameplay/Deck/Assets/AbilityCards/ShellSwap.png" id="1_gsaoe"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_nan1s"]
+
+[resource]
+script = ExtResource("2_nan1s")
+card_name = "Shell Swap"
+number_in_deck = 2
+card_image = ExtResource("1_gsaoe")
+card_type = 2
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

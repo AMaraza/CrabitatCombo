@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://buqbxtkjn6i0m"]
+
+[ext_resource type="Texture2D" uid="uid://qghxgckh32c4" path="res://Gameplay/Deck/Assets/CrabitatCards/HeatPad.png" id="1_f7dlu"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_tyyyv"]
+
+[resource]
+script = ExtResource("2_tyyyv")
+card_name = "Heat Pad"
+number_in_deck = 2
+card_image = ExtResource("1_f7dlu")
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

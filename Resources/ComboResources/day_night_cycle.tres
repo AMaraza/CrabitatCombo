@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://bcdtil6jr3pen"]
+
+[ext_resource type="Texture2D" uid="uid://bflyyqowh7lbt" path="res://Gameplay/Deck/Assets/ComboCards/DayNightCycle.png" id="1_1flxd"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_7nt1o"]
+
+[resource]
+script = ExtResource("2_7nt1o")
+card_name = "Day Night Cycle"
+number_in_deck = 2
+card_image = ExtResource("1_1flxd")
+card_type = 1
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

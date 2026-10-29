@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HermitCardData" format=3 uid="uid://cxkx42aot607o"]
+
+[ext_resource type="Texture2D" uid="uid://fm5udmp6u1u4" path="res://Gameplay/Deck/Assets/AquariumCards/Blueberry4.png" id="1_epor6"]
+[ext_resource type="Script" uid="uid://b7nggwfs8ofp" path="res://Resources/hermit_card_data.gd" id="2_hahlp"]
+
+[resource]
+script = ExtResource("2_hahlp")
+card_name = "Blueberry"
+number_in_deck = 1
+actions_to_play = 1
+order_numer = 4
+card_image = ExtResource("1_epor6")
+metadata/_custom_type_script = "uid://b7nggwfs8ofp"

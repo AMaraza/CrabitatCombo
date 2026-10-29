@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HermitCardData" format=3 uid="uid://b72fy6o2tx128"]
+
+[ext_resource type="Texture2D" uid="uid://debhkrxt7rj65" path="res://Gameplay/Deck/Assets/AquariumCards/Australian2.png" id="1_o8u1b"]
+[ext_resource type="Script" uid="uid://b7nggwfs8ofp" path="res://Resources/hermit_card_data.gd" id="2_1xs6k"]
+
+[resource]
+script = ExtResource("2_1xs6k")
+card_name = "Australian"
+number_in_deck = 1
+actions_to_play = 1
+order_numer = 2
+card_image = ExtResource("1_o8u1b")
+metadata/_custom_type_script = "uid://b7nggwfs8ofp"

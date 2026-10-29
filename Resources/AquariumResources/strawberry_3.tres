@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HermitCardData" format=3 uid="uid://bypy8dxe7lt5h"]
+
+[ext_resource type="Texture2D" uid="uid://dlso5ud0icu4s" path="res://Gameplay/Deck/Assets/AquariumCards/Strawberry21.png" id="1_0e1fl"]
+[ext_resource type="Script" uid="uid://b7nggwfs8ofp" path="res://Resources/hermit_card_data.gd" id="2_rnco0"]
+
+[resource]
+script = ExtResource("2_rnco0")
+card_name = "Strawberry"
+number_in_deck = 1
+actions_to_play = 1
+order_numer = 21
+card_image = ExtResource("1_0e1fl")
+metadata/_custom_type_script = "uid://b7nggwfs8ofp"
