@@ -21,16 +21,16 @@ func populate_deck():
 	var card_pools = [
 		card_database.CRABITAT_CARDS,
 		card_database.COMBO_CARDS,
-		card_database.ABILITY_CARDS
+		card_database.ABILITY_CARDS,
+		card_database.TRAP_CARDS
 	]
 	
 	for card_pool in card_pools:
 		for card in card_pool:
-			for i in range(card_pool[card][0]):
-				playing_deck.append(card_pool[card][2])
+			for i in range(card.number_in_deck):
+				playing_deck.append(card)
 			
 	playing_deck.shuffle()
-	print(playing_deck)
 
 
 func draw_card():
@@ -44,7 +44,7 @@ func draw_card():
 	
 	var card_scene = preload(CARD_SCENE_PATH)
 	var new_card = card_scene.instantiate()
-	new_card.card_image.texture = playing_deck[0]
+	new_card.card_image.texture = playing_deck[0].card_image
 
 	$"../CardMovement".add_child(new_card)
 	new_card.name = "Card"

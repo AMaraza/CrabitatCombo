@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://cin7hd1ybx24m"]
+
+[ext_resource type="Texture2D" uid="uid://bqnymwfh2vnsd" path="res://Gameplay/Deck/Assets/CrabitatCards/WaterBowl.png" id="1_mx2y1"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_saa54"]
+
+[resource]
+script = ExtResource("2_saa54")
+card_name = "Water Primer"
+number_in_deck = 4
+card_image = ExtResource("1_mx2y1")
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

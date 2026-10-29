@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HermitCardData" format=3 uid="uid://b48clguiaeplg"]
+
+[ext_resource type="Texture2D" uid="uid://bn6koon1bwmaf" path="res://Gameplay/Deck/Assets/AquariumCards/Cavipe9.png" id="1_suepx"]
+[ext_resource type="Script" uid="uid://b7nggwfs8ofp" path="res://Resources/hermit_card_data.gd" id="2_go3ld"]
+
+[resource]
+script = ExtResource("2_go3ld")
+card_name = "Cavipe"
+number_in_deck = 1
+actions_to_play = 1
+order_numer = 9
+card_image = ExtResource("1_suepx")
+metadata/_custom_type_script = "uid://b7nggwfs8ofp"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HermitCardData" format=3 uid="uid://26lwlt3iy4i2"]
+
+[ext_resource type="Texture2D" uid="uid://b1u32s4barmtk" path="res://Gameplay/Deck/Assets/AquariumCards/PurplePincher14.png" id="1_etbq3"]
+[ext_resource type="Script" uid="uid://b7nggwfs8ofp" path="res://Resources/hermit_card_data.gd" id="2_yihtt"]
+
+[resource]
+script = ExtResource("2_yihtt")
+card_name = "Purple Pincher"
+number_in_deck = 1
+actions_to_play = 1
+order_numer = 14
+card_image = ExtResource("1_etbq3")
+metadata/_custom_type_script = "uid://b7nggwfs8ofp"

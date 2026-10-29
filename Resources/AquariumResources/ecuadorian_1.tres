@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HermitCardData" format=3 uid="uid://c17m0v5angbk4"]
+
+[ext_resource type="Texture2D" uid="uid://bgvmmc47qcmpa" path="res://Gameplay/Deck/Assets/AquariumCards/Ecuadorian10.png" id="1_g46om"]
+[ext_resource type="Script" uid="uid://b7nggwfs8ofp" path="res://Resources/hermit_card_data.gd" id="2_oa1pr"]
+
+[resource]
+script = ExtResource("2_oa1pr")
+card_name = "Ecuadorian"
+number_in_deck = 1
+actions_to_play = 1
+order_numer = 10
+card_image = ExtResource("1_g46om")
+metadata/_custom_type_script = "uid://b7nggwfs8ofp"

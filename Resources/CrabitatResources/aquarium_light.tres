@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://6ogwpwo6n6rt"]
+
+[ext_resource type="Texture2D" uid="uid://dsrp82b1jucog" path="res://Gameplay/Deck/Assets/CrabitatCards/AquariumLight.png" id="1_nodl7"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_d68hx"]
+
+[resource]
+script = ExtResource("2_d68hx")
+card_name = "Aquarium Light"
+number_in_deck = 2
+card_image = ExtResource("1_nodl7")
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://ctf8a7jwo4nd"]
+
+[ext_resource type="Texture2D" uid="uid://bvxfmys2danm3" path="res://Gameplay/Deck/Assets/ComboCards/BalancedDiet.png" id="1_m3jxq"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_a3k5o"]
+
+[resource]
+script = ExtResource("2_a3k5o")
+card_name = "Balanced Diet"
+number_in_deck = 2
+card_image = ExtResource("1_m3jxq")
+card_type = 1
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"

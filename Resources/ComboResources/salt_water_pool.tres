@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://b8r3cpqrfx0p3"]
+
+[ext_resource type="Texture2D" uid="uid://vccilpgn0psy" path="res://Gameplay/Deck/Assets/ComboCards/SaltWaterPool.png" id="1_oy2pg"]
+[ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_h4lfh"]
+
+[resource]
+script = ExtResource("2_h4lfh")
+card_name = "Salt Water Pool"
+number_in_deck = 2
+card_image = ExtResource("1_oy2pg")
+card_type = 1
+metadata/_custom_type_script = "uid://pvoxgmc38qbv"
