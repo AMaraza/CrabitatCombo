@@ -14,6 +14,26 @@ var playing_deck = []
 func _ready() -> void:
 	card_database = preload(CARD_DATABASE_PATH)
 	populate_deck()
+	
+	# Use deferred call to give other modes (like PlayerHand) a fram to initialize
+	# their sizes and variables before drawing cards.
+	deal_starting_hermit.call_deferred()
+
+
+func deal_starting_hermit():
+	var starting_hermit_crab_size = 1
+	
+	print("Dealing starting hermit crab.")
+	
+	for i in range(starting_hermit_crab_size):
+		# Wait so that dealing can be seen better
+		await get_tree().create_timer(0.15).timeout
+		# Enforce a safety check so it stops looping if the deck runs dry
+		if playing_deck.size() > 0:
+			draw_card()
+		else:
+			print("Stopped dealing: Deck ran ouf of cards during setup!")
+			break
 
 
 func populate_deck():
