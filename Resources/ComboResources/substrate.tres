@@ -1,7 +1,9 @@
 [gd_resource type="Resource" script_class="CardData" format=3 uid="uid://bsyfvf6iow6ki"]
 
 [ext_resource type="Texture2D" uid="uid://biqdx6eumqjvq" path="res://Gameplay/Deck/Assets/ComboCards/Substrate.png" id="1_kp5dp"]
+[ext_resource type="Resource" uid="uid://davsd5s2jhvs5" path="res://Resources/CrabitatResources/play_sand.tres" id="2_bgcqf"]
 [ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_kd1ea"]
+[ext_resource type="Resource" uid="uid://bjmis1bhcqm5" path="res://Resources/CrabitatResources/coconut_fiber.tres" id="3_5pn2c"]
 
 [resource]
 script = ExtResource("2_kd1ea")
@@ -9,4 +11,5 @@ card_name = "Substrate"
 number_in_deck = 2
 card_image = ExtResource("1_kp5dp")
 card_type = 1
+associated_crabitat_cards = Array[ExtResource("2_kd1ea")]([ExtResource("2_bgcqf"), ExtResource("3_5pn2c")])
 metadata/_custom_type_script = "uid://pvoxgmc38qbv"
