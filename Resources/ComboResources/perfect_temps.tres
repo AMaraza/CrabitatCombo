@@ -2,8 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://bqmqem3miq1es" path="res://Gameplay/Deck/Assets/ComboCards/PerfectTemps.png" id="1_boi6d"]
 [ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_la6n1"]
-[ext_resource type="Resource" uid="uid://buqbxtkjn6i0m" path="res://Resources/CrabitatResources/heat_pad.tres" id="2_wuwiq"]
-[ext_resource type="Resource" uid="uid://c4ycoame4odi" path="res://Resources/CrabitatResources/heat_sensor.tres" id="3_quo82"]
 
 [resource]
 script = ExtResource("2_la6n1")
@@ -11,5 +9,4 @@ card_name = "Perfect Temps"
 number_in_deck = 2
 card_image = ExtResource("1_boi6d")
 card_type = 1
-associated_crabitat_cards = Array[ExtResource("2_la6n1")]([ExtResource("2_wuwiq"), ExtResource("3_quo82")])
 metadata/_custom_type_script = "uid://pvoxgmc38qbv"

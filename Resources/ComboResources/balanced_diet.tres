@@ -1,9 +1,7 @@
 [gd_resource type="Resource" script_class="CardData" format=3 uid="uid://ctf8a7jwo4nd"]
 
 [ext_resource type="Texture2D" uid="uid://bvxfmys2danm3" path="res://Gameplay/Deck/Assets/ComboCards/BalancedDiet.png" id="1_m3jxq"]
-[ext_resource type="Resource" uid="uid://cf8os3gr7p3v" path="res://Resources/CrabitatResources/crab_food.tres" id="2_0cutx"]
 [ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_a3k5o"]
-[ext_resource type="Resource" uid="uid://b65y8fyhbesw2" path="res://Resources/CrabitatResources/food_bowl.tres" id="3_xah2j"]
 
 [resource]
 script = ExtResource("2_a3k5o")
@@ -11,5 +9,4 @@ card_name = "Balanced Diet"
 number_in_deck = 2
 card_image = ExtResource("1_m3jxq")
 card_type = 1
-associated_crabitat_cards = Array[ExtResource("2_a3k5o")]([ExtResource("2_0cutx"), ExtResource("3_xah2j")])
 metadata/_custom_type_script = "uid://pvoxgmc38qbv"
