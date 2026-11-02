@@ -13,7 +13,8 @@ var playing_deck = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	card_database = preload(CARD_DATABASE_PATH)
-	populate_deck()
+	#populate_deck()
+	populate_spoofed_deck()
 	
 	# Use deferred call to give other modes (like PlayerHand) a fram to initialize
 	# their sizes and variables before drawing cards.
@@ -23,7 +24,7 @@ func _ready() -> void:
 func deal_starting_hand():
 	var starting_hand_size = 6
 	
-	print("Dealing starting hand of ", starting_hand_size, " cards...")
+	#print("Dealing starting hand of ", starting_hand_size, " cards...")
 	
 	for i in range(starting_hand_size):
 		# Wait so that dealing can be seen better
@@ -32,7 +33,7 @@ func deal_starting_hand():
 		if playing_deck.size() > 0:
 			draw_card()
 		else:
-			print("Stopped dealing: Deck ran ouf of cards during setup!")
+			#print("Stopped dealing: Deck ran ouf of cards during setup!")
 			break
 
 
@@ -52,6 +53,14 @@ func populate_deck():
 				playing_deck.append(card)
 			
 	playing_deck.shuffle()
+	
+func populate_spoofed_deck():
+	playing_deck.clear()
+	
+	playing_deck.append(card_database.CRABITAT_CARDS[4])
+	playing_deck.append(card_database.CRABITAT_CARDS[11])
+	playing_deck.append(card_database.COMBO_CARDS[7])
+	playing_deck.append(card_database.CRABITAT_CARDS[0])
 
 
 func draw_card():
@@ -61,7 +70,7 @@ func draw_card():
 	# --- ACCESS CARD TYPE TEST ---
 	var type_index = card_drawn.card_type
 	var type_name = CardData.CardType.keys()[type_index]
-	print("Successfully drew card: ", card_drawn.card_name, " | Type: ", type_name)
+	#print("Successfully drew card: ", card_drawn.card_name, " | Type: ", type_name)
 	# -----------------------------
 	
 	# If last card drawn from the deck, disable deck
@@ -87,7 +96,7 @@ func draw_card():
 	var max_cards = playing_deck.size()
 	
 	if current_card < max_cards - 1:
-		print(playing_deck[current_card])
+		#print(playing_deck[current_card])
 		current_card += 1
 		discard_deck.append(playing_deck[current_card])
 	else:

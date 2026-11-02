@@ -15,3 +15,4 @@ enum CardType {
 @export var actions_to_play: int
 @export var card_image: Texture2D
 @export var card_type: CardType
+@export var associated_crabitat_cards: Array[CardData]
