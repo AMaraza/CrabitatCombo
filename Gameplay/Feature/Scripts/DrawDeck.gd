@@ -13,8 +13,8 @@ var playing_deck = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	card_database = preload(CARD_DATABASE_PATH)
-	#populate_deck()
-	populate_spoofed_deck()
+	populate_deck()
+	#populate_spoofed_deck()
 	
 	# Use deferred call to give other modes (like PlayerHand) a fram to initialize
 	# their sizes and variables before drawing cards.
@@ -68,8 +68,8 @@ func draw_card():
 	playing_deck.erase(card_drawn)
 	
 	# --- ACCESS CARD TYPE TEST ---
-	var type_index = card_drawn.card_type
-	var type_name = CardData.CardType.keys()[type_index]
+	#var type_index = card_drawn.card_type
+	#var type_name = CardData.CardType.keys()[type_index]
 	#print("Successfully drew card: ", card_drawn.card_name, " | Type: ", type_name)
 	# -----------------------------
 	
