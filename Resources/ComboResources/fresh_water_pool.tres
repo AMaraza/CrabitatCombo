@@ -2,8 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://dv8nkigfg4lwi" path="res://Gameplay/Deck/Assets/ComboCards/FreshWaterPool.png" id="1_7csdo"]
 [ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_21knf"]
-[ext_resource type="Resource" uid="uid://18447kbhxpj6" path="res://Resources/CrabitatResources/water_bowl.tres" id="2_j3que"]
-[ext_resource type="Resource" uid="uid://cin7hd1ybx24m" path="res://Resources/CrabitatResources/water_primer.tres" id="3_xxqlx"]
 
 [resource]
 script = ExtResource("2_21knf")
@@ -11,5 +9,4 @@ card_name = "Fresh Water Pool"
 number_in_deck = 2
 card_image = ExtResource("1_7csdo")
 card_type = 1
-associated_crabitat_cards = Array[ExtResource("2_21knf")]([ExtResource("2_j3que"), ExtResource("3_xxqlx")])
 metadata/_custom_type_script = "uid://pvoxgmc38qbv"

@@ -17,8 +17,6 @@ var original_y_position: float
 var discard_z_index_tracker: int = 0
 var card_type
 
-@export var card_slots: Array[Node2D]
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -84,41 +82,12 @@ func finish_drag():
 
 # Removes card from hand and slots into position
 func slot_card(card_slot_found):
-	var dragged_card_data = card_being_dragged.card_data
+	card_being_dragged.card_in_slot = card_slot_found
+	player_hand_reference.remove_card_from_hand(card_being_dragged)
+	card_being_dragged.position = card_slot_found.position
 	
-	if dragged_card_data.card_type == 1:
-		var valid_cards = 0
-		var crabitat_cards_in_play = []
-		for slot in card_slots:
-			if slot.card != null and slot.card.card_data.card_type == 0:
-				crabitat_cards_in_play.append(slot.card)
-				print(slot.card.card_data.card_name)
-				
-		for card in crabitat_cards_in_play:
-			for associated_card in dragged_card_data.associated_crabitat_cards:
-				if card.card_data.card_name == associated_card.card_name:
-					valid_cards += 1
-					print(card.card_data.card_name)
-					break
-				else:
-					print("false")
-		
-		if valid_cards == 2:
-			card_being_dragged.card_in_slot = card_slot_found
-			player_hand_reference.remove_card_from_hand(card_being_dragged)
-			card_being_dragged.position = card_slot_found.position
-			card_slot_found.card = card_being_dragged
-			card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
-		else:
-			print("")
-				
-	else:
-		card_being_dragged.card_in_slot = card_slot_found
-		player_hand_reference.remove_card_from_hand(card_being_dragged)
-		card_being_dragged.position = card_slot_found.position
-		card_slot_found.card = card_being_dragged
-		card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
-
+	# Completely disable collision shape so raycasts ignore this card now
+	card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
 
 
 func connect_card_signals(card):

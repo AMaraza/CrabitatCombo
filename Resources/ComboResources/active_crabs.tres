@@ -2,8 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://bkw6bbe1gsiiv" path="res://Gameplay/Deck/Assets/ComboCards/ActiveCrabs.png" id="1_rjgn2"]
 [ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="1_stw54"]
-[ext_resource type="Resource" uid="uid://d0yj56mmo0j7w" path="res://Resources/CrabitatResources/cholla_wood.tres" id="2_t7l8t"]
-[ext_resource type="Resource" uid="uid://coeu5a1m6w87y" path="res://Resources/CrabitatResources/climbing_toys.tres" id="3_yk4ix"]
 
 [resource]
 script = ExtResource("1_stw54")
@@ -11,5 +9,4 @@ card_name = "Active Crabs"
 number_in_deck = 2
 card_image = ExtResource("1_rjgn2")
 card_type = 1
-associated_crabitat_cards = Array[ExtResource("1_stw54")]([ExtResource("2_t7l8t"), ExtResource("3_yk4ix")])
 metadata/_custom_type_script = "uid://pvoxgmc38qbv"

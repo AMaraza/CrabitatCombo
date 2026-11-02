@@ -2,8 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://bflyyqowh7lbt" path="res://Gameplay/Deck/Assets/ComboCards/DayNightCycle.png" id="1_1flxd"]
 [ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_7nt1o"]
-[ext_resource type="Resource" uid="uid://6ogwpwo6n6rt" path="res://Resources/CrabitatResources/aquarium_light.tres" id="2_s3tpb"]
-[ext_resource type="Resource" uid="uid://ce6gfbyk21iyi" path="res://Resources/CrabitatResources/light_timer.tres" id="3_akecd"]
 
 [resource]
 script = ExtResource("2_7nt1o")
@@ -11,5 +9,4 @@ card_name = "Day Night Cycle"
 number_in_deck = 2
 card_image = ExtResource("1_1flxd")
 card_type = 1
-associated_crabitat_cards = Array[ExtResource("2_7nt1o")]([ExtResource("2_s3tpb"), ExtResource("3_akecd")])
 metadata/_custom_type_script = "uid://pvoxgmc38qbv"
