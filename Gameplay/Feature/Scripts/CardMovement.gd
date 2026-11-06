@@ -17,6 +17,9 @@ var original_y_position: float
 var discard_z_index_tracker: int = 0
 var card_type
 
+#Card Slot
+@export var card_slots: Array[Node2D]
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -48,69 +51,75 @@ func finish_drag():
 	
 	# If no slot was found under the mouse, return card to hand
 	if not card_slot_found:
-		return_card_to_hand()
-		return
-	
-	var is_habitat = "habitat_slot" in card_slot_found and card_slot_found.habitat_slot == true
-	var is_aquarium = "aquarium_slot" in card_slot_found and card_slot_found.aquarium_slot == true
-	
-	if is_habitat or is_aquarium:
-		return_card_to_hand()
-		return
-		
-	# Fetch card type directly from the node to avoid variable mismatch bugs
-	var current_card_type = card_being_dragged.card_data.card_type
-	var is_ability_card = (str(current_card_type) == str(CardData.CardType.ABILITY_CARD)) or (int(current_card_type) == int(CardData.CardType.ABILITY_CARD))
-	
-	var is_discard_pile = "main_discard" in card_slot_found and card_slot_found.main_discard == true
-	
-	# Handle Discard Pile
-	if is_discard_pile:
-		card_being_dragged.scale = Vector2(CARD_NORMAL_SCALE, CARD_NORMAL_SCALE)
-		# Increment the counter to render cards above the previous one
-		discard_z_index_tracker += 1
-		card_being_dragged.z_index = discard_z_index_tracker
-		
-		card_slot_found.card_in_slot = false
-		slot_card(card_slot_found)
+		player_hand_reference.add_card_to_hand(card_being_dragged, CARD_DEFAULT_SPEED)
+		card_being_dragged.z_index = 10 # Reset to hand layer
 		card_being_dragged = null
 		return
-		
-	# Handle Normal Field Slots
-	if is_ability_card:
-		# Ability card doesn't go here, return to hand
-		return_card_to_hand()
-		
-	elif "card_in_slot" in card_slot_found and not card_slot_found.card_in_slot:
-		# Regular card and can go here
-		card_being_dragged.scale = Vector2(PLAYING_FIELD_SCALE, PLAYING_FIELD_SCALE)
-		card_slot_found.card_in_slot = true
-		
-		# Normal field slots can just rest on a static layer
-		card_being_dragged.z_index = 5
-		slot_card(card_slot_found)
-		card_being_dragged = null
-		
+	
+	if not card_slot_found.habitat_slot and not card_slot_found.aquarium_slot:
+		# Card dropped in empty card slot & becomes no longer moveable
+		if not card_slot_found.main_discard and card_type != CardData.CardType.ABILITY_CARD and not card_slot_found.card_in_slot:
+			card_being_dragged.scale = Vector2(PLAYING_FIELD_SCALE, PLAYING_FIELD_SCALE)
+			card_slot_found.card_in_slot = true
+			
+			# Normal field slots can just rest on a static layer
+			card_being_dragged.z_index = 5
+			
+			slot_card(card_slot_found)
+		else:
+			# --- DISCARD PILE LOGIC ---
+			card_being_dragged.scale = Vector2(CARD_NORMAL_SCALE, CARD_NORMAL_SCALE)
+			
+			# INcrement the counter to render cards above the previous one
+			discard_z_index_tracker += 1
+			card_being_dragged.z_index = discard_z_index_tracker
+			
+			card_slot_found.card_in_slot = false
+			slot_card(card_slot_found)
 	else:
-		# Slot is Full -> Return to hand
-		return_card_to_hand()
-
-
-# Cleaner helper method to reset card state uniformly
-func return_card_to_hand():
-	player_hand_reference.add_card_to_hand(card_being_dragged, CARD_DEFAULT_SPEED)
-	card_being_dragged.z_index = 10 # Reset to hand layer
+		player_hand_reference.add_card_to_hand(card_being_dragged, CARD_DEFAULT_SPEED)
+		card_being_dragged.z_index = 10 # Reset to hand layer
+		
 	card_being_dragged = null
 
 
 # Removes card from hand and slots into position
 func slot_card(card_slot_found):
-	card_being_dragged.card_in_slot = card_slot_found
-	player_hand_reference.remove_card_from_hand(card_being_dragged)
-	card_being_dragged.position = card_slot_found.position
+	var dragged_card_data = card_being_dragged.card_data
 	
-	# Completely disable collision shape so raycasts ignore this card now
-	card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
+	if dragged_card_data.card_type == 1:
+		var valid_cards = 0
+		var crabitat_cards_in_play = []
+		for slot in card_slots:
+			if slot.card != null and slot.card.card_data.card_type == 0:
+				crabitat_cards_in_play.append(slot.card)
+				print(slot.card.card_data.card_name)
+				
+		for card in crabitat_cards_in_play:
+			for associated_card in dragged_card_data.associated_crabitat_cards:
+				if card.card_data.card_name == associated_card.card_name:
+					valid_cards += 1
+					print(card.card_data.card_name)
+					break
+				else:
+					print("false")
+		
+		if valid_cards == 2:
+			card_being_dragged.card_in_slot = card_slot_found
+			player_hand_reference.remove_card_from_hand(card_being_dragged)
+			card_being_dragged.position = card_slot_found.position
+			card_slot_found.card = card_being_dragged
+			card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
+		else:
+			print("")
+				
+	else:
+		card_being_dragged.card_in_slot = card_slot_found
+		player_hand_reference.remove_card_from_hand(card_being_dragged)
+		card_being_dragged.position = card_slot_found.position
+		card_slot_found.card = card_being_dragged
+		card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
+
 
 
 func connect_card_signals(card):
