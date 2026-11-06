@@ -10,6 +10,9 @@ var discard_deck = []
 var current_card = 0
 var playing_deck = []
 
+# Tracks if we are still dealing the setup card
+var is_initial_deal: bool = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	card_database = preload(CARD_DATABASE_PATH)
@@ -36,17 +39,20 @@ func deal_starting_hermit():
 		
 		# Enforce a safety check so it stops looping if the deck runs dry
 		if playing_deck.size() > 0:
-			draw_card(starting_hermit)
+			# The initial setup card is drawn face up (face_down = false)
+			draw_card(starting_hermit, false)
 		else:
 			print("Stopped dealing: Deck ran ouf of cards during setup!")
 			break
+	
+	# Initial setup is complete. Any future clicks draw face down.
+	is_initial_deal = false
 
 
 func populate_deck():
 	playing_deck.clear()
 	
 	var card_pools = [
-		card_database.AQUARIUM_CARDS,
 		card_database.HERMIT_CRABS
 	]
 	
@@ -58,7 +64,7 @@ func populate_deck():
 	playing_deck.shuffle()
 
 
-func draw_card(card_drawn = null):
+func draw_card(card_drawn = null, face_down: bool = true):
 	# If no slots are available, stop immediately
 	var target_slot = find_empty_habitat_slot()
 	if target_slot == null:
@@ -94,6 +100,9 @@ func draw_card(card_drawn = null):
 	var new_card = card_scene.instantiate()
 	new_card.card_data = card_drawn
 	
+	# Apply visibility rule right away before moving the card
+	new_card.set_face_down(face_down)
+	
 	# Draw from the deck location set at the const DECK_POSITION
 	new_card.global_position = Vector2(DECK_POSITION[0], DECK_POSITION[1])
 	
@@ -128,3 +137,9 @@ func find_empty_habitat_slot():
 		if "habitat_slot" in slot and slot.habitat_slot and not slot.card_in_slot:
 			return slot
 	return null
+
+
+# Triggered whenever the user clicks on the physical deck Area2D
+func _on_deck_clicked():
+	# Since setup is over, is_initial_deal is false, drawing face down automatically
+	draw_card(null, !is_initial_deal)
