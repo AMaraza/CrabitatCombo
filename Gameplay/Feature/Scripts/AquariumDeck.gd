@@ -77,13 +77,13 @@ func draw_card(card_drawn = null):
 	# Proceed with drawing since it is verified that a slot is open
 	playing_deck.erase(card_drawn)
 	
-	# --- SAFE ACCESS CARD TYPE AND ORDER NUMBER ---
+	# --- SAFE ACCESS CARD TYPE AND NUMBER ---
 	var type_name = "HERMIT_CRAB"
 	if card_drawn is CardData:
 		var type_index = card_drawn.card_type
 		type_name = CardData.CardType.keys()[type_index]
-	print("Successfully drew card: ", card_drawn.card_name, " | Type: ", type_name, 
-			" | Order Number: ", card_drawn.order_numer)
+	print("Successfully drew card: ", card_drawn.card_name, " | Type: ", type_name,
+	 " | Hermit Crab Order Number: ", card_drawn.order_numer)
 	# -----------------------------
 	
 	# If last card drawn from the deck, disable deck

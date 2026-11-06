@@ -17,7 +17,6 @@ var original_y_position: float
 var discard_z_index_tracker: int = 0
 var card_type
 
-#Card Slot
 @export var card_slots: Array[Node2D]
 
 
@@ -49,6 +48,12 @@ func finish_drag():
 	card_being_dragged.scale = Vector2(CARD_ENLARGED_SCALE, CARD_ENLARGED_SCALE)
 	var card_slot_found = raycast_check_for_card_slot()
 	
+	# Restricted card types to only discard
+	var restricted_types = [
+		CardData.CardType.ABILITY_CARD,
+		CardData.CardType.TRAP_CARD
+	]
+	
 	# If no slot was found under the mouse, return card to hand
 	if not card_slot_found:
 		player_hand_reference.add_card_to_hand(card_being_dragged, CARD_DEFAULT_SPEED)
@@ -56,27 +61,33 @@ func finish_drag():
 		card_being_dragged = null
 		return
 	
+	# Check if it's a valid standard target slot (not a restricted habitat/aquarium zone)
 	if not card_slot_found.habitat_slot and not card_slot_found.aquarium_slot:
-		# Card dropped in empty card slot & becomes no longer moveable
-		if not card_slot_found.main_discard and card_type != CardData.CardType.ABILITY_CARD and not card_slot_found.card_in_slot:
+		
+		# VALID PLAY TIMING: Normal empty field slot AND not an ability card
+		if not card_slot_found.main_discard and not card_type in restricted_types and not card_slot_found.card_in_slot:
 			card_being_dragged.scale = Vector2(PLAYING_FIELD_SCALE, PLAYING_FIELD_SCALE)
 			card_slot_found.card_in_slot = true
-			
-			# Normal field slots can just rest on a static layer
-			card_being_dragged.z_index = 5
-			
+			card_being_dragged.z_index = 5 # Normal field static layer
 			slot_card(card_slot_found)
-		else:
-			# --- DISCARD PILE LOGIC ---
+			
+		# VALID DISCARD TIMING: Specifically dropped on the designated discard slot
+		elif card_slot_found.main_discard:
 			card_being_dragged.scale = Vector2(CARD_NORMAL_SCALE, CARD_NORMAL_SCALE)
 			
-			# INcrement the counter to render cards above the previous one
+			# Increment the counter to render cards above the previous one
 			discard_z_index_tracker += 1
 			card_being_dragged.z_index = discard_z_index_tracker
 			
 			card_slot_found.card_in_slot = false
 			slot_card(card_slot_found)
+			
+		# 3. INVALID DROP: E.g. An ability card dropped onto a normal playing field slot
+		else:
+			player_hand_reference.add_card_to_hand(card_being_dragged, CARD_DEFAULT_SPEED)
+			card_being_dragged.z_index = 10 # Reset to hand layer
 	else:
+		# Dropped in restricted habitat_slot or aquarium_slot
 		player_hand_reference.add_card_to_hand(card_being_dragged, CARD_DEFAULT_SPEED)
 		card_being_dragged.z_index = 10 # Reset to hand layer
 		
@@ -85,40 +96,44 @@ func finish_drag():
 
 # Removes card from hand and slots into position
 func slot_card(card_slot_found):
-	var dragged_card_data = card_being_dragged.card_data
-	
-	if dragged_card_data.card_type == 1:
-		var valid_cards = 0
+	var dragged_card_data = card_being_dragged.card_data	
+
+	# --- BYPASS COMBO VALIDATION IF DISCARDING ---
+	if not card_slot_found.main_discard and dragged_card_data.card_type == 1:
 		var crabitat_cards_in_play = []
+		
+		# Gather all Type 0 cards currently on the field
 		for slot in card_slots:
 			if slot.card != null and slot.card.card_data.card_type == 0:
 				crabitat_cards_in_play.append(slot.card)
-				print(slot.card.card_data.card_name)
-				
-		for card in crabitat_cards_in_play:
-			for associated_card in dragged_card_data.associated_crabitat_cards:
-				if card.card_data.card_name == associated_card.card_name:
-					valid_cards += 1
-					print(card.card_data.card_name)
-					break
-				else:
-					print("false")
 		
-		if valid_cards == 2:
-			card_being_dragged.card_in_slot = card_slot_found
-			player_hand_reference.remove_card_from_hand(card_being_dragged)
-			card_being_dragged.position = card_slot_found.position
-			card_slot_found.card = card_being_dragged
-			card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
-		else:
-			print("")
-				
-	else:
-		card_being_dragged.card_in_slot = card_slot_found
-		player_hand_reference.remove_card_from_hand(card_being_dragged)
-		card_being_dragged.position = card_slot_found.position
-		card_slot_found.card = card_being_dragged
-		card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
+		var valid_cards = 0
+		
+		# Loop through what is physically on the field
+		for card in crabitat_cards_in_play:
+			# Check if this field card matches ANY of the valid allowed requirements
+			for assoc_card in dragged_card_data.associated_crabitat_cards:
+				if card.card_data.card_name == assoc_card.card_name:
+					valid_cards += 1
+					print("Found a valid combo piece on field: ", card.card_data.card_name)
+					break # Move to the next field card so we don't double-count this single physical card
+		
+		# If we don't have at least 2 valid pieces on the field, reject the play
+		if valid_cards < 2:
+			# Return the card smoothly back to the hand
+			player_hand_reference.add_card_to_hand(card_being_dragged, CARD_DEFAULT_SPEED)
+			card_being_dragged.z_index = 10 
+			card_slot_found.card_in_slot = false 
+			return 
+			
+		print("Can Play Combo! (Found ", valid_cards, " matching pieces).")
+
+	# --- PHYSICAL CARD PLACEMENT (Shared by normal plays, successful combos, & discards) ---
+	card_being_dragged.card_in_slot = card_slot_found
+	player_hand_reference.remove_card_from_hand(card_being_dragged)
+	card_being_dragged.position = card_slot_found.position
+	card_slot_found.card = card_being_dragged
+	card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
 
 
 

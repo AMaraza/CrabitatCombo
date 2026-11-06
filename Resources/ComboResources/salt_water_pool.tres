@@ -1,7 +1,9 @@
 [gd_resource type="Resource" script_class="CardData" format=3 uid="uid://b8r3cpqrfx0p3"]
 
 [ext_resource type="Texture2D" uid="uid://vccilpgn0psy" path="res://Gameplay/Deck/Assets/ComboCards/SaltWaterPool.png" id="1_oy2pg"]
+[ext_resource type="Resource" uid="uid://18447kbhxpj6" path="res://Resources/CrabitatResources/water_bowl.tres" id="2_2xki5"]
 [ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_h4lfh"]
+[ext_resource type="Resource" uid="uid://bx3xm33rqjeix" path="res://Resources/CrabitatResources/aquarium_salt.tres" id="3_ls223"]
 
 [resource]
 script = ExtResource("2_h4lfh")
@@ -9,4 +11,5 @@ card_name = "Salt Water Pool"
 number_in_deck = 2
 card_image = ExtResource("1_oy2pg")
 card_type = 1
+associated_crabitat_cards = Array[ExtResource("2_h4lfh")]([ExtResource("2_2xki5"), ExtResource("3_ls223")])
 metadata/_custom_type_script = "uid://pvoxgmc38qbv"
