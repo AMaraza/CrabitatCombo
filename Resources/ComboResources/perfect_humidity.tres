@@ -1,9 +1,7 @@
 [gd_resource type="Resource" script_class="CardData" format=3 uid="uid://coehsdgmd8mtr"]
 
 [ext_resource type="Texture2D" uid="uid://bmy03cuo1b1gr" path="res://Gameplay/Deck/Assets/ComboCards/PerfectHumidity.png" id="1_x18gf"]
-[ext_resource type="Resource" uid="uid://bwqfbtlol4nyj" path="res://Resources/CrabitatResources/humidity_sensor.tres" id="2_hof0f"]
 [ext_resource type="Script" uid="uid://pvoxgmc38qbv" path="res://Resources/card_data.gd" id="2_knlij"]
-[ext_resource type="Resource" uid="uid://u8trorwrpnvd" path="res://Resources/CrabitatResources/sphagnum_moss.tres" id="3_1g3gr"]
 
 [resource]
 script = ExtResource("2_knlij")
@@ -11,5 +9,4 @@ card_name = "Perfect Humidity"
 number_in_deck = 2
 card_image = ExtResource("1_x18gf")
 card_type = 1
-associated_crabitat_cards = Array[ExtResource("2_knlij")]([ExtResource("2_hof0f"), ExtResource("3_1g3gr")])
 metadata/_custom_type_script = "uid://pvoxgmc38qbv"
