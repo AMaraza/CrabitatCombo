@@ -44,4 +44,5 @@ func raycast_at_cursor():
 			draw_deck_reference.draw_card()
 		# Aquarium Deck clicked
 		elif result_collision_mask & COLLISION_MASK_AQUA_DECK:
-			aquarium_deck_reference.draw_card()
+			# Use the updated logic inside AquariumDeck which enforces the combo validation check
+			aquarium_deck_reference.draw_card(null, !aquarium_deck_reference.is_initial_deal)

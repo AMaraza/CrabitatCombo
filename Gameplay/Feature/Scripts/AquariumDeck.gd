@@ -13,6 +13,9 @@ var playing_deck = []
 # Tracks if we are still dealing the setup card
 var is_initial_deal: bool = true
 
+# Reference to the CardMovement script to access the shared 'card_slots' array
+@onready var card_movement = $"../CardMovement"
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	card_database = preload(CARD_DATABASE_PATH)
@@ -65,6 +68,13 @@ func populate_deck():
 
 
 func draw_card(card_drawn = null, face_down: bool = true):
+	# --- VALIDATE COMBO CONDITION IF CLICKED MANUALLY ---
+	# If this isn't the startup routine, we enforce the requirement
+	if not is_initial_deal:
+		if not has_combo_card_on_field():
+			print("Cannot draw: No combo card is currently slotted in the playing area!")
+			return # Exit early, nothing happens
+	
 	# If no slots are available, stop immediately
 	var target_slot = find_empty_habitat_slot()
 	if target_slot == null:
@@ -137,6 +147,18 @@ func find_empty_habitat_slot():
 		if "habitat_slot" in slot and slot.habitat_slot and not slot.card_in_slot:
 			return slot
 	return null
+
+
+# Helper function to check if a Combo Card (Type 1) is active on the field
+func has_combo_card_on_field() -> bool:
+	if card_movement and card_movement.card_slots:
+		for slot in card_movement.card_slots:
+			# Check if slot contains a physical card, and inspect its Resource properties
+			if slot.card != null and "card_data" in slot.card and slot.card.card_data:
+				# CardType.COMBO_CARD maps to index integer value 1
+				if slot.card.card_data.card_type == 1:
+					return true
+	return false
 
 
 # Triggered whenever the user clicks on the physical deck Area2D
