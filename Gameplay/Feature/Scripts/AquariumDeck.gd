@@ -23,20 +23,14 @@ func _ready() -> void:
 func deal_starting_hermit():
 	var starting_hermit_crab_size = 1
 	
+	print("Dealing starting hermit crab.")
+	
 	for i in range(starting_hermit_crab_size):
 		# Wait so that dealing can be seen better
 		await get_tree().create_timer(0.15).timeout
-		
-		# Find the first Hermit Crab card inside the playing deck
-		var starting_hermit = null
-		for card in playing_deck:
-			if card is HermitCardData:
-				starting_hermit = card
-				break # Found one, stop searching
-		
 		# Enforce a safety check so it stops looping if the deck runs dry
 		if playing_deck.size() > 0:
-			draw_card(starting_hermit)
+			draw_card()
 		else:
 			print("Stopped dealing: Deck ran ouf of cards during setup!")
 			break
@@ -58,7 +52,7 @@ func populate_deck():
 	playing_deck.shuffle()
 
 
-func draw_card(card_drawn = null):
+func draw_card():
 	# If no slots are available, stop immediately
 	var target_slot = find_empty_habitat_slot()
 	if target_slot == null:
@@ -69,12 +63,9 @@ func draw_card(card_drawn = null):
 	if playing_deck.size() == 0:
 		print("Cannot draw: Aquarium deck empty")
 		return # Exit the function completely and nothing happens
-		
-	# If no specific card was passed, default to drawing the top card
-	if card_drawn == null:
-		card_drawn = playing_deck[0]
 	
 	# Proceed with drawing since it is verified that a slot is open
+	var card_drawn = playing_deck[0]
 	playing_deck.erase(card_drawn)
 	
 	# --- SAFE ACCESS CARD TYPE TEST ---
@@ -83,11 +74,6 @@ func draw_card(card_drawn = null):
 		var type_index = card_drawn.card_type
 		type_name = CardData.CardType.keys()[type_index]
 	print("Successfully drew card: ", card_drawn.card_name, " | Type: ", type_name)
-	# -----------------------------
-	
-	# --- PRINT ORDER NUMBER FOR HERMIT CRABS ---
-	if card_drawn is HermitCardData:
-		print("Hermit Crab Order Number: ", card_drawn.order_numer)
 	# -----------------------------
 	
 	# If last card drawn from the deck, disable deck
@@ -124,6 +110,18 @@ func draw_card(card_drawn = null):
 
 	# Turn off card collision so it acts like a placed card
 	new_card.get_node("Area2D/CollisionShape2D").disabled = true
+
+	
+	var max_cards = playing_deck.size()
+	
+	# Track deck arrays
+	if current_card < max_cards - 1:
+		print(playing_deck[current_card])
+		current_card += 1
+		discard_deck.append(playing_deck[current_card])
+	else:
+		print("deck empty")
+		current_card = 0
 
 
 func find_empty_habitat_slot():
