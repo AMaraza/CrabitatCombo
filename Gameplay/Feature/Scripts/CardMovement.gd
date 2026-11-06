@@ -17,6 +17,7 @@ var original_y_position: float
 var discard_z_index_tracker: int = 0
 var card_type
 
+#Card Slot
 @export var card_slots: Array[Node2D]
 
 
