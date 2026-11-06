@@ -79,10 +79,8 @@ func draw_card(card_drawn = null):
 	
 	# --- SAFE ACCESS CARD TYPE AND NUMBER ---
 	var type_name = "HERMIT_CRAB"
-	if card_drawn is CardData:
-		var type_index = card_drawn.card_type
-		type_name = CardData.CardType.keys()[type_index]
-	print("Successfully drew card: ", card_drawn.card_name, " | Type: ", type_name,
+	if card_drawn is HermitCardData:
+		print("Successfully drew card: ", card_drawn.card_name, " | Type: ", type_name, 
 	 " | Hermit Crab Order Number: ", card_drawn.order_numer)
 	# -----------------------------
 	

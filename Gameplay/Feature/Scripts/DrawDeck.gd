@@ -68,8 +68,8 @@ func draw_card():
 	playing_deck.erase(card_drawn)
 	
 	# --- ACCESS CARD TYPE TEST ---
-	var type_index = card_drawn.card_type
-	var type_name = CardData.CardType.keys()[type_index]
+	#var type_index = card_drawn.card_type
+	#var type_name = CardData.CardType.keys()[type_index]
 	#print("Successfully drew card: ", card_drawn.card_name, " | Type: ", type_name)
 	# -----------------------------
 	
