@@ -100,33 +100,86 @@ func slot_card(card_slot_found):
 
 	# --- BYPASS COMBO VALIDATION IF DISCARDING ---
 	if not card_slot_found.main_discard and dragged_card_data.card_type == 1:
-		var crabitat_cards_in_play = []
+		var crabitat_slots_to_clear = []
 		
-		# Gather all Type 0 cards currently on the field
+		# Gather all Type 0 (CRABITAT_CARD) cards currently on the field
 		for slot in card_slots:
 			if slot.card != null and slot.card.card_data.card_type == 0:
-				crabitat_cards_in_play.append(slot.card)
-		
-		var valid_cards = 0
-		
-		# Loop through what is physically on the field
-		for card in crabitat_cards_in_play:
-			# Check if this field card matches ANY of the valid allowed requirements
-			for assoc_card in dragged_card_data.associated_crabitat_cards:
-				if card.card_data.card_name == assoc_card.card_name:
-					valid_cards += 1
-					print("Found a valid combo piece on field: ", card.card_data.card_name)
-					break # Move to the next field card so we don't double-count this single physical card
+				# Check if this field card matches ANY of the valid allowed requirements
+				for assoc_card in dragged_card_data.associated_crabitat_cards:
+					if slot.card.card_data.card_name == assoc_card.card_name:
+						crabitat_slots_to_clear.append(slot)
+						print("MMatched combo piece to clear: ", slot.card.card_data.card_name)
+						break # Move to next slot to avoid double counting
 		
 		# If we don't have at least 2 valid pieces on the field, reject the play
-		if valid_cards < 2:
+		if crabitat_slots_to_clear.size() < 2:
 			# Return the card smoothly back to the hand
 			player_hand_reference.add_card_to_hand(card_being_dragged, CARD_DEFAULT_SPEED)
 			card_being_dragged.z_index = 10 
 			card_slot_found.card_in_slot = false 
 			return 
 			
-		print("Can Play Combo! (Found ", valid_cards, " matching pieces).")
+		print("Can Play Combo! Clear pieces and shrink playing area slots.")
+		
+		# SEND MATCHED CRABITAT CARDS TO THE MAIN DISCARD PILE
+		for slot in crabitat_slots_to_clear:
+			var card_to_discard = slot.card
+			
+			# Reference main discard slot
+			var main_discard_slot = $"../DiscardPiles/MainDeckDiscard" 
+			
+			if main_discard_slot:
+				# Physical movement to discard pile visual position
+				card_to_discard.position = main_discard_slot.position
+				
+				# Match the scale of the discard pile (0.8) instead of field size (0.6)
+				card_to_discard.scale = Vector2(CARD_NORMAL_SCALE, CARD_NORMAL_SCALE)
+				
+				# Increment the counter to render cards cleanly above the previous one
+				discard_z_index_tracker += 1
+				card_to_discard.z_index = discard_z_index_tracker
+				
+				# Reset card tracking states
+				card_to_discard.card_in_slot = main_discard_slot
+				card_to_discard.get_node("Area2D/CollisionShape2D").disabled = true
+			else:
+				# Fallback fallback if discard slot isn't found: just delete the visual instance
+				card_to_discard.queue_free()
+				
+			# Clear the slot references entirely so they are empty again
+			slot.card = null
+			slot.card_in_slot = false
+
+		# REMOVE ONE PLAYING AREA SLOT FROM THE POOL
+		# Find another empty slot (excluding the one we are playing the combo card into)
+		var slot_to_remove = null
+		for slot in card_slots:
+			if slot != card_slot_found and slot.card == null and not slot.main_discard and not slot.habitat_slot and not slot.aquarium_slot:
+				slot_to_remove = slot
+				break
+				
+		# If an empty slot wasn't found, find ANY slot that isn't our target combo destination
+		if slot_to_remove == null:
+			for slot in card_slots:
+				if slot != card_slot_found and not slot.main_discard and not slot.habitat_slot and not slot.aquarium_slot:
+					slot_to_remove = slot
+					break
+
+		if slot_to_remove != null:
+			print("Removing slot from playing area layout: ", slot_to_remove.name)
+			
+			# If there was a card lingering in it that wasn't part of the combo, delete or discard it
+			if slot_to_remove.card != null:
+				slot_to_remove.card.queue_free()
+				
+			# Strip out its collision mask and visibility so players can never interact with it again
+			var slot_area = slot_to_remove.get_node_or_null("Area2D")
+			if slot_area:
+				slot_area.queue_free() # Remove Area2D entirely so raycasts drop it completely
+			
+			slot_to_remove.visible = false
+			card_slots.erase(slot_to_remove) # Erase it from the master active slots collection
 
 	# --- PHYSICAL CARD PLACEMENT (Shared by normal plays, successful combos, & discards) ---
 	card_being_dragged.card_in_slot = card_slot_found

@@ -13,8 +13,8 @@ var playing_deck = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	card_database = preload(CARD_DATABASE_PATH)
-	populate_deck()
-	#populate_spoofed_deck()
+	#populate_deck()
+	populate_spoofed_deck()
 	
 	# Use deferred call to give other modes (like PlayerHand) a fram to initialize
 	# their sizes and variables before drawing cards.
@@ -57,8 +57,11 @@ func populate_deck():
 func populate_spoofed_deck():
 	playing_deck.clear()
 	
+	playing_deck.append(card_database.CRABITAT_CARDS[13])
+	playing_deck.append(card_database.CRABITAT_CARDS[1])
 	playing_deck.append(card_database.CRABITAT_CARDS[4])
 	playing_deck.append(card_database.CRABITAT_CARDS[11])
+	playing_deck.append(card_database.COMBO_CARDS[6])
 	playing_deck.append(card_database.COMBO_CARDS[7])
 	playing_deck.append(card_database.CRABITAT_CARDS[0])
 

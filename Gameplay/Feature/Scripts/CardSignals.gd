@@ -7,6 +7,8 @@ var hand_position
 var card_in_slot = null
 var card_data: Resource
 var is_face_down: bool = false
+# Tracks if combo card already gave a draw for aquarium deck
+var has_used_combo_draw: bool = false
 
 @export var card_image: Sprite2D
 # Reference to Aquarium card back

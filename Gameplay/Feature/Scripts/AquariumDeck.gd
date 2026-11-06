@@ -69,11 +69,17 @@ func populate_deck():
 
 func draw_card(card_drawn = null, face_down: bool = true):
 	# --- VALIDATE COMBO CONDITION IF CLICKED MANUALLY ---
-	# If this isn't the startup routine, we enforce the requirement
 	if not is_initial_deal:
-		if not has_combo_card_on_field():
-			print("Cannot draw: No combo card is currently slotted in the playing area!")
+		# Find an available combo card instance that hasn't been used yet
+		var valid_combo_card = get_unused_combo_card_on_field()
+		
+		if valid_combo_card == null:
+			print("Cannot draw: No unused combo card is currently slotted in the playing area!")
 			return # Exit early, nothing happens
+		else:
+			# Mark this specific card as used before proceeding with the draw
+			valid_combo_card.has_used_combo_draw = true
+			print("Combo draw claimed using card: ", valid_combo_card.card_data.card_name)
 	
 	# If no slots are available, stop immediately
 	var target_slot = find_empty_habitat_slot()
@@ -149,16 +155,15 @@ func find_empty_habitat_slot():
 	return null
 
 
-# Helper function to check if a Combo Card (Type 1) is active on the field
-func has_combo_card_on_field() -> bool:
+# Returns the physical Card node if an unused combo exists, otherwise returns null
+func get_unused_combo_card_on_field() -> Node2D:
 	if card_movement and card_movement.card_slots:
 		for slot in card_movement.card_slots:
-			# Check if slot contains a physical card, and inspect its Resource properties
 			if slot.card != null and "card_data" in slot.card and slot.card.card_data:
-				# CardType.COMBO_CARD maps to index integer value 1
-				if slot.card.card_data.card_type == 1:
-					return true
-	return false
+				# CardType.COMBO_CARD is index 1, and check our new instance flag
+				if slot.card.card_data.card_type == 1 and not slot.card.has_used_combo_draw:
+					return slot.card # Return the actual Card instance node
+	return null
 
 
 # Triggered whenever the user clicks on the physical deck Area2D
