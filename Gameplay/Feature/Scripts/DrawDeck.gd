@@ -14,9 +14,10 @@ var playing_deck = []
 func _ready() -> void:
 	card_database = preload(CARD_DATABASE_PATH)
 	populate_deck()
-
+<<<<<<< HEAD
 	#populate_spoofed_deck()
-
+=======
+>>>>>>> parent of b46d299 (Merge branch 'dev' into ericPersonal)
 	
 	# Use deferred call to give other modes (like PlayerHand) a fram to initialize
 	# their sizes and variables before drawing cards.
@@ -62,10 +63,15 @@ func draw_card():
 	playing_deck.erase(card_drawn)
 	
 	# --- ACCESS CARD TYPE TEST ---
-
+<<<<<<< HEAD
 	#var type_index = card_drawn.card_type
 	#var type_name = CardData.CardType.keys()[type_index]
 	#print("Successfully drew card: ", card_drawn.card_name, " | Type: ", type_name)
+=======
+	var type_index = card_drawn.card_type
+	var type_name = CardData.CardType.keys()[type_index]
+	print("Successfully drew card: ", card_drawn.card_name, " | Type: ", type_name)
+>>>>>>> parent of b46d299 (Merge branch 'dev' into ericPersonal)
 	# -----------------------------
 	
 	# If last card drawn from the deck, disable deck
@@ -88,12 +94,12 @@ func draw_card():
 	new_card.name = "Card"
 	$"../PlayerHand".add_card_to_hand(new_card, CARD_DRAW_SPEED)
 	
-	#var max_cards = playing_deck.size()
-	#
-	#if current_card < max_cards - 1:
-		#print(playing_deck[current_card])
-		#current_card += 1
-		#discard_deck.append(playing_deck[current_card])
-	#else:
-		#print("deck empty")
-		#current_card = 0
+	var max_cards = playing_deck.size()
+	
+	if current_card < max_cards - 1:
+		print(playing_deck[current_card])
+		current_card += 1
+		discard_deck.append(playing_deck[current_card])
+	else:
+		print("deck empty")
+		current_card = 0
