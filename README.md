@@ -43,8 +43,8 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## Contributors:
-  Ally Maraza (Creator)
-  Eric Mabala (Contributor)
+Ally Maraza (Creator)  
+Eric Mabala (Contributor)
 
 ## Project Status:
 Currently in development
