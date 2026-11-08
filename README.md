@@ -14,13 +14,10 @@ This project is creating a digital version of the physical card game that will e
 be playable on Steam.
 
 ## Technologies:
-This project is being created with the Godot engine using GDScript.
+This project is being created with the Godot 4.2.7 engine using GDScript.
 
 ## Installation:
 This will eventually be installed from Steam once the user has purchased the game.
-
-## Development Setup:
-TO DO
 
 ## License:
 TO DO (need more info)
