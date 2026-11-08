@@ -17,13 +17,9 @@ be playable on Steam.
 This project is being created with the Godot 4.2.7 engine using GDScript.
 
 ## Development Setup:
-
-### Prerequisites:
-* Godot 4.2.7
-
-### Clone the Project:
-
-### Import the Project into Godot
+* Install Godot 4.2.7
+* Clone the Project from GitHub
+* Import the Project into Godot
 
 ## Installation:
 This will eventually be installed from Steam once the user has purchased the game.
