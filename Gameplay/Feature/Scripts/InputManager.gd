@@ -27,6 +27,11 @@ func _input(event):
 
 
 func raycast_at_cursor():
+	# Block all card dragging and deck clicking if it is not the player's turn
+	var turn_manager = get_node_or_null("../TurnManager")
+	if turn_manager and not turn_manager.is_player_turn():
+		return
+	
 	var space_state = get_world_2d().direct_space_state
 	var parameters = PhysicsPointQueryParameters2D.new()
 	parameters.position = get_global_mouse_position()

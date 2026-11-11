@@ -39,6 +39,7 @@ func _process(_delta: float) -> void:
 
 func start_drag(card):
 	card_being_dragged = card
+	is_hovering_on_card = false
 	card_type = card.card_data.card_type
 	card.scale = Vector2(CARD_NORMAL_SCALE, CARD_NORMAL_SCALE)
 	card.z_index = 1000 # Keep card on top while dragging
@@ -74,7 +75,10 @@ func finish_drag():
 		# VALID DISCARD TIMING: Specifically dropped on the designated discard slot
 		elif card_slot_found.main_discard:
 			var action_points = $"../ActionPoints"
-			if action_points.consume_draw_or_discard_action():
+			var is_ability_card = (card_type == CardData.CardType.ABILITY_CARD)
+			
+			# Allow discarding if it's an Ability Card (free) OR if Draw/Discar mode active
+			if is_ability_card or action_points.consume_draw_or_discard_action():
 				card_being_dragged.scale = Vector2(CARD_NORMAL_SCALE, CARD_NORMAL_SCALE)
 			
 				# Increment the counter to render cards above the previous one
@@ -229,14 +233,15 @@ func on_hovered_off_card(card):
 func highlight_card(card, hovered):
 	if hovered:
 		card.scale = Vector2(CARD_ENLARGED_SCALE, CARD_ENLARGED_SCALE)
-		# Get new card position based on index
 		card.position.y = original_y_position - CARD_Y_MOVEMENT
-		var new_card_position = Vector2(card.position.x, card.position.y)
-		card.position = new_card_position
 		card.z_index = 1000
 	else:
 		card.scale = Vector2(CARD_NORMAL_SCALE, CARD_NORMAL_SCALE)
-		card.position = Vector2(card.position.x, original_y_position)
+		# Use card.hand_position if available instead of current card.position.x
+		if card.hand_position != null:
+			card.position = card.hand_position
+		else:
+			card.position = Vector2(card.position.x, original_y_position)
 		card.z_index = 10
 
 
