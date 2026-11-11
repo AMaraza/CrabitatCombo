@@ -73,19 +73,22 @@ func finish_drag():
 			
 		# VALID DISCARD TIMING: Specifically dropped on the designated discard slot
 		elif card_slot_found.main_discard:
-			card_being_dragged.scale = Vector2(CARD_NORMAL_SCALE, CARD_NORMAL_SCALE)
+			var action_points = $"../ActionPoints"
+			if action_points.consume_draw_or_discard_action():
+				card_being_dragged.scale = Vector2(CARD_NORMAL_SCALE, CARD_NORMAL_SCALE)
 			
-			# Increment the counter to render cards above the previous one
-			discard_z_index_tracker += 1
-			card_being_dragged.z_index = discard_z_index_tracker
+				# Increment the counter to render cards above the previous one
+				discard_z_index_tracker += 1
+				card_being_dragged.z_index = discard_z_index_tracker
+				
+				card_slot_found.card_in_slot = false
+				slot_card(card_slot_found)
 			
-			card_slot_found.card_in_slot = false
-			slot_card(card_slot_found)
-			
-		# 3. INVALID DROP: E.g. An ability card dropped onto a normal playing field slot
-		else:
-			player_hand_reference.add_card_to_hand(card_being_dragged, CARD_DEFAULT_SPEED)
-			card_being_dragged.z_index = 10 # Reset to hand layer
+			# 3. INVALID DROP: E.g. An ability card dropped onto a normal playing field slot
+			else:
+				print("Press the Draw/Discard button first (1 Action Point)!")
+				player_hand_reference.add_card_to_hand(card_being_dragged, CARD_DEFAULT_SPEED)
+				card_being_dragged.z_index = 10 # Reset to hand layer
 	else:
 		# Dropped in restricted habitat_slot or aquarium_slot
 		player_hand_reference.add_card_to_hand(card_being_dragged, CARD_DEFAULT_SPEED)

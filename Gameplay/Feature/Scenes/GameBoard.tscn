@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://bfy3acw34v4dm" path="res://Gameplay/Feature/Scripts/AquariumDeck.gd" id="11_uhlwh"]
 [ext_resource type="PackedScene" uid="uid://bit8ken6jlpwh" path="res://Gameplay/Feature/Scenes/AquariumDeckDiscard.tscn" id="12_nc7nw"]
 [ext_resource type="PackedScene" uid="uid://psagtrdfpds5" path="res://Gameplay/Feature/Scenes/PlayerHabitatSlot.tscn" id="14_u38pm"]
+[ext_resource type="Script" uid="uid://5iknn8b6qkdn" path="res://Gameplay/Feature/Scenes/action_points.gd" id="15_cgn0h"]
 [ext_resource type="PackedScene" uid="uid://db3veumyn66sl" path="res://Gameplay/Feature/Scenes/BotHabitatSlot.tscn" id="16_2b4pl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74n7r"]
@@ -36,17 +37,17 @@ theme_override_fonts/font = ExtResource("8_d7rro")
 theme_override_font_sizes/font_size = 20
 text = "END TURN"
 
-[node name="DiscardButton" type="Button" parent="." unique_id=1703366993]
+[node name="DrawDiscardButton" type="Button" parent="." unique_id=1703366993]
 offset_left = 1729.0
 offset_top = 1089.0
 offset_right = 1816.0
 offset_bottom = 1120.0
 theme_override_fonts/font = ExtResource("8_d7rro")
 theme_override_font_sizes/font_size = 20
-text = "Discard"
+text = "Draw/Discard"
 
-[node name="Sprite2D" type="Sprite2D" parent="DiscardButton" unique_id=261640056]
-position = Vector2(134, 25)
+[node name="Sprite2D" type="Sprite2D" parent="DrawDiscardButton" unique_id=261640056]
+position = Vector2(175, 25)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_t5ocr")
 
@@ -114,6 +115,18 @@ text = "Action Points"
 [node name="CardMovement" type="Node2D" parent="." unique_id=1077628800 node_paths=PackedStringArray("card_slots")]
 script = ExtResource("1_u5pr3")
 card_slots = [NodePath("../PlayingArea/CardSlot"), NodePath("../PlayingArea/CardSlot2"), NodePath("../PlayingArea/CardSlot3"), NodePath("../PlayingArea/CardSlot4"), NodePath("../PlayingArea/CardSlot5"), NodePath("../PlayingArea/CardSlot6")]
+
+[node name="InputManager" type="Node2D" parent="." unique_id=476647309]
+script = ExtResource("6_jydus")
+
+[node name="ActionPoints" type="Node2D" parent="." unique_id=274879302]
+script = ExtResource("15_cgn0h")
+
+[node name="ActionPoint" parent="ActionPoints" unique_id=305676044 instance=ExtResource("11_mqx7x")]
+position = Vector2(-38, -2)
+
+[node name="ActionPoint2" parent="ActionPoints" unique_id=1148088151 instance=ExtResource("11_mqx7x")]
+position = Vector2(50, -2)
 
 [node name="PlayerHand" type="Node2D" parent="." unique_id=676921658]
 script = ExtResource("3_3fmbn")
@@ -197,9 +210,6 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DrawDeck/Area2D" unique_id=32757665]
 shape = SubResource("RectangleShape2D_74n7r")
 
-[node name="InputManager" type="Node2D" parent="." unique_id=476647309]
-script = ExtResource("6_jydus")
-
 [node name="AquariumDeck" type="Node2D" parent="." unique_id=861988459]
 position = Vector2(1325, 700)
 scale = Vector2(0.8, 0.8)
@@ -228,14 +238,6 @@ scale = Vector2(0.8, 0.8)
 z_index = -3
 position = Vector2(1572, 699)
 scale = Vector2(0.9, 0.9)
-
-[node name="ActionPoints" type="Node2D" parent="." unique_id=274879302]
-
-[node name="ActionPoint" parent="ActionPoints" unique_id=305676044 instance=ExtResource("11_mqx7x")]
-position = Vector2(-38, -2)
-
-[node name="ActionPoint2" parent="ActionPoints" unique_id=1148088151 instance=ExtResource("11_mqx7x")]
-position = Vector2(50, -2)
 
 [node name="HabitatArea" type="Node2D" parent="." unique_id=63352808]
 
@@ -270,3 +272,7 @@ position = Vector2(1328, 460)
 [node name="BotHabitatSlot4" parent="HabitatArea" unique_id=539727489 instance=ExtResource("16_2b4pl")]
 z_index = -3
 position = Vector2(1508, 460)
+
+[connection signal="pressed" from="DrawDiscardButton" to="ActionPoints" method="_on_draw_discard_button_pressed"]
+[connection signal="pressed" from="RedrawHandButton" to="ActionPoints" method="_on_redraw_hand_button_pressed"]
+[connection signal="pressed" from="AdoptCrabButton" to="ActionPoints" method="_on_adopt_crab_button_pressed"]

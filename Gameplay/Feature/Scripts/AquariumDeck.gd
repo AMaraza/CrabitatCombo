@@ -131,6 +131,7 @@ func draw_card(card_drawn = null, face_down: bool = true):
 	# --- ROUTING LOGIC TO HABITAT SLOT ---
 	# Lock the slot and lock the card into position
 	target_slot.card_in_slot = true
+	target_slot.card = new_card # Link the physical card to the slot
 	new_card.card_in_slot = target_slot
 	
 	# Animate/snap the card directly to the slot position
