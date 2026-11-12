@@ -27,6 +27,11 @@ func _input(event):
 
 
 func raycast_at_cursor():
+	# Block all card dragging and deck clicking if it is not the player's turn
+	var turn_manager = get_node_or_null("../TurnManager")
+	if turn_manager and not turn_manager.is_player_turn():
+		return
+	
 	var space_state = get_world_2d().direct_space_state
 	var parameters = PhysicsPointQueryParameters2D.new()
 	parameters.position = get_global_mouse_position()
@@ -41,7 +46,11 @@ func raycast_at_cursor():
 					card_manager_reference.start_drag(card_found)
 		# Deck clicked
 		elif result_collision_mask & COLLISION_MASK_DRAW_DECK:
-			draw_deck_reference.draw_card()
+			var action_points = $"../ActionPoints"
+			if action_points.consume_draw_or_discard_action():
+				draw_deck_reference.draw_card()
+			else:
+				print("Press the Draw/Discard button first (1 Action Point)!")
 		# Aquarium Deck clicked
 		elif result_collision_mask & COLLISION_MASK_AQUA_DECK:
 			# Use the updated logic inside AquariumDeck which enforces the combo validation check
