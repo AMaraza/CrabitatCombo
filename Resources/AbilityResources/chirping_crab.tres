@@ -9,4 +9,5 @@ card_name = "Chirping Crab"
 number_in_deck = 3
 card_image = ExtResource("1_6bc6j")
 card_type = 2
+effect_description = "Choose an opponent and swap 1 crabitat card you placed with them"
 metadata/_custom_type_script = "uid://pvoxgmc38qbv"

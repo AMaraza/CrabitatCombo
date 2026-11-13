@@ -16,3 +16,5 @@ enum CardType {
 @export var card_image: Texture2D
 @export var card_type: CardType
 @export var associated_crabitat_cards: Array[CardData]
+@export var targets_all_players: bool = false
+@export var effect_description: String

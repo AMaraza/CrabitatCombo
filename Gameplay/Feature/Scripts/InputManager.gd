@@ -32,6 +32,11 @@ func raycast_at_cursor():
 	if turn_manager and not turn_manager.is_player_turn():
 		return
 	
+	# Block board clicks while the target selection UI is open
+	var target_selector = get_node_or_null("../CanvasLayer/TargetSelectorPanel")
+	if target_selector and target_selector.visible:
+		return
+	
 	var space_state = get_world_2d().direct_space_state
 	var parameters = PhysicsPointQueryParameters2D.new()
 	parameters.position = get_global_mouse_position()
