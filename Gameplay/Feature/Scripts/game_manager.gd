@@ -14,6 +14,8 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	if players[0].cards_in_hand == 6:
+		var player_count = 1
 		for player in players:
-			print(player.cards_in_hand)
+			print("Player " + str(player_count) + "'s cards in hand: " + str(player.cards_in_hand))
 			players[0].cards_in_hand += 1
+			player_count+= 1
