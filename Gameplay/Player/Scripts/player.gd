@@ -17,6 +17,8 @@ var matching_hermit_crabs: int = 0
 var win_condition_met: bool = false
 var turn_actions_spent: int = 0
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

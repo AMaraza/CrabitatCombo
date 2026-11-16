@@ -67,6 +67,8 @@ func populate_spoofed_deck():
 
 
 func draw_card():
+	var current_player_script = GameManager.players[GameManager.player_turn]
+	
 	var card_drawn: CardData = playing_deck[0]
 	playing_deck.erase(card_drawn)
 	
@@ -95,6 +97,7 @@ func draw_card():
 	$"../CardMovement".add_child(new_card)
 	new_card.name = "Card"
 	$"../PlayerHand".add_card_to_hand(new_card, CARD_DRAW_SPEED)
+	current_player_script.cards_in_hand += 1
 	
 	var max_cards = playing_deck.size()
 	

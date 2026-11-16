@@ -7,6 +7,7 @@ const CARD_SNAPBACK_SPEED = 0.1
 var player_hand = []
 var center_screen_x
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	center_screen_x = get_viewport().size.x / 2
