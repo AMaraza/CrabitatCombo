@@ -9,4 +9,6 @@ card_name = "Hand Rotate Clockwise"
 number_in_deck = 1
 card_image = ExtResource("1_hatsu")
 card_type = 2
+targets_all_players = true
+effect_description = "Each player rotates their hand 1 player counter-clockwise"
 metadata/_custom_type_script = "uid://pvoxgmc38qbv"

@@ -9,4 +9,5 @@ card_name = "Feeler Fight"
 number_in_deck = 3
 card_image = ExtResource("1_7l03p")
 card_type = 2
+effect_description = "Choose an opponent and steal a random card from their hand"
 metadata/_custom_type_script = "uid://pvoxgmc38qbv"

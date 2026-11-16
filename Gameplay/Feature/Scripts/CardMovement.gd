@@ -18,6 +18,7 @@ var discard_z_index_tracker: int = 0
 var card_type
 
 @export var card_slots: Array[Node2D]
+@onready var target_selector = $"../CanvasLayer/TargetSelectorPanel"
 
 
 # Called when the node enters the scene tree for the first time.
@@ -103,7 +104,17 @@ func finish_drag():
 
 # Removes card from hand and slots into position
 func slot_card(card_slot_found):
-	var dragged_card_data = card_being_dragged.card_data	
+	var dragged_card_data = card_being_dragged.card_data
+	
+	# Section for opponent selection for ability cards
+	if card_slot_found.main_discard and dragged_card_data.card_type == CardData.CardType.ABILITY_CARD:
+		if dragged_card_data.targets_all_players:
+			print("Played Global Ability Card: ", dragged_card_data.card_name,
+				" | Effect: ", dragged_card_data.effect_description)
+		else:
+			if target_selector:
+				# Pass the physical card node so Cancel can return it to hand
+				target_selector.prompt_for_opponent(card_being_dragged)
 
 	# --- BYPASS COMBO VALIDATION IF DISCARDING ---
 	if not card_slot_found.main_discard and dragged_card_data.card_type == 1:

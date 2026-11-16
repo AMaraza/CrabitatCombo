@@ -4,7 +4,9 @@
 [ext_resource type="Script" uid="uid://cqnwsotbyb8sk" path="res://Gameplay/Feature/Scripts/CardMovement.gd" id="1_u5pr3"]
 [ext_resource type="FontFile" uid="uid://bb2ec6bku47c8" path="res://Gameplay/Feature/Assets/beachday.otf" id="2_qja8p"]
 [ext_resource type="Script" uid="uid://dcmkqkvx8noi4" path="res://Gameplay/Feature/Scripts/PlayerHand.gd" id="3_3fmbn"]
+[ext_resource type="Theme" uid="uid://bxoscdmvrrim" path="res://Gameplay/Title Screen/menu_theme.tres" id="3_kw4s6"]
 [ext_resource type="PackedScene" uid="uid://b5fduioxdpqod" path="res://Gameplay/Feature/Scenes/CardSlot.tscn" id="3_ocn0r"]
+[ext_resource type="Script" uid="uid://bv8sxwgaa1kfy" path="res://Gameplay/Feature/Scenes/target_selector.gd" id="3_sc802"]
 [ext_resource type="Script" uid="uid://7h3n2byr2ul7" path="res://Gameplay/Feature/Scripts/DrawDeck.gd" id="4_v826t"]
 [ext_resource type="Texture2D" uid="uid://dm74s65v1chdy" path="res://Gameplay/Feature/Assets/CardBack.png" id="5_fqjow"]
 [ext_resource type="Script" uid="uid://cejvuq5ib2rei" path="res://Gameplay/Feature/Scenes/turn_manager.gd" id="5_tv8ua"]
@@ -54,6 +56,36 @@ theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("2_qja8p")
 theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxTexture_sc802")
+
+[node name="TargetSelectorPanel" type="PanelContainer" parent="CanvasLayer" unique_id=1115893589]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_kw4s6")
+script = ExtResource("3_sc802")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TargetSelectorPanel" unique_id=1892400910]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PromptLabel" type="Label" parent="CanvasLayer/TargetSelectorPanel/VBoxContainer" unique_id=2139029174]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.8862745, 0.4627451, 0.007843138, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_qja8p")
+theme_override_font_sizes/font_size = 48
+
+[node name="ButtonContainer" type="VBoxContainer" parent="CanvasLayer/TargetSelectorPanel/VBoxContainer" unique_id=1409339711]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="EndTurnButton" type="Button" parent="." unique_id=631468136]
 offset_left = 1723.0

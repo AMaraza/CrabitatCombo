@@ -4,6 +4,7 @@ signal turn_changed(is_player_turn: bool)
 
 enum TurnOwner { PLAYER, BOT}
 var current_turn: TurnOwner = TurnOwner.PLAYER
+var active_opponents: Array[String] = ["Bot 1", "Bot 2", "Bot 3"]
 
 @onready var action_points = $"../ActionPoints"
 @onready var end_turn_button = $"../EndTurnButton"
@@ -103,3 +104,13 @@ func set_player_controls_enabled(enabled: bool) -> void:
 # Helper function for other scripts to check before allowing clicks or drags
 func is_player_turn() -> bool:
 	return current_turn == TurnOwner.PLAYER
+
+
+# Helper function to return the current list of opponents
+func get_active_opponents() -> Array[String]:
+	return active_opponents
+
+
+# Optional helper if an opponent gets eliminated or leaves later in the game
+func remove_opponent(opponent_name: String) -> void:
+	active_opponents.erase(opponent_name)
