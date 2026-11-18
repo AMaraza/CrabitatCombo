@@ -18,3 +18,7 @@ enum CardType {
 @export var associated_crabitat_cards: Array[CardData]
 @export var targets_all_players: bool = false
 @export var effect_description: String
+
+
+func validate_custom_rules(_context: Dictionary) -> Dictionary:
+	return { "valid": true, "reason": "" }

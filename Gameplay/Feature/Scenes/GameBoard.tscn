@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://cejvuq5ib2rei" path="res://Gameplay/Feature/Scenes/turn_manager.gd" id="5_tv8ua"]
 [ext_resource type="PackedScene" uid="uid://jolxvppgbwfg" path="res://Gameplay/Feature/Scenes/BotCardSlot.tscn" id="6_28g5r"]
 [ext_resource type="Script" uid="uid://bev2gprxbijln" path="res://Gameplay/Feature/Scripts/InputManager.gd" id="6_jydus"]
+[ext_resource type="Script" uid="uid://b3ypx0slxo2y7" path="res://Gameplay/Feature/Scripts/rule_validator.gd" id="8_b1ruw"]
 [ext_resource type="FontFile" uid="uid://b34oxqbdc3d4e" path="res://Gameplay/Feature/Assets/Spicy Pizza.otf" id="8_d7rro"]
 [ext_resource type="Texture2D" uid="uid://brdyyncnnh4um" path="res://Gameplay/Feature/Assets/AquariumCardBack.png" id="8_jydus"]
 [ext_resource type="Texture2D" uid="uid://k1w0ajha02q0" path="res://Gameplay/Feature/Assets/Action Point.png" id="10_t5ocr"]
@@ -35,6 +36,26 @@ size = Vector2(270.00003, 197.50003)
 script = ExtResource("1_fqjow")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1034048091]
+
+[node name="FeedbackLabel" type="Label" parent="CanvasLayer" unique_id=921764195]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -330.0
+offset_right = 20.0
+offset_bottom = -281.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.29411766, 0.2, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_qja8p")
+theme_override_font_sizes/font_size = 48
 
 [node name="TurnPopupLabel" type="Label" parent="CanvasLayer" unique_id=1432873798]
 visible = false
@@ -174,6 +195,9 @@ text = "Action Points"
 [node name="CardMovement" type="Node2D" parent="." unique_id=1077628800 node_paths=PackedStringArray("card_slots")]
 script = ExtResource("1_u5pr3")
 card_slots = [NodePath("../PlayingArea/CardSlot"), NodePath("../PlayingArea/CardSlot2"), NodePath("../PlayingArea/CardSlot3"), NodePath("../PlayingArea/CardSlot4"), NodePath("../PlayingArea/CardSlot5"), NodePath("../PlayingArea/CardSlot6")]
+
+[node name="RuleValidator" type="Node2D" parent="." unique_id=1877356824]
+script = ExtResource("8_b1ruw")
 
 [node name="TurnManager" type="Node2D" parent="." unique_id=757272066]
 script = ExtResource("5_tv8ua")

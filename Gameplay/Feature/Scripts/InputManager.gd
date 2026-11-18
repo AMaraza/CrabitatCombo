@@ -51,12 +51,19 @@ func raycast_at_cursor():
 					card_manager_reference.start_drag(card_found)
 		# Deck clicked
 		elif result_collision_mask & COLLISION_MASK_DRAW_DECK:
-			var action_points = $"../ActionPoints"
-			if action_points.consume_draw_or_discard_action():
+			var rule_validator = $"../RuleValidator"
+			var check = rule_validator.can_draw_main_deck()
+			if check.valid:
+				$"../ActionPoints".consume_draw_or_discard_action()
 				draw_deck_reference.draw_card()
 			else:
-				print("Press the Draw/Discard button first (1 Action Point)!")
+				rule_validator.show_rejection_feedback(check.reason)
 		# Aquarium Deck clicked
 		elif result_collision_mask & COLLISION_MASK_AQUA_DECK:
-			# Use the updated logic inside AquariumDeck which enforces the combo validation check
-			aquarium_deck_reference.draw_card(null, !aquarium_deck_reference.is_initial_deal)
+			var rule_validator = $"../RuleValidator"
+			var check = rule_validator.can_draw_aquarium_deck()
+			if check.valid:
+				# Use the updated logic inside AquariumDeck which enforces the combo validation check
+				aquarium_deck_reference.draw_card(null, !aquarium_deck_reference.is_initial_deal)
+			else:
+				rule_validator.show_rejection_feedback(check.reason)

@@ -19,6 +19,7 @@ var card_type
 
 @export var card_slots: Array[Node2D]
 @onready var target_selector = $"../CanvasLayer/TargetSelectorPanel"
+@onready var rule_validator = $"../RuleValidator"
 
 
 # Called when the node enters the scene tree for the first time.
@@ -47,59 +48,43 @@ func start_drag(card):
 
 # Need to add difference between discard slot, habitat slot, playing area slot
 func finish_drag():
-	card_being_dragged.scale = Vector2(CARD_ENLARGED_SCALE, CARD_ENLARGED_SCALE)
 	var card_slot_found = raycast_check_for_card_slot()
-	
-	# Restricted card types to only discard
-	var restricted_types = [
-		CardData.CardType.ABILITY_CARD,
-		CardData.CardType.TRAP_CARD
-	]
-	
-	# If no slot was found under the mouse, return card to hand
-	if not card_slot_found:
+	var check = rule_validator.can_drop_card_on_slot(card_being_dragged, card_slot_found)
+	# If cannot be dragged to location, call popup message based on location
+	if not check.valid:
+		if check.reason != "":
+			rule_validator.show_rejection_feedback(check.reason)
+			flash_card_rejected(card_being_dragged)
+		
 		player_hand_reference.add_card_to_hand(card_being_dragged, CARD_DEFAULT_SPEED)
-		card_being_dragged.z_index = 10 # Reset to hand layer
+		card_being_dragged.z_index = 10
 		card_being_dragged = null
 		return
 	
-	# Check if it's a valid standard target slot (not a restricted habitat/aquarium zone)
-	if not card_slot_found.habitat_slot and not card_slot_found.aquarium_slot:
+	# --- VALID DROP: Proceed with state changes ---
+	if card_slot_found.main_discard:
+		if card_type != CardData.CardType.ABILITY_CARD:
+			$"../ActionPoints".consume_draw_or_discard_action()
 		
-		# VALID PLAY TIMING: Normal empty field slot AND not an ability card
-		if not card_slot_found.main_discard and not card_type in restricted_types and not card_slot_found.card_in_slot:
-			card_being_dragged.scale = Vector2(PLAYING_FIELD_SCALE, PLAYING_FIELD_SCALE)
-			card_slot_found.card_in_slot = true
-			card_being_dragged.z_index = 5 # Normal field static layer
-			slot_card(card_slot_found)
-			
-		# VALID DISCARD TIMING: Specifically dropped on the designated discard slot
-		elif card_slot_found.main_discard:
-			var action_points = $"../ActionPoints"
-			var is_ability_card = (card_type == CardData.CardType.ABILITY_CARD)
-			
-			# Allow discarding if it's an Ability Card (free) OR if Draw/Discar mode active
-			if is_ability_card or action_points.consume_draw_or_discard_action():
-				card_being_dragged.scale = Vector2(CARD_NORMAL_SCALE, CARD_NORMAL_SCALE)
-			
-				# Increment the counter to render cards above the previous one
-				discard_z_index_tracker += 1
-				card_being_dragged.z_index = discard_z_index_tracker
-				
-				card_slot_found.card_in_slot = false
-				slot_card(card_slot_found)
-			
-			# 3. INVALID DROP: E.g. An ability card dropped onto a normal playing field slot
-			else:
-				print("Press the Draw/Discard button first (1 Action Point)!")
-				player_hand_reference.add_card_to_hand(card_being_dragged, CARD_DEFAULT_SPEED)
-				card_being_dragged.z_index = 10 # Reset to hand layer
+		card_being_dragged.scale = Vector2(CARD_NORMAL_SCALE, CARD_NORMAL_SCALE)
+		discard_z_index_tracker += 1
+		card_being_dragged.z_index = discard_z_index_tracker
+		card_slot_found.card_in_slot = false
+		slot_card(card_slot_found)
 	else:
-		# Dropped in restricted habitat_slot or aquarium_slot
-		player_hand_reference.add_card_to_hand(card_being_dragged, CARD_DEFAULT_SPEED)
-		card_being_dragged.z_index = 10 # Reset to hand layer
+		card_being_dragged.scale = Vector2(PLAYING_FIELD_SCALE, PLAYING_FIELD_SCALE)
+		card_slot_found.card_in_slot = true
+		card_being_dragged.z_index = 5
+		slot_card(card_slot_found)
 		
 	card_being_dragged = null
+
+
+# Visual red flash when a card placement is rejected
+func flash_card_rejected(card: Node2D) -> void:
+	var tween = create_tween()
+	card.modulate = Color(1.0, 0.35, 0.35)
+	tween.tween_property(card, "modulate", Color.WHITE, 0.25)
 
 
 # Removes card from hand and slots into position

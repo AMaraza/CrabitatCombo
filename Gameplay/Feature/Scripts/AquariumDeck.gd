@@ -68,30 +68,32 @@ func populate_deck():
 
 
 func draw_card(card_drawn = null, face_down: bool = true):
-	# --- VALIDATE COMBO CONDITION IF CLICKED MANUALLY ---
-	if not is_initial_deal:
-		# Find an available combo card instance that hasn't been used yet
-		var valid_combo_card = get_unused_combo_card_on_field()
-		
-		if valid_combo_card == null:
-			print("Cannot draw: No unused combo card is currently slotted in the playing area!")
-			return # Exit early, nothing happens
-		else:
-			# Mark this specific card as used before proceeding with the draw
-			valid_combo_card.has_used_combo_draw = true
-			print("Combo draw claimed using card: ", valid_combo_card.card_data.card_name)
-	
 	# If no slots are available, stop immediately
 	var target_slot = find_empty_habitat_slot()
 	if target_slot == null:
 		print("Cannot draw: All habitat slots are full!")
 		return # Exit the function completely and nothing happens
-		
+	
 	# Check to make sure the deck itself isn't empty
 	if playing_deck.size() == 0:
 		print("Cannot draw: Aquarium deck empty")
 		return # Exit the function completely and nothing happens
-		
+	
+	# --- VALIDATE COMBO CONDITION IF CLICKED MANUALLY ---
+	var valid_combo_card: Node2D = null
+	if not is_initial_deal:
+		# Find an available combo card instance that hasn't been used yet
+		valid_combo_card = get_unused_combo_card_on_field()
+		if valid_combo_card == null:
+			print("Cannot draw: No unused combo card is currently slotted in the playing area!")
+			return # Exit early, nothing happens
+	
+	# All checks passed! Now safe to consume the combo draw
+	if valid_combo_card != null:
+		# Mark this specific card as used before proceeding with the draw
+		valid_combo_card.has_used_combo_draw = true
+		print("Combo draw claimed using card: ", valid_combo_card.card_data.card_name)
+
 	# If no specific card was passed, default to drawing the top card
 	if card_drawn == null:
 		card_drawn = playing_deck[0]

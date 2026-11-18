@@ -6,6 +6,7 @@ extends Node2D
 @onready var player_hand = $"../PlayerHand"
 @onready var card_movement = $"../CardMovement"
 @onready var main_discard_slot = $"../DiscardPiles/MainDeckDiscard"
+@onready var rule_validator = $"../RuleValidator"
 
 
 var current_action_points: int = 0
@@ -43,11 +44,11 @@ func spend_action_point() -> bool:
 
 func _on_draw_discard_button_pressed() -> void:
 	if current_action_points <= 0:
-		print("Cannot draw or discard: No action points remaining!")
+		rule_validator.show_rejection_feedback("Not enough Action Points (Requires 1 AP)!")
 		return
 	
 	is_draw_discard_active = true
-	print("Draw/Discard mode active!")
+	rule_validator.show_rejection_feedback("Draw/Discard mode active: Click Main Deck or drag a card to Discard.")
 
 
 # Called by DrawDeck or CardMovement when the action is actually performed
@@ -59,19 +60,18 @@ func consume_draw_or_discard_action() -> bool:
 
 
 func _on_adopt_crab_button_pressed() -> void:
-	# Verify at least 1 action point is available
-	if current_action_points <= 0:
-		print("Cannot adopt: No action points remaining!")
+	# Check if player can complete the action
+	var check = rule_validator.can_adopt_crab()
+	if not check.valid:
+		rule_validator.show_rejection_feedback(check.reason)
 		return
-	
+
 	# Find a face-down card in the HabitatArea
 	var card_to_flip = find_face_down_aquarium_card()
-	if card_to_flip == null:
-		print("Cannot adopt: No face-down aquarium cards in playing area!")
-		return
 	
 	# Spend the point and flip the card face up
 	if spend_action_point():
+		is_draw_discard_active = false
 		card_to_flip.set_face_down(false)
 		print("Adopted crab: ", card_to_flip.card_data.card_name)
 
@@ -98,16 +98,12 @@ func spend_multiple_action_points(amount: int) -> bool:
 
 
 func _on_redraw_hand_button_pressed() -> void:
-	# Verify at least 2 action points are available
-	if current_action_points < 2:
-		print("Cannot redraw hand: Requires 2 action points!")
+	# Check if player can complete the action
+	var check = rule_validator.can_redraw_hand()
+	if not check.valid:
+		rule_validator.show_rejection_feedback(check.reason)
 		return
-	
-	# Verify there are cards in the hand to discard
-	if player_hand.player_hand.size() == 0:
-		print("Cannot redraw hand: Hand is already empty!")
-		return
-	
+
 	# Spend 2 action points and cancel Draw/Discard mode if it was active
 	if spend_multiple_action_points(2):
 		is_draw_discard_active = false
