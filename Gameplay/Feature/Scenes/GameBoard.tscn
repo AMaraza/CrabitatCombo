@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://psagtrdfpds5" path="res://Gameplay/Feature/Scenes/PlayerHabitatSlot.tscn" id="14_u38pm"]
 [ext_resource type="Script" uid="uid://5iknn8b6qkdn" path="res://Gameplay/Feature/Scenes/action_points.gd" id="15_cgn0h"]
 [ext_resource type="PackedScene" uid="uid://db3veumyn66sl" path="res://Gameplay/Feature/Scenes/BotHabitatSlot.tscn" id="16_2b4pl"]
+[ext_resource type="Script" uid="uid://bw2uk7v4jf6s7" path="res://Gameplay/Feature/Scripts/game_manager.gd" id="23_b1ruw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sc802"]
 
@@ -358,6 +359,9 @@ position = Vector2(1328, 460)
 [node name="BotHabitatSlot4" parent="HabitatArea" unique_id=539727489 instance=ExtResource("16_2b4pl")]
 z_index = -3
 position = Vector2(1508, 460)
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1581932934]
+script = ExtResource("23_b1ruw")
 
 [connection signal="pressed" from="EndTurnButton" to="TurnManager" method="_on_end_turn_button_pressed"]
 [connection signal="pressed" from="DrawDiscardButton" to="ActionPoints" method="_on_draw_discard_button_pressed"]
