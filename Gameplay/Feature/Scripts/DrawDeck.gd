@@ -4,6 +4,7 @@ const CARD_SCENE_PATH = "res://Gameplay/Feature/Scenes/Card.tscn"
 const CARD_DATABASE_PATH = "res://card_database.gd"
 const CARD_DRAW_SPEED = 0.3
 const DECK_POSITION = [1100, 700]
+const MAX_HAND_SIZE: int = 6
 
 var card_database
 var discard_deck = []
@@ -13,8 +14,8 @@ var playing_deck = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	card_database = preload(CARD_DATABASE_PATH)
-	populate_deck()
-	#populate_spoofed_deck()
+	#populate_deck()
+	populate_spoofed_deck()
 	
 	# Use deferred call to give other modes (like PlayerHand) a fram to initialize
 	# their sizes and variables before drawing cards.
@@ -34,6 +35,25 @@ func deal_starting_hand():
 			draw_card()
 		else:
 			#print("Stopped dealing: Deck ran ouf of cards during setup!")
+			break
+
+
+func refill_hand_to_limit() -> void:
+	var player_hand = $"../PlayerHand"
+	if not player_hand:
+		return
+	
+	var cards_needed: int = MAX_HAND_SIZE - player_hand.player_hand.size()
+	
+	if cards_needed <= 0:
+		return
+	
+	for i in range(cards_needed):
+		await get_tree().create_timer(0.15).timeout
+		if playing_deck.size() > 0:
+			draw_card()
+		else:
+			# Deck empty
 			break
 
 

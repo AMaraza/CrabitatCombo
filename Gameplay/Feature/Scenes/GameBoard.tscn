@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://7h3n2byr2ul7" path="res://Gameplay/Feature/Scripts/DrawDeck.gd" id="4_v826t"]
 [ext_resource type="Texture2D" uid="uid://dm74s65v1chdy" path="res://Gameplay/Feature/Assets/CardBack.png" id="5_fqjow"]
 [ext_resource type="Script" uid="uid://cejvuq5ib2rei" path="res://Gameplay/Feature/Scenes/turn_manager.gd" id="5_tv8ua"]
+[ext_resource type="Script" uid="uid://cr5oy238ud04t" path="res://Gameplay/Feature/Scenes/game_over_panel.gd" id="5_ut233"]
 [ext_resource type="PackedScene" uid="uid://jolxvppgbwfg" path="res://Gameplay/Feature/Scenes/BotCardSlot.tscn" id="6_28g5r"]
 [ext_resource type="Script" uid="uid://bev2gprxbijln" path="res://Gameplay/Feature/Scripts/InputManager.gd" id="6_jydus"]
 [ext_resource type="Script" uid="uid://b3ypx0slxo2y7" path="res://Gameplay/Feature/Scripts/rule_validator.gd" id="8_b1ruw"]
@@ -109,20 +110,66 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
+[node name="GameOverOverlay" type="ColorRect" parent="CanvasLayer" unique_id=50436385]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6509804)
+script = ExtResource("5_ut233")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/GameOverOverlay" unique_id=319538340]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverPanel" type="PanelContainer" parent="CanvasLayer/GameOverOverlay/CenterContainer" unique_id=831001038]
+layout_mode = 2
+theme = ExtResource("3_kw4s6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOverOverlay/CenterContainer/GameOverPanel" unique_id=383720283]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ResultLabel" type="Label" parent="CanvasLayer/GameOverOverlay/CenterContainer/GameOverPanel/VBoxContainer" unique_id=946266221]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.8862745, 0.4627451, 0.007843138, 1)
+theme_override_fonts/font = ExtResource("2_qja8p")
+theme_override_font_sizes/font_size = 48
+
+[node name="ButtonContainer" type="HBoxContainer" parent="CanvasLayer/GameOverOverlay/CenterContainer/GameOverPanel/VBoxContainer" unique_id=1584673934]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PlayAgainButton" type="Button" parent="CanvasLayer/GameOverOverlay/CenterContainer/GameOverPanel/VBoxContainer/ButtonContainer" unique_id=185023621]
+layout_mode = 2
+text = "Play Again"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/GameOverOverlay/CenterContainer/GameOverPanel/VBoxContainer/ButtonContainer" unique_id=963587029]
+layout_mode = 2
+text = "Quit"
+
 [node name="EndTurnButton" type="Button" parent="." unique_id=631468136]
-offset_left = 1723.0
-offset_top = 1151.0
-offset_right = 1824.0
-offset_bottom = 1182.0
+offset_left = 1477.0
+offset_top = 1222.0
+offset_right = 1578.0
+offset_bottom = 1253.0
 theme_override_fonts/font = ExtResource("8_d7rro")
 theme_override_font_sizes/font_size = 20
 text = "END TURN"
 
-[node name="DrawDiscardButton" type="Button" parent="." unique_id=1703366993]
-offset_left = 1729.0
-offset_top = 1089.0
-offset_right = 1816.0
-offset_bottom = 1120.0
+[node name="DrawDiscardButton" type="Label" parent="." unique_id=1148234878]
+offset_left = 854.0
+offset_top = 540.0
+offset_right = 983.0
+offset_bottom = 571.0
 theme_override_fonts/font = ExtResource("8_d7rro")
 theme_override_font_sizes/font_size = 20
 text = "Draw/Discard"
@@ -152,10 +199,10 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_t5ocr")
 
 [node name="AdoptCrabButton" type="Button" parent="." unique_id=251613398]
-offset_left = 1710.0
-offset_top = 926.0
-offset_right = 1834.0
-offset_bottom = 956.0
+offset_left = 1627.0
+offset_top = 914.0
+offset_right = 1751.0
+offset_bottom = 944.0
 theme_override_fonts/font = ExtResource("8_d7rro")
 theme_override_font_sizes/font_size = 20
 text = "Adopt Crab"
@@ -364,6 +411,5 @@ position = Vector2(1508, 460)
 script = ExtResource("23_b1ruw")
 
 [connection signal="pressed" from="EndTurnButton" to="TurnManager" method="_on_end_turn_button_pressed"]
-[connection signal="pressed" from="DrawDiscardButton" to="ActionPoints" method="_on_draw_discard_button_pressed"]
 [connection signal="pressed" from="RedrawHandButton" to="ActionPoints" method="_on_redraw_hand_button_pressed"]
 [connection signal="pressed" from="AdoptCrabButton" to="ActionPoints" method="_on_adopt_crab_button_pressed"]
