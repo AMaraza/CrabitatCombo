@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_sqnc0")
-card_name = "Water Primer"
+card_name = "Water Bowl"
 number_in_deck = 2
 card_image = ExtResource("2_bv7a4")
 metadata/_custom_type_script = "uid://pvoxgmc38qbv"

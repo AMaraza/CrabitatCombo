@@ -1,5 +1,8 @@
 extends Node2D
 
+const TOTAL_CRABS_TO_WIN: int = 4
+const MATCHING_CRABS_TO_WIN: int = 3
+
 @onready var action_point_icons: Array[CanvasItem] = [$ActionPoint, $ActionPoint2]
 @onready var habitat_area = $"../HabitatArea"
 @onready var draw_deck = $"../DrawDeck"
@@ -10,7 +13,6 @@ extends Node2D
 
 
 var current_action_points: int = 0
-var is_draw_discard_active: bool = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -42,21 +44,9 @@ func spend_action_point() -> bool:
 	return false
 
 
-func _on_draw_discard_button_pressed() -> void:
-	if current_action_points <= 0:
-		rule_validator.show_rejection_feedback("Not enough Action Points (Requires 1 AP)!")
-		return
-	
-	is_draw_discard_active = true
-	rule_validator.show_rejection_feedback("Draw/Discard mode active: Click Main Deck or drag a card to Discard.")
-
-
 # Called by DrawDeck or CardMovement when the action is actually performed
 func consume_draw_or_discard_action() -> bool:
-	if is_draw_discard_active and spend_action_point():
-		is_draw_discard_active = false
-		return true
-	return false
+	return spend_action_point()
 
 
 func _on_adopt_crab_button_pressed() -> void:
@@ -71,9 +61,11 @@ func _on_adopt_crab_button_pressed() -> void:
 	
 	# Spend the point and flip the card face up
 	if spend_action_point():
-		is_draw_discard_active = false
 		card_to_flip.set_face_down(false)
 		print("Adopted crab: ", card_to_flip.card_data.card_name)
+		
+		# Check if this adoption wins the game
+		check_victory_condition()
 
 
 # Loops through HabitatArea slots to find the first face-down card
@@ -106,7 +98,6 @@ func _on_redraw_hand_button_pressed() -> void:
 
 	# Spend 2 action points and cancel Draw/Discard mode if it was active
 	if spend_multiple_action_points(2):
-		is_draw_discard_active = false
 		discard_entire_hand()
 		draw_deck.deal_starting_hand()
 		print("Spent 2 Action Points to discard and redraw hand.")
@@ -133,3 +124,61 @@ func discard_entire_hand() -> void:
 		else:
 			# queue_free built in and removes a node safely at the end of the frame
 			card.queue_free()
+
+
+# Function to count crabs for winning condition
+func get_adopted_crab_count() -> int:
+	var count = 0
+	if not habitat_area:
+		return count
+	
+	for slot in habitat_area.get_children():
+		if "habitat_slot" in slot and slot.habitat_slot and slot.card != null:
+			# Only count crabs that have been revealed (face-up)
+			if not slot.card.is_face_down:
+				count += 1
+	return count
+
+
+func check_victory_condition() -> void:
+	if not habitat_area:
+		return
+	
+	var total_adopted: int = 0
+	var crab_name_counts: Dictionary = {} # Tracks { "Crab Name": count}
+	
+	# Loop through all slots in the HabitatArea
+	for slot in habitat_area.get_children():
+		if "habitat_slot" in slot and slot.habitat_slot and slot.card != null:
+			# Only count crabs that have been flipped face-up
+			if not slot.card.is_face_down and slot.card.card_data:
+				total_adopted += 1
+				
+				var c_name: String = slot.card.card_data.card_name
+				crab_name_counts[c_name] = crab_name_counts.get(c_name, 0) + 1
+	
+	# Check for win condition 1: 4 Hermit Crabs total
+	if total_adopted >= TOTAL_CRABS_TO_WIN:
+		trigger_victory("VICTORY! YOU WIN!")
+		return
+	
+	# Check for win condition 2: 3 of the same named Hermit Crab
+	for c_name in crab_name_counts.keys():
+		if crab_name_counts[c_name] >= MATCHING_CRABS_TO_WIN:
+			trigger_victory("VICTORY! YOU WIN!")
+			return
+
+
+func trigger_victory(win_message: String) -> void:
+	var turn_manager = $"../TurnManager"
+	if turn_manager:
+		turn_manager.is_game_over = true
+		turn_manager.set_player_controls_enabled(false)
+	
+	# Display the GameOverPanel with Play Again / Quit buttons
+	var game_over_overlay = get_node_or_null("../CanvasLayer/GameOverOverlay")
+	if game_over_overlay:
+		game_over_overlay.show_game_over(win_message)
+	elif turn_manager:
+		# Fallback to the turn banner if the panel isn't added yet
+		turn_manager.show_turn_popup(win_message, 999.0)

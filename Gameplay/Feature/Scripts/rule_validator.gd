@@ -69,13 +69,17 @@ func can_drop_card_on_slot(card: Node2D, slot: Node2D) -> Dictionary:
 	if slot.main_discard:
 		var is_ability = (data.card_type == CardData.CardType.ABILITY_CARD)
 		if is_ability:
-			# Single-target abilities require at least 1 active opponent
-			if not data.targets_all_players and turn_manager and turn_manager.get_active_opponents().is_empty():
-				return { "valid": false, "reason": "No valid opponents available to target!" }
+			# ---- SOLO PLAY TESTING SCRIPT -------------------
+			# Allow playing for solo mode with opponents empty
 			return { "valid": true, "reason": "" } # Complete action no message
+			# --- REGULAR PLAY SCRIPTING -------------------
+			# Single-target abilities require at least 1 active opponent
+			#if not data.targets_all_players and turn_manager and turn_manager.get_active_opponents().is_empty():
+				#return { "valid": false, "reason": "No valid opponents available to target!" }
+			#return { "valid": true, "reason": "" } # Complete action no message
 		
 		# Non-ability cards require Draw/Discard mode
-		if action_points and action_points.is_draw_discard_active and action_points.current_action_points >= 1:
+		if action_points and action_points.current_action_points >= 1:
 			return { "valid": true, "reason": "" } # Complete action no message
 		return { "valid": false, "reason": "Press Draw/Discard first (Requires 1 Action Point)!" }
 	
@@ -86,6 +90,9 @@ func can_drop_card_on_slot(card: Node2D, slot: Node2D) -> Dictionary:
 	# Case C: Normal Playing Field Slot
 	if slot.card_in_slot:
 		return { "valid": false, "reason": "That playing slot is already occupied!" }
+	
+	if data.card_type == CardData.CardType.COMBO_CARD:
+		return {"valid": false, "reason": "Click a Combo Card in your hand when its matching cards are on the field!"}
 	
 	if data.card_type == CardData.CardType.ABILITY_CARD or data.card_type == CardData.CardType.TRAP_CARD:
 		return { "valid": false, "reason": "Ability and Trap cards must be placed in the discard pile to activate!" }
@@ -115,7 +122,7 @@ func can_draw_main_deck() -> Dictionary:
 	if draw_deck and draw_deck.playing_deck.is_empty():
 		return { "valid": false, "reason": "The Main Deck is empty!" }
 	
-	if not action_points or not action_points.is_draw_discard_active or action_points.current_action_points < 1:
+	if not action_points or action_points.current_action_points < 1:
 		return { "valid": false, "reason": "Press Draw/Discard first (Requires 1 Action Point)!" }
 		
 	return { "valid": true, "reason": "" } # Complete action no message

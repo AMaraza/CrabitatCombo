@@ -33,12 +33,18 @@ func prompt_for_opponent(card_node: Node2D) -> void:
 	if turn_manager and turn_manager.has_method("get_active_opponents"):
 		opponents = turn_manager.get_active_opponents()
 	
-	# Create a button for each active opponent
-	for opponent_name in opponents:
-		var btn = Button.new()
-		btn.text = opponent_name
-		btn.pressed.connect(_on_opponent_button_pressed.bind(opponent_name))
-		button_container.add_child(btn)
+	# If in single-player mode with no opponents, provide a solo target option
+	if opponents.is_empty():
+		var solo_btn = Button.new()
+		solo_btn.text = "Activate Effect (Solo)"
+		solo_btn.pressed.connect(_on_opponent_button_pressed.bind("Solo Target"))
+		button_container.add_child(solo_btn)
+	else:
+		for opponent_name in opponents:
+			var btn = Button.new()
+			btn.text = opponent_name
+			btn.pressed.connect(_on_opponent_button_pressed.bind(opponent_name))
+			button_container.add_child(btn)
 	
 	# Add a Cancel button at the end
 	var cancel_btn = Button.new()

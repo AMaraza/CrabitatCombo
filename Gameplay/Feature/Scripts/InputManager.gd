@@ -48,7 +48,14 @@ func raycast_at_cursor():
 		if result_collision_mask & COLLISION_MASK_CARD:
 			var card_found = result[0].collider.get_parent()
 			if card_found:
-					card_manager_reference.start_drag(card_found)
+				# Check if this is a Combo Card in hand with a valid combo ready on the field
+				if card_found.card_in_slot == null and card_found.card_data.card_type == CardData.CardType.COMBO_CARD:
+					if card_manager_reference.get_matching_combo_slots(card_found).size() >= 2:
+						card_manager_reference.play_combo_card_from_hand(card_found)
+						return
+				
+				# Default behavior: drag card (for Crabitat placement or discarding)
+				card_manager_reference.start_drag(card_found)
 		# Deck clicked
 		elif result_collision_mask & COLLISION_MASK_DRAW_DECK:
 			var rule_validator = $"../RuleValidator"

@@ -19,7 +19,8 @@ var is_initial_deal: bool = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	card_database = preload(CARD_DATABASE_PATH)
-	populate_deck()
+	#populate_deck()
+	populate_spoofed_deck()
 	
 	# Use deferred call to give other modes (like PlayerHand) a fram to initialize
 	# their sizes and variables before drawing cards.
@@ -67,6 +68,14 @@ func populate_deck():
 	playing_deck.shuffle()
 
 
+func populate_spoofed_deck():
+	playing_deck.clear()
+	
+	playing_deck.append(card_database.HERMIT_CRABS[0])
+	playing_deck.append(card_database.HERMIT_CRABS[1])
+	playing_deck.append(card_database.HERMIT_CRABS[2])
+
+
 func draw_card(card_drawn = null, face_down: bool = true):
 	# If no slots are available, stop immediately
 	var target_slot = find_empty_habitat_slot()
@@ -110,8 +119,13 @@ func draw_card(card_drawn = null, face_down: bool = true):
 	
 	# If last card drawn from the deck, disable deck
 	if playing_deck.size() == 0:
-		$Area2D/CollisionShape2D.disabled = true
-		$DrawDeckImage.visible = false
+		var col_shape = get_node_or_null("Area2D/CollisionShape2D")
+		if col_shape:
+			col_shape.disabled = true
+		
+		var deck_sprite = get_node_or_null("AquariumDeckImage") 
+		if deck_sprite:
+			deck_sprite.visible = false
 	
 	# Instantiate visual card representation
 	var card_scene = preload(CARD_SCENE_PATH)

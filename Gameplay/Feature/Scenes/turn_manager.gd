@@ -4,17 +4,20 @@ signal turn_changed(is_player_turn: bool)
 
 enum TurnOwner { PLAYER, BOT}
 var current_turn: TurnOwner = TurnOwner.PLAYER
-var active_opponents: Array[String] = ["Bot 1", "Bot 2", "Bot 3"]
+var active_opponents: Array[String] = []
 
 @onready var action_points = $"../ActionPoints"
 @onready var end_turn_button = $"../EndTurnButton"
 @onready var adopt_crab_button = $"../AdoptCrabButton"
 @onready var draw_discard_button = $"../DrawDiscardButton"
 @onready var redraw_hand_button = $"../RedrawHandButton"
+@onready var draw_deck = $"../DrawDeck"
 
 # Reference for popup
 @onready var turn_popup_label: Label = $"../CanvasLayer/TurnPopupLabel"
 var popup_tween: Tween
+var is_game_over: bool = false
+var is_first_turn: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -57,28 +60,32 @@ func start_player_turn() -> void:
 	if action_points:
 		action_points.reset_action_points()
 	
+	# Skip on the very first turn since DrawDeck.deal_starting_hand() already deals 6 cards
+	if is_first_turn:
+		is_first_turn = false
+	elif draw_deck:
+		draw_deck.refill_hand_to_limit()
+	
 	emit_signal("turn_changed", true)
 	show_turn_popup("PLAYER'S TURN")
 
 
 func _on_end_turn_button_pressed() -> void:
 	# Prevent clicking if it's already not the player's turn
-	if current_turn != TurnOwner.PLAYER:
+	if current_turn != TurnOwner.PLAYER or is_game_over:
 		return
 	
 	print("Player ended their turn.")
-	start_bot_turn()
+	#start_bot_turn()
+	
+	# Immediately start the next player turn for single-player testing/play
+	start_player_turn()
 
 
 # Lock player controls and run bot's turn
 func start_bot_turn() -> void:
 	current_turn = TurnOwner.BOT
-	set_player_controls_enabled(false)
-	
-	# Cancel Draw/Discard mode if the player left it active when ending their turn
-	if action_points:
-		action_points.is_draw_discard_active = false
-	
+	set_player_controls_enabled(false)	
 	emit_signal("turn_changed", false)
 	show_turn_popup("BOT'S TURN")
 	
@@ -95,15 +102,13 @@ func set_player_controls_enabled(enabled: bool) -> void:
 		end_turn_button.disabled = not enabled
 	if adopt_crab_button:
 		adopt_crab_button.disabled = not enabled
-	if draw_discard_button:
-		draw_discard_button.disabled = not enabled
 	if redraw_hand_button:
 		redraw_hand_button.disabled = not enabled
 
 
 # Helper function for other scripts to check before allowing clicks or drags
 func is_player_turn() -> bool:
-	return current_turn == TurnOwner.PLAYER
+	return current_turn == TurnOwner.PLAYER and not is_game_over
 
 
 # Helper function to return the current list of opponents
